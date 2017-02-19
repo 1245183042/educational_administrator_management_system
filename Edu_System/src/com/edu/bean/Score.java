@@ -1,17 +1,23 @@
 package com.edu.bean;
+
 /**
- * ³É¼¨±í
+ * æˆç»©è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class Score {
-	private int scoId;//Ö÷¼ü
-	private double scoScore;//·ÖÊı
-	private int scoStuId;//Íâ¼ü£¬Ñ§Éú±íId
-	private int scoSubId;//Íâ¼ü£¬¿ÆÄ¿±íId
-	private int scoTeaId;//Íâ¼ü£¬½ÌÊ¦±íId
-	private String scoTime;//¿¼ÊÔÊ±¼ä
-	public Score(){}
+
+	private int scoId;// ä¸»é”®
+	private double scoScore;// åˆ†æ•°
+	private int scoStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private int scoSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int scoTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private String scoTime;// è€ƒè¯•æ—¶é—´
+
+	public Score() {
+	}
+
 	public Score(int scoId, double scoScore, int scoStuId, int scoSubId,
 			int scoTeaId, String scoTime) {
 		this.scoId = scoId;
@@ -21,41 +27,53 @@ public class Score {
 		this.scoTeaId = scoTeaId;
 		this.scoTime = scoTime;
 	}
+
 	public int getScoId() {
 		return scoId;
 	}
+
 	public void setScoId(int scoId) {
 		this.scoId = scoId;
 	}
+
 	public double getScoScore() {
 		return scoScore;
 	}
+
 	public void setScoScore(double scoScore) {
 		this.scoScore = scoScore;
 	}
+
 	public int getScoStuId() {
 		return scoStuId;
 	}
+
 	public void setScoStuId(int scoStuId) {
 		this.scoStuId = scoStuId;
 	}
+
 	public int getScoSubId() {
 		return scoSubId;
 	}
+
 	public void setScoSubId(int scoSubId) {
 		this.scoSubId = scoSubId;
 	}
+
 	public int getScoTeaId() {
 		return scoTeaId;
 	}
+
 	public void setScoTeaId(int scoTeaId) {
 		this.scoTeaId = scoTeaId;
 	}
+
 	public String getScoTime() {
 		return scoTime;
 	}
+
 	public void setScoTime(String scoTime) {
 		this.scoTime = scoTime;
 	}
-	
+
 }

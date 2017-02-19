@@ -1,29 +1,38 @@
 package com.edu.bean;
+
 /**
- * Ñ§Ôº±í
+ * å­¦é™¢è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class College {
-	private int collegeId;//Ö÷¼ü
-	private String collegeName;//Ñ§ÔºÃû³Æ
-	public College(){}
+
+	private int collegeId;// ä¸»é”®
+	private String collegeName;// å­¦é™¢åç§°
+
+	public College() {
+	}
+
 	public College(int collegeId, String collegeName) {
 		this.collegeId = collegeId;
 		this.collegeName = collegeName;
 	}
+
 	public int getCollegeId() {
 		return collegeId;
 	}
+
 	public void setCollegeId(int collegeId) {
 		this.collegeId = collegeId;
 	}
+
 	public String getCollegeName() {
 		return collegeName;
 	}
+
 	public void setCollegeName(String collegeName) {
 		this.collegeName = collegeName;
 	}
-	
-	
+
 }

@@ -1,32 +1,39 @@
 package com.edu.bean;
+
 /**
- * Äê¼¶±í
+ * å¹´çº§è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class Grade {
-	private int gradeId;//Ö÷¼ü
-	private String gradeName;//Äê¼¶Ãû³Æ
-	
-	public Grade(){}
-	
+
+	private int gradeId;// ä¸»é”®
+	private String gradeName;// å¹´çº§åç§°
+
+	public Grade() {
+	}
+
 	public Grade(int gradeId, String gradeName) {
 		super();
 		this.gradeId = gradeId;
 		this.gradeName = gradeName;
 	}
+
 	public int getGradeId() {
 		return gradeId;
 	}
+
 	public void setGradeId(int gradeId) {
 		this.gradeId = gradeId;
 	}
+
 	public String getGradeName() {
 		return gradeName;
 	}
+
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
 	}
-	
-	
+
 }

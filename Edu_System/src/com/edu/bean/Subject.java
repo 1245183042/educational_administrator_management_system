@@ -1,37 +1,49 @@
 package com.edu.bean;
+
 /**
- * ¿ÆÄ¿±í
+ * ç§‘ç›®è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class Subject {
-	private int subjectId;//Ö÷¼ü
-	private String subjectName;//¿ÆÄ¿Ãû³Æ
-	private int subjectTime;//¿ÆÄ¿Ñ§Ê±
-	public Subject(){}
+
+	private int subjectId;// ä¸»é”®
+	private String subjectName;// ç§‘ç›®åç§°
+	private int subjectTime;// ç§‘ç›®å­¦æ—¶
+
+	public Subject() {
+	}
+
 	public Subject(int subjectId, String subjectName, int subjectTime) {
 		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
 	}
+
 	public int getSubjectId() {
 		return subjectId;
 	}
+
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
+
 	public String getSubjectName() {
 		return subjectName;
 	}
+
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+
 	public int getSubjectTime() {
 		return subjectTime;
 	}
+
 	public void setSubjectTime(int subjectTime) {
 		this.subjectTime = subjectTime;
 	}
-	
+
 }

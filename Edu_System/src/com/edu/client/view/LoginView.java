@@ -10,83 +10,91 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.edu.bean.Identify;
+
+/**
+ * æ•™åŠ¡ç®¡ç†ç³»ç»Ÿç™»å½•é¡µé¢
+ * 
+ * @author chen7
+ * 
+ */
 public class LoginView {
 	private JComboBox<String> identityBox;
 	private JLabel accountLabel;
-	
-	public void iniUI(){
+	private Identify identify;
+
+	public void iniUI() {
 		JFrame loginFrame = new JFrame();
 		loginFrame.setSize(800, 500);
 		loginFrame.setLocationRelativeTo(null);
-		
+
 		JPanel contentPane = (JPanel) loginFrame.getContentPane();
 		contentPane.setLayout(null);
-		
+
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLayout(null);
 		loginPanel.setBounds(0, 0, 320, 220);
 		contentPane.add(loginPanel);
-		
-		JLabel topLabel = new JLabel("ÓÃ»§µÇÂ¼");
+
+		JLabel topLabel = new JLabel("ç”¨æˆ·ç™»å½•");
 		topLabel.setBounds(150, 10, 180, 30);
 		loginPanel.add(topLabel);
-		
-		JLabel identityLabel = new JLabel("Éí·İ");
+
+		JLabel identityLabel = new JLabel("èº«ä»½");
 		identityLabel.setBounds(70, 45, 50, 20);
 		loginPanel.add(identityLabel);
-		
-		accountLabel = new JLabel("Ñ§ºÅ");
-		accountLabel.setBounds(70,70,50,20);
+
+		accountLabel = new JLabel("å­¦å·");
+		accountLabel.setBounds(70, 70, 50, 20);
 		loginPanel.add(accountLabel);
-		
-		JLabel passwordLabel = new JLabel("ÃÜÂë");
-		passwordLabel.setBounds(70,95,50,20);
+
+		JLabel passwordLabel = new JLabel("å¯†ç ");
+		passwordLabel.setBounds(70, 95, 50, 20);
 		loginPanel.add(passwordLabel);
-		
-		JButton loginButton = new JButton("µÇÂ¼");
+
+		JButton loginButton = new JButton("ç™»å½•");
 		loginButton.setBounds(70, 150, 180, 30);
 		loginPanel.add(loginButton);
-		
+
 		identityBox = new JComboBox<String>();
 		identityBox.setBounds(115, 45, 130, 20);
-		identityBox.addItem("Ñ§Éú");
-		identityBox.addItem("½ÌÊ¦½Ì¸¨ÈËÔ±");
-		identityBox.addItem("¹ÜÀíÔ±");
-		
+		identityBox.addItem("å­¦ç”Ÿ");
+		identityBox.addItem("æ•™å¸ˆæ•™è¾…äººå‘˜");
+		identityBox.addItem("ç®¡ç†å‘˜");
+
 		loginPanel.add(identityBox);
-		
+
 		JTextField accountField = new JTextField();
 		accountField.setBounds(115, 70, 130, 20);
 		loginPanel.add(accountField);
-		
+
 		JTextField passwordField = new JTextField();
 		passwordField.setBounds(115, 95, 130, 20);
 		loginPanel.add(passwordField);
 
 		loginFrame.setVisible(true);
-		
+
 		identityBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				  if(arg0.getStateChange() == ItemEvent.SELECTED){
-					  if(identityBox.getSelectedItem().equals("Ñ§Éú")){
-						  accountLabel.setText("Ñ§ºÅ");
-					  }
-					  if(identityBox.getSelectedItem().equals("½ÌÊ¦½Ì¸¨ÈËÔ±")){
-						  accountLabel.setText("¹¤ºÅ");
-					  }
-					  if(identityBox.getSelectedItem().equals("¹ÜÀíÔ±")){
-						  accountLabel.setText("ÕËºÅ");
-					  }
+				if (arg0.getStateChange() == ItemEvent.SELECTED) {
+					if (identityBox.getSelectedItem().equals("å­¦ç”Ÿ")) {
+						accountLabel.setText("å­¦å·");
+						identify = Identify.STUDENT;
+					}
+					if (identityBox.getSelectedItem().equals("æ•™å¸ˆæ•™è¾…äººå‘˜")) {
+						accountLabel.setText("å·¥å·");
+						
+					}
+					if (identityBox.getSelectedItem().equals("ç®¡ç†å‘˜")) {
+						accountLabel.setText("è´¦å·");
+					}
 				}
-				  
 			}
 		});
 	}
-	
-	
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		new LoginView().iniUI();
 	}
 }

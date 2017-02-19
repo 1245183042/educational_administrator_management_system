@@ -1,21 +1,27 @@
 package com.edu.bean;
+
 /**
- * Ñ¡ĞŞ¿Î±í
+ * é€‰ä¿®è¯¾è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class Elective {
-	private int eleId;//Ö÷¼ü
-	private int eleStatus;//¿Î³Ì×´Ì¬£º0¿ÉÑ¡£¬1²»¿ÉÑ¡
-	private int eleSubId;//Íâ¼ü£¬¿ÆÄ¿±íId
-	private int eleTeaId;//Íâ¼ü£¬½ÌÊ¦±íId
-	private int	eleCpId;//Íâ¼ü£¬¿Î³ÌÎ»ÖÃ±íId
-	private int eleStuId;//Íâ¼ü£¬Ñ§Éú±íId
-	private String eleWeek;//ÉÏ¿ÎÖÜÊı
-	private String eleClassroom;//ÉÏ¿Î
-	public Elective(){}
+	
+	private int eleId;// ä¸»é”®
+	private int eleStatus;// è¯¾ç¨‹çŠ¶æ€ï¼š0å¯é€‰ï¼Œ1ä¸å¯é€‰
+	private int eleSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int eleTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private int eleCpId;// å¤–é”®ï¼Œè¯¾ç¨‹ä½ç½®è¡¨Id
+	private int eleStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private String eleWeek;// ä¸Šè¯¾å‘¨æ•°
+	private String eleClassroom;// ä¸Šè¯¾
+
+	public Elective() {
+	}
+
 	public Elective(int eleId, int eleStatus, int eleSubId, int eleTeaId,
-			int eleCpId, int eleStuId,String eleWeek,String eleClassroom) {
+			int eleCpId, int eleStuId, String eleWeek, String eleClassroom) {
 		this.eleId = eleId;
 		this.eleStatus = eleStatus;
 		this.eleSubId = eleSubId;
@@ -25,53 +31,69 @@ public class Elective {
 		this.eleWeek = eleWeek;
 		this.eleClassroom = eleClassroom;
 	}
-	public String getEleClassroom(){
+
+	public String getEleClassroom() {
 		return eleClassroom;
 	}
-	public void setEleClassroom(String eleClassroom){
+
+	public void setEleClassroom(String eleClassroom) {
 		this.eleClassroom = eleClassroom;
 	}
-	public String getEleWeek(){
+
+	public String getEleWeek() {
 		return eleWeek;
 	}
-	public void setEleWeek(String eleWeek){
+
+	public void setEleWeek(String eleWeek) {
 		this.eleWeek = eleWeek;
 	}
+
 	public int getEleId() {
 		return eleId;
 	}
+
 	public void setEleId(int eleId) {
 		this.eleId = eleId;
 	}
+
 	public int getEleStatus() {
 		return eleStatus;
 	}
+
 	public void setEleStatus(int eleStatus) {
 		this.eleStatus = eleStatus;
 	}
+
 	public int getEleSubId() {
 		return eleSubId;
 	}
+
 	public void setEleSubId(int eleSubId) {
 		this.eleSubId = eleSubId;
 	}
+
 	public int getEleTeaId() {
 		return eleTeaId;
 	}
+
 	public void setEleTeaId(int eleTeaId) {
 		this.eleTeaId = eleTeaId;
 	}
+
 	public int getEleCpId() {
 		return eleCpId;
 	}
+
 	public void setEleCpId(int eleCpId) {
 		this.eleCpId = eleCpId;
 	}
+
 	public int getEleStuId() {
 		return eleStuId;
 	}
+
 	public void setEleStuId(int eleStuId) {
 		this.eleStuId = eleStuId;
 	}
-	
+
 }

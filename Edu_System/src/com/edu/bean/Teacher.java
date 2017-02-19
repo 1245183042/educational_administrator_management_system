@@ -1,18 +1,28 @@
 package com.edu.bean;
+
+import java.io.Serializable;
+
 /**
- * ½ÌÊ¦±í
+ * æ•™å¸ˆè¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
-public class Teacher {
-	private int teacherId;//Ö÷¼ü
-	private String teacherName;//½ÌÊ¦Ãû×Ö
-	private String teacherPassword;//½ÌÊ¦ÃÜÂë
-	private String teacherPhone;//½ÌÊ¦µç»°
-	private String teacherAddress;//¼ÒÍ¥×¡Ö·
-	private String teacherTitle;//½ÌÊ¦Ö°³Æ
-	private int teaColId;//Íâ¼ü£¬Ñ§Ôº±íID
-	public Teacher(){}
+public class Teacher implements User,Serializable{
+	
+	private static final long serialVersionUID = -8787488217321949003L;
+	
+	private int teacherId;// ä¸»é”®
+	private String teacherName;// æ•™å¸ˆåå­—
+	private String teacherPassword;// æ•™å¸ˆå¯†ç 
+	private String teacherPhone;// æ•™å¸ˆç”µè¯
+	private String teacherAddress;// å®¶åº­ä½å€
+	private String teacherTitle;// æ•™å¸ˆèŒç§°
+	private int teaColId;// å¤–é”®ï¼Œå­¦é™¢è¡¨ID
+
+	public Teacher() {
+	}
+
 	public Teacher(int teacherId, String teacherName, String teacherPassword,
 			String teacherPhone, String teacherAddress, String teacherTitle,
 			int teaColId) {
@@ -24,48 +34,61 @@ public class Teacher {
 		this.teacherTitle = teacherTitle;
 		this.teaColId = teaColId;
 	}
+
 	public int getTeacherId() {
 		return teacherId;
 	}
+
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
+
 	public String getTeacherName() {
 		return teacherName;
 	}
+
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
+
 	public String getTeacherPassword() {
 		return teacherPassword;
 	}
+
 	public void setTeacherPassword(String teacherPassword) {
 		this.teacherPassword = teacherPassword;
 	}
+
 	public String getTeacherPhone() {
 		return teacherPhone;
 	}
+
 	public void setTeacherPhone(String teacherPhone) {
 		this.teacherPhone = teacherPhone;
 	}
+
 	public String getTeacherAddress() {
 		return teacherAddress;
 	}
+
 	public void setTeacherAddress(String teacherAddress) {
 		this.teacherAddress = teacherAddress;
 	}
+
 	public String getTeacherTitle() {
 		return teacherTitle;
 	}
+
 	public void setTeacherTitle(String teacherTitle) {
 		this.teacherTitle = teacherTitle;
 	}
+
 	public int getTeaColId() {
 		return teaColId;
 	}
+
 	public void setTeaColId(int teaColId) {
 		this.teaColId = teaColId;
 	}
-	
-	
+
 }

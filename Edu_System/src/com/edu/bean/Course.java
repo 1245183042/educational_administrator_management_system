@@ -1,20 +1,26 @@
 package com.edu.bean;
+
 /**
- * ¿Î³Ì±í
+ * è¯¾ç¨‹è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 
 public class Course {
-	private int couId;//Ö÷¼ü
-	private int couClassroom;//°à¼¶ºÅ
-	private String couWeek;//ĞèÒªÉÏ¿ÎµÄÖÜÊı
-	private int couSubId;//Íâ¼ü£¬¿ÆÄ¿±íId
-	private int couTeaId;//Íâ¼ü£¬½ÌÊ¦±íId
-	private int couGraId;//Íâ¼ü£¬Äê¼¶±íId
-	private int couMajId;//Íâ¼ü£¬×¨Òµ±íId
-	private int couCpId;//Íâ¼ü£¬¿Î³ÌÎ»ÖÃ±íId
-	public Course(){}
+
+	private int couId;// ä¸»é”®
+	private int couClassroom;// ç­çº§å·
+	private String couWeek;// éœ€è¦ä¸Šè¯¾çš„å‘¨æ•°
+	private int couSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int couTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private int couGraId;// å¤–é”®ï¼Œå¹´çº§è¡¨Id
+	private int couMajId;// å¤–é”®ï¼Œä¸“ä¸šè¡¨Id
+	private int couCpId;// å¤–é”®ï¼Œè¯¾ç¨‹ä½ç½®è¡¨Id
+
+	public Course() {
+	}
+
 	public Course(int couId, int couClassroom, String couWeek, int couSubId,
 			int couTeaId, int couGraId, int couMajId, int couCpId) {
 		this.couId = couId;
@@ -26,53 +32,69 @@ public class Course {
 		this.couMajId = couMajId;
 		this.couCpId = couCpId;
 	}
+
 	public int getCouId() {
 		return couId;
 	}
+
 	public void setCouId(int couId) {
 		this.couId = couId;
 	}
+
 	public int getCouClass() {
 		return couClassroom;
 	}
+
 	public void setCouClass(int couClass) {
 		this.couClassroom = couClass;
 	}
+
 	public String getCouWeek() {
 		return couWeek;
 	}
+
 	public void setCouWeek(String couWeek) {
 		this.couWeek = couWeek;
 	}
+
 	public int getCouSubId() {
 		return couSubId;
 	}
+
 	public void setCouSubId(int couSubId) {
 		this.couSubId = couSubId;
 	}
+
 	public int getCouTeaId() {
 		return couTeaId;
 	}
+
 	public void setCouTeaId(int couTeaId) {
 		this.couTeaId = couTeaId;
 	}
+
 	public int getCouGraId() {
 		return couGraId;
 	}
+
 	public void setCouGraId(int couGraId) {
 		this.couGraId = couGraId;
 	}
+
 	public int getCouMajId() {
 		return couMajId;
 	}
+
 	public void setCouMajId(int couMajId) {
 		this.couMajId = couMajId;
 	}
+
 	public int getCouCpId() {
 		return couCpId;
 	}
+
 	public void setCouCpId(int couCpId) {
 		this.couCpId = couCpId;
 	}
-	
+
 }

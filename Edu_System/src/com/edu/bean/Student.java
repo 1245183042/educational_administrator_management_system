@@ -1,20 +1,30 @@
 package com.edu.bean;
+
+import java.io.Serializable;
+
 /**
- * Ñ§Éú±í
+ * å­¦ç”Ÿè¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
-public class Student {
-	private int studentId;//Ö÷¼ü
-	private String studentName;//Ñ§ÉúĞÕÃû
-	private String studentPassword;//ÃÜÂë
-	private String studentPhone;//µç»°
-	private String studentAddress;//¼ÒÍ¥×¡Ö·
-	private String studentDormitory;//ËŞÉáºÅ
-	private int stuMajId;//Íâ¼ü£¬×¨Òµ±íId
-	private int stuGraId;//Íâ¼ü£¬Äê¼¶±íId
-	private int stuClass;//°à¼¶
-	public Student(){}
+public class Student implements User,Serializable{
+
+	private static final long serialVersionUID = -742543612237194698L;
+	
+	private int studentId;// ä¸»é”®
+	private String studentName;// å­¦ç”Ÿå§“å
+	private String studentPassword;// å¯†ç 
+	private String studentPhone;// ç”µè¯
+	private String studentAddress;// å®¶åº­ä½å€
+	private String studentDormitory;// å®¿èˆå·
+	private int stuMajId;// å¤–é”®ï¼Œä¸“ä¸šè¡¨Id
+	private int stuGraId;// å¤–é”®ï¼Œå¹´çº§è¡¨Id
+	private int stuClass;// ç­çº§
+
+	public Student() {
+	}
+
 	public Student(int studentId, String studentName, String studentPassword,
 			String studentPhone, String studentAddress,
 			String studentDormitory, int stuMajId, int stuGraId, int stuClass) {
@@ -28,59 +38,77 @@ public class Student {
 		this.stuGraId = stuGraId;
 		this.stuClass = stuClass;
 	}
+
 	public int getStudentId() {
 		return studentId;
 	}
+
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+
 	public String getStudentName() {
 		return studentName;
 	}
+
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
+
 	public String getStudentPassword() {
 		return studentPassword;
 	}
+
 	public void setStudentPassword(String studentPassword) {
 		this.studentPassword = studentPassword;
 	}
+
 	public String getStudentPhone() {
 		return studentPhone;
 	}
+
 	public void setStudentPhone(String studentPhone) {
 		this.studentPhone = studentPhone;
 	}
+
 	public String getStudentAddress() {
 		return studentAddress;
 	}
+
 	public void setStudentAddress(String studentAddress) {
 		this.studentAddress = studentAddress;
 	}
+
 	public String getStudentDormitory() {
 		return studentDormitory;
 	}
+
 	public void setStudentDormitory(String studentDormitory) {
 		this.studentDormitory = studentDormitory;
 	}
+
 	public int getStuMajId() {
 		return stuMajId;
 	}
+
 	public void setStuMajId(int stuMajId) {
 		this.stuMajId = stuMajId;
 	}
+
 	public int getStuGraId() {
 		return stuGraId;
 	}
+
 	public void setStuGraId(int stuGraId) {
 		this.stuGraId = stuGraId;
 	}
+
 	public int getStuClass() {
 		return stuClass;
 	}
+
 	public void setStuClass(int stuClass) {
 		this.stuClass = stuClass;
 	}
-	
+
 }

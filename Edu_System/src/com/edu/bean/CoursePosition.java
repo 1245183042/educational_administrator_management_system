@@ -1,32 +1,39 @@
 package com.edu.bean;
+
 /**
- * ¿Î³ÌÎ»ÖÃ±í
+ * è¯¾ç¨‹ä½ç½®è¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 public class CoursePosition {
-	private int cpId;//Ö÷¼ü
-	private String cpPosition;//¿Î±íÎ»ÖÃÃû³Æ
-	
-	public CoursePosition(){}
+
+	private int cpId;// ä¸»é”®
+	private String cpPosition;// è¯¾è¡¨ä½ç½®åç§°
+
+	public CoursePosition() {
+	}
+
 	public CoursePosition(int cpId, String cpPosition) {
 		super();
 		this.cpId = cpId;
 		this.cpPosition = cpPosition;
 	}
+
 	public int getCpId() {
 		return cpId;
 	}
+
 	public void setCpId(int cpId) {
 		this.cpId = cpId;
 	}
+
 	public String getCpPosition() {
 		return cpPosition;
 	}
+
 	public void setCpPosition(String cpPosition) {
 		this.cpPosition = cpPosition;
 	}
-	
-	
-	
+
 }

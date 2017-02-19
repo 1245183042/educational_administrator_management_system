@@ -1,18 +1,24 @@
 package com.edu.bean;
+
 /**
- * ½ÌÊ¦ÆÀÂÛ±í
+ * æ•™å¸ˆè¯„è®ºè¡¨
+ * 
  * @author Administrator
- *
+ * 
  */
 
 public class Comment {
-	private int comId;//Ö÷¼ü
-	private int comStuId;//Íâ¼ü£¬Ñ§Éú±íId
-	private int comSubId;//Íâ¼ü£¬¿ÆÄ¿±íId
-	private int comTeaId;//Íâ¼ü£¬½ÌÊ¦±íId
-	private String comContent;//ÆÀÂÛÄÚÈİ
-	private int comLevel;//ÂúÒâ¶ÈĞÇ¼¶(1-4)
-	public Comment(){}
+	
+	private int comId;// ä¸»é”®
+	private int comStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private int comSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int comTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private String comContent;// è¯„è®ºå†…å®¹
+	private int comLevel;// æ»¡æ„åº¦æ˜Ÿçº§(1-4)
+
+	public Comment() {
+	}
+
 	public Comment(int comId, int comStuId, int comSubId, int comTeaId,
 			String comContent, int comLevel) {
 		this.comId = comId;
@@ -22,41 +28,53 @@ public class Comment {
 		this.comContent = comContent;
 		this.comLevel = comLevel;
 	}
+
 	public int getComId() {
 		return comId;
 	}
+
 	public void setComId(int comId) {
 		this.comId = comId;
 	}
+
 	public int getComStuId() {
 		return comStuId;
 	}
+
 	public void setComStuId(int comStuId) {
 		this.comStuId = comStuId;
 	}
+
 	public int getComSubId() {
 		return comSubId;
 	}
+
 	public void setComSubId(int comSubId) {
 		this.comSubId = comSubId;
 	}
+
 	public int getComTeaId() {
 		return comTeaId;
 	}
+
 	public void setComTeaId(int comTeaId) {
 		this.comTeaId = comTeaId;
 	}
+
 	public String getComContent() {
 		return comContent;
 	}
+
 	public void setComContent(String comContent) {
 		this.comContent = comContent;
 	}
+
 	public int getComLevel() {
 		return comLevel;
 	}
+
 	public void setComLevel(int comLevel) {
 		this.comLevel = comLevel;
 	}
-	
+
 }
