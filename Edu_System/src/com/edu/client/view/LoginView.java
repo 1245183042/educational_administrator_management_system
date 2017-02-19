@@ -8,9 +8,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.edu.bean.Identify;
+import com.edu.client.ctrl.UserCtrl;
 
 /**
  * 教务管理系统登录页面
@@ -19,12 +21,12 @@ import com.edu.bean.Identify;
  * 
  */
 public class LoginView {
-	private JComboBox<String> identityBox;
+	private JComboBox<String> identifyBox;
 	private JLabel accountLabel;
-	private Identify identify;
 
 	public void iniUI() {
 		JFrame loginFrame = new JFrame();
+		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		loginFrame.setSize(800, 500);
 		loginFrame.setLocationRelativeTo(null);
 
@@ -56,42 +58,44 @@ public class LoginView {
 		loginButton.setBounds(70, 150, 180, 30);
 		loginPanel.add(loginButton);
 
-		identityBox = new JComboBox<String>();
-		identityBox.setBounds(115, 45, 130, 20);
-		identityBox.addItem("学生");
-		identityBox.addItem("教师教辅人员");
-		identityBox.addItem("管理员");
+		identifyBox = new JComboBox<String>();
+		identifyBox.setBounds(115, 45, 130, 20);
+		identifyBox.addItem(Identify.STUDENT);
+		identifyBox.addItem(Identify.TEACHER);
+		identifyBox.addItem(Identify.ADMIN);
 
-		loginPanel.add(identityBox);
+		loginPanel.add(identifyBox);
 
 		JTextField accountField = new JTextField();
 		accountField.setBounds(115, 70, 130, 20);
 		loginPanel.add(accountField);
 
-		JTextField passwordField = new JTextField();
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setEchoChar('●');
 		passwordField.setBounds(115, 95, 130, 20);
 		loginPanel.add(passwordField);
 
 		loginFrame.setVisible(true);
 
-		identityBox.addItemListener(new ItemListener() {
+		identifyBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				if (arg0.getStateChange() == ItemEvent.SELECTED) {
-					if (identityBox.getSelectedItem().equals("学生")) {
+					if (identifyBox.getSelectedItem().equals("学生")) {
 						accountLabel.setText("学号");
-						identify = Identify.STUDENT;
 					}
-					if (identityBox.getSelectedItem().equals("教师教辅人员")) {
+					if (identifyBox.getSelectedItem().equals("教师教辅人员")) {
 						accountLabel.setText("工号");
-						
 					}
-					if (identityBox.getSelectedItem().equals("管理员")) {
+					if (identifyBox.getSelectedItem().equals("管理员")) {
 						accountLabel.setText("账号");
 					}
 				}
 			}
 		});
+
+		loginButton.addActionListener(new UserCtrl(loginFrame, accountField,
+				passwordField, identifyBox));
 	}
 
 	public static void main(String[] args) {

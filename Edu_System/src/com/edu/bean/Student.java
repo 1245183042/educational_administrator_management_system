@@ -1,66 +1,55 @@
 package com.edu.bean;
 
-import java.io.Serializable;
-
 /**
  * 学生表
  * 
  * @author Administrator
  * 
  */
-public class Student implements User,Serializable{
+public class Student extends User {
 
 	private static final long serialVersionUID = -742543612237194698L;
-	
-	private int studentId;// 主键
-	private String studentName;// 学生姓名
-	private String studentPassword;// 密码
+
 	private String studentPhone;// 电话
 	private String studentAddress;// 家庭住址
 	private String studentDormitory;// 宿舍号
 	private int stuMajId;// 外键，专业表Id
 	private int stuGraId;// 外键，年级表Id
 	private int stuClass;// 班级
+	private String studentGender;// 性别
+	private String studentRace;// 民族
 
 	public Student() {
 	}
 
-	public Student(int studentId, String studentName, String studentPassword,
-			String studentPhone, String studentAddress,
-			String studentDormitory, int stuMajId, int stuGraId, int stuClass) {
-		this.studentId = studentId;
-		this.studentName = studentName;
-		this.studentPassword = studentPassword;
+	public Student(String studentPhone, String studentAddress,
+			String studentDormitory, int stuMajId, int stuGraId, int stuClass,
+			String studentGender, String studentRace) {
+		super();
 		this.studentPhone = studentPhone;
 		this.studentAddress = studentAddress;
 		this.studentDormitory = studentDormitory;
 		this.stuMajId = stuMajId;
 		this.stuGraId = stuGraId;
 		this.stuClass = stuClass;
+		this.studentGender = studentGender;
+		this.studentRace = studentRace;
 	}
 
-	public int getStudentId() {
-		return studentId;
+	public String getStudentGender() {
+		return studentGender;
 	}
 
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setStudentGender(String studentGender) {
+		this.studentGender = studentGender;
 	}
 
-	public String getStudentName() {
-		return studentName;
+	public String getStudentRace() {
+		return studentRace;
 	}
 
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
-	}
-
-	public String getStudentPassword() {
-		return studentPassword;
-	}
-
-	public void setStudentPassword(String studentPassword) {
-		this.studentPassword = studentPassword;
+	public void setStudentRace(String studentRace) {
+		this.studentRace = studentRace;
 	}
 
 	public String getStudentPhone() {
