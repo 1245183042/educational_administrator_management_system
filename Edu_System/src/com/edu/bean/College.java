@@ -1,15 +1,15 @@
 package com.edu.bean;
 
 /**
- * Ñ§Ôº±í
+ * å­¦é™¢è¡¨
  * 
  * @author Administrator
  * 
  */
 public class College {
 
-	private int collegeId;// Ö÷¼ü
-	private String collegeName;// Ñ§ÔºÃû³Æ
+	private int collegeId;// ä¸»é”®
+	private String collegeName;// å­¦é™¢åç§°
 
 	public College() {
 	}

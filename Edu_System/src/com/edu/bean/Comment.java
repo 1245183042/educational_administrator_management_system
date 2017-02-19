@@ -1,7 +1,7 @@
 package com.edu.bean;
 
 /**
- * ½ÌÊ¦ÆÀÂÛ±í
+ * æ•™å¸ˆè¯„è®ºè¡¨
  * 
  * @author Administrator
  * 
@@ -9,12 +9,12 @@ package com.edu.bean;
 
 public class Comment {
 	
-	private int comId;// Ö÷¼ü
-	private int comStuId;// Íâ¼ü£¬Ñ§Éú±íId
-	private int comSubId;// Íâ¼ü£¬¿ÆÄ¿±íId
-	private int comTeaId;// Íâ¼ü£¬½ÌÊ¦±íId
-	private String comContent;// ÆÀÂÛÄÚÈİ
-	private int comLevel;// ÂúÒâ¶ÈĞÇ¼¶(1-4)
+	private int comId;// ä¸»é”®
+	private int comStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private int comSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int comTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private String comContent;// è¯„è®ºå†…å®¹
+	private int comLevel;// æ»¡æ„åº¦æ˜Ÿçº§(1-4)
 
 	public Comment() {
 	}

@@ -1,16 +1,16 @@
 package com.edu.bean;
 
 /**
- * ×¨Òµ±í
+ * ä¸“ä¸šè¡¨
  * 
  * @author Administrator
  * 
  */
 public class Major {
 	
-	private int majorId;// Ö÷¼ü
-	private String majorName;// ×¨ÒµÃû³Æ
-	private int majColId;// Íâ¼ü£¬Ñ§Ôº±íId
+	private int majorId;// ä¸»é”®
+	private String majorName;// ä¸“ä¸šåç§°
+	private int majColId;// å¤–é”®ï¼Œå­¦é™¢è¡¨Id
 
 	public Major() {
 	}

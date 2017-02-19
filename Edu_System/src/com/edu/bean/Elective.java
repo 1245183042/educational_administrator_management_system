@@ -1,21 +1,21 @@
 package com.edu.bean;
 
 /**
- * Ñ¡ĞŞ¿Î±í
+ * é€‰ä¿®è¯¾è¡¨
  * 
  * @author Administrator
  * 
  */
 public class Elective {
 	
-	private int eleId;// Ö÷¼ü
-	private int eleStatus;// ¿Î³Ì×´Ì¬£º0¿ÉÑ¡£¬1²»¿ÉÑ¡
-	private int eleSubId;// Íâ¼ü£¬¿ÆÄ¿±íId
-	private int eleTeaId;// Íâ¼ü£¬½ÌÊ¦±íId
-	private int eleCpId;// Íâ¼ü£¬¿Î³ÌÎ»ÖÃ±íId
-	private int eleStuId;// Íâ¼ü£¬Ñ§Éú±íId
-	private String eleWeek;// ÉÏ¿ÎÖÜÊı
-	private String eleClassroom;// ÉÏ¿Î
+	private int eleId;// ä¸»é”®
+	private int eleStatus;// è¯¾ç¨‹çŠ¶æ€ï¼š0å¯é€‰ï¼Œ1ä¸å¯é€‰
+	private int eleSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int eleTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private int eleCpId;// å¤–é”®ï¼Œè¯¾ç¨‹ä½ç½®è¡¨Id
+	private int eleStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private String eleWeek;// ä¸Šè¯¾å‘¨æ•°
+	private String eleClassroom;// ä¸Šè¯¾
 
 	public Elective() {
 	}

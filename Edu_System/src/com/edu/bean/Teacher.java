@@ -3,7 +3,7 @@ package com.edu.bean;
 import java.io.Serializable;
 
 /**
- * ½ÌÊ¦±í
+ * æ•™å¸ˆè¡¨
  * 
  * @author Administrator
  * 
@@ -12,13 +12,13 @@ public class Teacher implements User,Serializable{
 	
 	private static final long serialVersionUID = -8787488217321949003L;
 	
-	private int teacherId;// Ö÷¼ü
-	private String teacherName;// ½ÌÊ¦Ãû×Ö
-	private String teacherPassword;// ½ÌÊ¦ÃÜÂë
-	private String teacherPhone;// ½ÌÊ¦µç»°
-	private String teacherAddress;// ¼ÒÍ¥×¡Ö·
-	private String teacherTitle;// ½ÌÊ¦Ö°³Æ
-	private int teaColId;// Íâ¼ü£¬Ñ§Ôº±íID
+	private int teacherId;// ä¸»é”®
+	private String teacherName;// æ•™å¸ˆåå­—
+	private String teacherPassword;// æ•™å¸ˆå¯†ç 
+	private String teacherPhone;// æ•™å¸ˆç”µè¯
+	private String teacherAddress;// å®¶åº­ä½å€
+	private String teacherTitle;// æ•™å¸ˆèŒç§°
+	private int teaColId;// å¤–é”®ï¼Œå­¦é™¢è¡¨ID
 
 	public Teacher() {
 	}

@@ -1,7 +1,7 @@
 package com.edu.bean;
 
 /**
- * ¿Î³Ì±í
+ * è¯¾ç¨‹è¡¨
  * 
  * @author Administrator
  * 
@@ -9,14 +9,14 @@ package com.edu.bean;
 
 public class Course {
 
-	private int couId;// Ö÷¼ü
-	private int couClassroom;// °à¼¶ºÅ
-	private String couWeek;// ĞèÒªÉÏ¿ÎµÄÖÜÊı
-	private int couSubId;// Íâ¼ü£¬¿ÆÄ¿±íId
-	private int couTeaId;// Íâ¼ü£¬½ÌÊ¦±íId
-	private int couGraId;// Íâ¼ü£¬Äê¼¶±íId
-	private int couMajId;// Íâ¼ü£¬×¨Òµ±íId
-	private int couCpId;// Íâ¼ü£¬¿Î³ÌÎ»ÖÃ±íId
+	private int couId;// ä¸»é”®
+	private int couClassroom;// ç­çº§å·
+	private String couWeek;// éœ€è¦ä¸Šè¯¾çš„å‘¨æ•°
+	private int couSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int couTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private int couGraId;// å¤–é”®ï¼Œå¹´çº§è¡¨Id
+	private int couMajId;// å¤–é”®ï¼Œä¸“ä¸šè¡¨Id
+	private int couCpId;// å¤–é”®ï¼Œè¯¾ç¨‹ä½ç½®è¡¨Id
 
 	public Course() {
 	}

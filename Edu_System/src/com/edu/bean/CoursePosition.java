@@ -1,15 +1,15 @@
 package com.edu.bean;
 
 /**
- * ¿Î³ÌÎ»ÖÃ±í
+ * è¯¾ç¨‹ä½ç½®è¡¨
  * 
  * @author Administrator
  * 
  */
 public class CoursePosition {
 
-	private int cpId;// Ö÷¼ü
-	private String cpPosition;// ¿Î±íÎ»ÖÃÃû³Æ
+	private int cpId;// ä¸»é”®
+	private String cpPosition;// è¯¾è¡¨ä½ç½®åç§°
 
 	public CoursePosition() {
 	}

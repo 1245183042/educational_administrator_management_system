@@ -1,15 +1,15 @@
 package com.edu.bean;
 
 /**
- * Äê¼¶±í
+ * å¹´çº§è¡¨
  * 
  * @author Administrator
  * 
  */
 public class Grade {
 
-	private int gradeId;// Ö÷¼ü
-	private String gradeName;// Äê¼¶Ãû³Æ
+	private int gradeId;// ä¸»é”®
+	private String gradeName;// å¹´çº§åç§°
 
 	public Grade() {
 	}

@@ -1,16 +1,16 @@
 package com.edu.bean;
 
 /**
- * ¿ÆÄ¿±í
+ * ç§‘ç›®è¡¨
  * 
  * @author Administrator
  * 
  */
 public class Subject {
 
-	private int subjectId;// Ö÷¼ü
-	private String subjectName;// ¿ÆÄ¿Ãû³Æ
-	private int subjectTime;// ¿ÆÄ¿Ñ§Ê±
+	private int subjectId;// ä¸»é”®
+	private String subjectName;// ç§‘ç›®åç§°
+	private int subjectTime;// ç§‘ç›®å­¦æ—¶
 
 	public Subject() {
 	}

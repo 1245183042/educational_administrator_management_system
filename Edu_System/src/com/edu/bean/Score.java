@@ -1,19 +1,19 @@
 package com.edu.bean;
 
 /**
- * ³É¼¨±í
+ * æˆç»©è¡¨
  * 
  * @author Administrator
  * 
  */
 public class Score {
 
-	private int scoId;// Ö÷¼ü
-	private double scoScore;// ·ÖÊı
-	private int scoStuId;// Íâ¼ü£¬Ñ§Éú±íId
-	private int scoSubId;// Íâ¼ü£¬¿ÆÄ¿±íId
-	private int scoTeaId;// Íâ¼ü£¬½ÌÊ¦±íId
-	private String scoTime;// ¿¼ÊÔÊ±¼ä
+	private int scoId;// ä¸»é”®
+	private double scoScore;// åˆ†æ•°
+	private int scoStuId;// å¤–é”®ï¼Œå­¦ç”Ÿè¡¨Id
+	private int scoSubId;// å¤–é”®ï¼Œç§‘ç›®è¡¨Id
+	private int scoTeaId;// å¤–é”®ï¼Œæ•™å¸ˆè¡¨Id
+	private String scoTime;// è€ƒè¯•æ—¶é—´
 
 	public Score() {
 	}

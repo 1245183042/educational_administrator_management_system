@@ -1,19 +1,19 @@
 package com.edu.bean;
 
 /**
- * ¹«¸æ±í
+ * å…¬å‘Šè¡¨
  */
 import java.sql.Clob;
 import java.util.Date;
 
 public class Notice {
 
-	private int noticeId;// Ö÷¼ü
-	private String noticeTitle;// ±êÌâ
-	private Clob noticeContent;// ÄÚÈİ
-	private Date noticeReleaseTime;// ·¢²¼Ê±¼ä
-	private int noticeTarget;// ½ÓÊÕÕß£º0Ñ§Éú£¬1½ÌÊ¦
-	private String noticeAuthor;// ×÷Õß
+	private int noticeId;// ä¸»é”®
+	private String noticeTitle;// æ ‡é¢˜
+	private Clob noticeContent;// å†…å®¹
+	private Date noticeReleaseTime;// å‘å¸ƒæ—¶é—´
+	private int noticeTarget;// æ¥æ”¶è€…ï¼š0å­¦ç”Ÿï¼Œ1æ•™å¸ˆ
+	private String noticeAuthor;// ä½œè€…
 
 	public Notice() {
 	}
