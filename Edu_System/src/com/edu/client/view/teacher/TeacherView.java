@@ -1,5 +1,5 @@
 package com.edu.client.view.teacher;
 
-public class teacherView {
+public class TeacherView {
 
 }

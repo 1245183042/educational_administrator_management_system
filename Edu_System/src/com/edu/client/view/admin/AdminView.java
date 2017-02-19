@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
-public class adminView {
+public class AdminView {
 	JFrame adminFrame;
 	JTabbedPane tabbedPane;
 	JLabel userNameLabel ;
@@ -39,8 +39,7 @@ public class adminView {
 	JList noticeLists;//公告列表
 	Vector<String> noticeVector;//装公告标题和发布时间
 
-	
-	public adminView(Vector<String> noticeVector){
+	public AdminView(Vector<String> noticeVector){
 		this.noticeVector = noticeVector;
 	}
 	
@@ -111,7 +110,7 @@ public class adminView {
 		for(int i=1;i<100;i++){
 			noticeVector.add("> 我校足球队荣获惠州市第"+i+"届迎春足球赛青年组冠军	   "+new Date().toString());
 		}
-		new adminView(noticeVector).init();
+		new AdminView(noticeVector).init();
 	}
 }
 
