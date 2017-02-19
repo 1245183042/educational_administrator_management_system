@@ -34,14 +34,8 @@ public class AdminView {
 	JButton refreshButton;//刷新按钮
 	JButton logoutButton;//注销按钮
 	JPanel upPanel;
-	//放在tabbedPane的组件
-	JScrollPane noticeScrllPane;
-	JList noticeLists;//公告列表
-	Vector<String> noticeVector;//装公告标题和发布时间
 
-	public AdminView(Vector<String> noticeVector){
-		this.noticeVector = noticeVector;
-	}
+	Vector<String> noticeVector;//临时测试用
 	
 	public void init(){
 		adminFrame = new JFrame("管理员模块");
@@ -82,10 +76,8 @@ public class AdminView {
 		//创建一个Tab页面标签,标题放在左边，采用垂直滚动策略的JTabbedPane(放在JSplitPane下边)
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setPreferredSize(new Dimension(1240,520));
-		
-		noticeLists = new JList(noticeVector);
-		noticeScrllPane = new JScrollPane(noticeLists);
-		
+		//Vector<String> noticeVector = 此处调用Client端Ctrl层的方法（返回一个Vector<String>）
+		JScrollPane noticeScrllPane = new AdminNoticeScrllPane(noticeVector).init();
 		tabbedPane.addTab("通知公告", noticeScrllPane);
 		tabbedPane.addTab("学生管理", null);
 		tabbedPane.addTab("教师管理", null);
@@ -101,16 +93,11 @@ public class AdminView {
 		adminFrame.pack();
 		adminFrame.setLocationRelativeTo(null);
 		adminFrame.setVisible(true);
-		
 	}
 	
 	
-	public static void main(String[] args) {
-		Vector<String> noticeVector = new Vector<String>();
-		for(int i=1;i<100;i++){
-			noticeVector.add("> 我校足球队荣获惠州市第"+i+"届迎春足球赛青年组冠军	   "+new Date().toString());
-		}
-		new AdminView(noticeVector).init();
+	public static void main(String[] args) {		
+		new AdminView().init();
 	}
 }
 
