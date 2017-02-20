@@ -281,18 +281,18 @@ public class StudentView implements ComponentListener {
 		day7.setFont(font);
 		coursePanel.add(day7);
 		JTextArea[] courseTextArea = new JTextArea[42];
-		for(int j = 0;j < 6;j++)
+		for(int i = 0;i < 7;i++)
 		{
-			for(int i = 0;i < 7;i++)
+			for(int j = 0;j < 6;j++)
 			{
 				//课程文本
-				courseTextArea[7*j+i] = new JTextArea("课程"+(7*j+i+1)+"\n老师"
-				+(7*j+i+1)+"\n教室"+(7*j+i+1));
-				courseTextArea[7*j+i].setBounds(150+82*i, 115+52*j, 70, 40);
-				courseTextArea[7*j+i].setFont(font2);
-				courseTextArea[7*j+i].setBackground(new Color(238,238,238));
-				courseTextArea[7*j+i].setEditable(false);
-				coursePanel.add(courseTextArea[7*j+i]);
+				courseTextArea[6*i+j] = new JTextArea("课程"+(6*i+j+1)+"\n老师"
+				+(6*i+j+1)+"\n教室"+(6*i+j+1));
+				courseTextArea[6*i+j].setBounds(150+82*i, 115+52*j, 70, 40);
+				courseTextArea[6*i+j].setFont(font2);
+				courseTextArea[6*i+j].setBackground(new Color(238,238,238));
+				courseTextArea[6*i+j].setEditable(false);
+				coursePanel.add(courseTextArea[6*i+j]);
 			}
 		}
 		//考试成绩
@@ -356,10 +356,71 @@ public class StudentView implements ComponentListener {
 		//评价老师
 		JPanel commentPanel = new JPanel();
 		commentPanel.setLayout(null);
-		JLabel infoLabel4 = new JLabel("测试4");
-		infoLabel4.setSize( 300, 50);
-		infoLabel4.setFont(font);
-		commentPanel.add(infoLabel4);
+		//教师姓名
+		JLabel teacherName = new JLabel("教师姓名:");
+		teacherName.setBounds(100, 10, 100, 30);
+		teacherName.setFont(font);
+		commentPanel.add(teacherName);
+		//教师姓名下拉菜单
+		String[] teacherNameString = new String[]{"嘉鹏-学士","凯豪-学士","硕硕-中科院","飞荣-学士"};
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		JComboBox teacherNameBox = new JComboBox(teacherNameString);
+		teacherNameBox.setBounds(200, 10, 200, 30);
+		teacherNameBox.setFont(font);
+		commentPanel.add(teacherNameBox);
+		
+		//课程名
+		JLabel courseName = new JLabel("  课程名:");
+		courseName.setBounds(400, 10, 100, 30);
+		courseName.setFont(font);
+		commentPanel.add(courseName);
+		//课程名下拉菜单
+		String[] courseNameString = new String[]{"论早恋的危害","男人怎么脱单","中国未来单身问题","电影鉴赏","java深入浅出"};
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		JComboBox courseNameBox = new JComboBox(courseNameString);
+		courseNameBox.setBounds(500, 10, 200, 30);
+		courseNameBox.setFont(font);
+		commentPanel.add(courseNameBox);
+		
+		//评价号
+		JLabel commentNum = new JLabel("评价号");
+		commentNum.setBounds(75, 50, 100, 30);
+		commentNum.setFont(font);
+		commentPanel.add(commentNum);
+		//评价内容
+		JLabel commentReason = new JLabel("评价内容");
+		commentReason.setBounds(325, 50, 100, 30);
+		commentReason.setFont(font);
+		commentPanel.add(commentReason);
+		//评价等级
+		JLabel commentLevel = new JLabel("评价等级");
+		commentLevel.setBounds(575, 50, 100, 30);
+		commentLevel.setFont(font);
+		commentPanel.add(commentLevel);
+		
+		JLabel[] commentNums = new JLabel[8];
+		JTextField[] commentReasons = new JTextField[8];
+		//课程名下拉菜单
+		String[] commentLevelString = new String[]{"优秀","良好","及格","不及格","很差"};
+		for(int i = 0;i<8;i++)
+		{	
+			commentNums[i] = new JLabel(String.valueOf(i+1));
+			commentNums[i].setBounds(100, 100+40*i, 20, 30);
+			commentNums[i].setFont(font);
+			commentPanel.add(commentNums[i]);
+			
+			commentReasons[i] = new JTextField();
+			commentReasons[i].setBounds(140, 100+40*i, 350, 30);
+			commentReasons[i].setFont(font);
+			commentPanel.add(commentReasons[i]);
+			
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			JComboBox commentLevelBox = new JComboBox(commentLevelString);
+			commentLevelBox.setBounds(500, 100+40*i, 200, 30);
+			commentLevelBox.setFont(font);
+			commentPanel.add(commentLevelBox);
+		}
+		
 		
 		//修改密码
 		JPanel updatePasswordPanel = new JPanel();
