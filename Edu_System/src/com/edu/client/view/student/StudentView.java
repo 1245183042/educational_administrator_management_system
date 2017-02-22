@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,15 +26,10 @@ import javax.swing.SwingConstants;
 public class StudentView implements ComponentListener {
 	final JFrame studentFrame = new JFrame("学生教务系统界面");
 	private JPanel panel;
-	private JPanel electivePanel;
 	private JScrollPane noticeScrollPane;
-	private JScrollPane electiveScrollPane;
 	private int labelWeight = 680;
 	private int labelHeight = 60;
-	private int electiveNum = 19;
 	private int num;
-	Color bgColor = new Color(245,245,245);
-	Color wordColor = new Color(234,234,234);
 	public void initUI(){
 		studentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//窗口用户是否调整
@@ -47,25 +41,22 @@ public class StudentView implements ComponentListener {
 		studentFrame.setLocationRelativeTo(null);
 		
 		Font font = new Font("宋体", Font.BOLD, 18);
-		Font font2 = new Font("宋体",Font.BOLD,11);
-		
+		Font font2 = new Font("宋体",Font.PLAIN,11);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(null);
 		topPanel.setBounds(0, 0, 800, 100);
-		topPanel.setBackground(new Color(9,49,75));
 		//时间
 		JLabel dateLabel = new JLabel(dateToStrLong(new Date()));
 		dateLabel.setBounds( 650,0,100, 50);
 		dateLabel.setFont(font);
-		dateLabel.setForeground(wordColor);
 		topPanel.add(dateLabel);
 		
 		//系统名字
 		JLabel systemLabel = new JLabel("教务管理系统");
 		systemLabel.setBounds( 300,0,300, 80);
 		systemLabel.setFont(new Font("楷体",Font.CENTER_BASELINE,36));
-		systemLabel.setForeground(wordColor);
+		systemLabel.setForeground(Color.BLUE);
 		topPanel.add(systemLabel);
 		
 		//在线人数
@@ -73,7 +64,6 @@ public class StudentView implements ComponentListener {
 		JLabel numLabel = new JLabel("在线人数："+numLine+"人");
 		numLabel.setBounds( 0,0,90, 20);
 		numLabel.setFont(new Font("宋体",Font.BOLD,12));
-		numLabel.setForeground(wordColor);
 		topPanel.add(numLabel);
 		
 		//欢迎语
@@ -81,16 +71,12 @@ public class StudentView implements ComponentListener {
 		JLabel nameLabel = new JLabel("欢迎同学:"+name+"，使用本系统。");
 		nameLabel.setBounds( 0,60,300, 40);
 		nameLabel.setFont(new Font("宋体",Font.BOLD,20));
-		nameLabel.setForeground(wordColor);
 		topPanel.add(nameLabel);
 		
 		//注销按钮
-		JButton logoutButton = new JButton("退出");
-		logoutButton.setBounds(700,60,80,30);
-		logoutButton.setFont(new Font("宋体",Font.BOLD,20));
-		logoutButton.setForeground(new Color(234,32,0));
-		logoutButton.setBackground(new Color(9,49,75));
-		logoutButton.setBorderPainted(false);
+		JButton logoutButton = new JButton("注销");
+		logoutButton.setBounds(700,60,75,30);
+		logoutButton.setFont(new Font("宋体",Font.LAYOUT_NO_LIMIT_CONTEXT,20));
 		topPanel.add(logoutButton);
 		
 		studentFrame.add(topPanel);
@@ -99,8 +85,6 @@ public class StudentView implements ComponentListener {
 		//创建一个tab页面的标签放在左边，采用滚动条
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0, 100, 800, 470);
-		tabbedPane.setBackground(new Color(226,228,230));
-		tabbedPane.setForeground(new Color(0,0,0));
 		//公告
 		noticeScrollPane = new JScrollPane();
 		noticeScrollPane.setViewportView(panel());
@@ -111,7 +95,6 @@ public class StudentView implements ComponentListener {
 		//个人信息
 		JPanel studentPanel = new JPanel();
 		studentPanel.setLayout(null);
-		studentPanel.setBackground(bgColor);
 		
 		//姓名
 		String studentName = new String("贾硕哥哥");
@@ -188,7 +171,6 @@ public class StudentView implements ComponentListener {
 		//课程表
 		JPanel coursePanel = new JPanel();
 		coursePanel.setLayout(null);
-		coursePanel.setBackground(bgColor);
 		//学年
 		JLabel gradeLabel = new JLabel("学年:");
 		gradeLabel.setBounds(50, 20, 50, 30);
@@ -308,7 +290,7 @@ public class StudentView implements ComponentListener {
 				+(6*i+j+1)+"\n教室"+(6*i+j+1));
 				courseTextArea[6*i+j].setBounds(150+82*i, 115+52*j, 70, 40);
 				courseTextArea[6*i+j].setFont(font2);
-				courseTextArea[6*i+j].setBackground(new Color(203,227,247));
+				courseTextArea[6*i+j].setBackground(new Color(238,238,238));
 				courseTextArea[6*i+j].setEditable(false);
 				coursePanel.add(courseTextArea[6*i+j]);
 			}
@@ -316,7 +298,6 @@ public class StudentView implements ComponentListener {
 		//考试成绩
 		JPanel scorePanel = new JPanel();
 		scorePanel.setLayout(null);
-		scorePanel.setBackground(bgColor);
 		//学年
 		JLabel gradeLabel2 = new JLabel("学年:");
 		gradeLabel2.setBounds(50, 20, 50, 30);
@@ -362,25 +343,19 @@ public class StudentView implements ComponentListener {
 		studentIdLabel22.setFont(font);
 		scorePanel.add(studentIdLabel22);
 		
-		JLabel courseLabel = new JLabel("    序号"+"              "+"课程"+"               "+"类别"+"              "+"成绩");
-		courseLabel.setBounds(10, 100, 690, 30);
-		courseLabel.setFont(font);
-		courseLabel.setBackground(bgColor);
-		scorePanel.add(courseLabel);
-		String[] courseData = new String[]{"1111111111111111","22222222","33333333","111111",
+		String[] courseData = new String[]{"111111","22222222","33333333","111111",
 				"22222222","33333333","111111","22222222","33333333"};
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JList courseList = new JList(courseData);
 		courseList.setFont(new Font("宋体",Font.BOLD,36));
 		JScrollPane courseScrollPane = new JScrollPane(courseList);
-		courseScrollPane.setBounds(10, 130, 690, 320);
+		courseScrollPane.setBounds(10, 100, 690, 350);
 		scorePanel.add(courseScrollPane);
 		
 		
 		//评价老师
 		JPanel commentPanel = new JPanel();
 		commentPanel.setLayout(null);
-		commentPanel.setBackground(bgColor);
 		//教师姓名
 		JLabel teacherName = new JLabel("教师姓名:");
 		teacherName.setBounds(100, 10, 100, 30);
@@ -445,16 +420,11 @@ public class StudentView implements ComponentListener {
 			commentLevelBox.setFont(font);
 			commentPanel.add(commentLevelBox);
 		}
-		JButton commentButton = new JButton("提交");
-		commentButton.setBounds(500, 380, 200, 30);
-		commentButton.setBackground(bgColor);
-		commentPanel.add(commentButton);
 		
 		
 		//修改密码
 		JPanel updatePasswordPanel = new JPanel();
 		updatePasswordPanel.setLayout(null);
-		updatePasswordPanel.setBackground(bgColor);
 		
 		//学号(修改密码子页面)
 		JLabel studentIdUPLabel = new JLabel("学号:");
@@ -506,10 +476,12 @@ public class StudentView implements ComponentListener {
 		updatePasswordPanel.add(presentPasswordButton);
 		
 		//选课
-		electiveScrollPane = new JScrollPane();
-		electiveScrollPane.setViewportView(electivePanel());
-		studentFrame.addComponentListener(this);
-		
+		JPanel electivePanel = new JPanel();
+		electivePanel.setLayout(null);
+		JLabel infoLabel6 = new JLabel("测试6");
+		infoLabel6.setSize( 300, 50);
+		infoLabel6.setFont(font);
+		electivePanel.add(infoLabel6);
 		
 		//向JTabbedPane中添加标签页面，指定了标题,组件
 		tabbedPane.addTab("公告", noticeScrollPane);
@@ -518,7 +490,7 @@ public class StudentView implements ComponentListener {
 		tabbedPane.addTab("考试成绩", scorePanel);
 		tabbedPane.addTab("评价老师", commentPanel);
 		tabbedPane.addTab("修改密码", updatePasswordPanel);
-		tabbedPane.addTab("选课", electiveScrollPane);
+		tabbedPane.addTab("选课", electivePanel);
 		
 		studentFrame.add(tabbedPane);
 		
@@ -556,14 +528,13 @@ public class StudentView implements ComponentListener {
 		this.num = 23;
 		Font noticeFont = new Font("仿宋",Font.BOLD,23);
 		panel = new JPanel();
-		panel.setBackground(bgColor);
 		JButton[] button = new JButton[num];
 		for(int i = 0;i < num;i++)
 		{
 			button[i] = new JButton((i+1)+".公告。。。。。。。。");
 			button[i].setPreferredSize(new Dimension(labelWeight,labelHeight));
 			button[i].setHorizontalAlignment(SwingConstants.LEFT);
-			button[i].setBackground(bgColor);
+			button[i].setBackground(new Color(238,238,238));
 			button[i].setBorderPainted(false);
 			button[i].setFont(noticeFont);
 			//有后台以后换成方法
@@ -578,74 +549,6 @@ public class StudentView implements ComponentListener {
 			panel.add(button[i]);
 		}
 		return panel;
-	}
-	public JPanel electivePanel()
-	{	
-		electivePanel = new JPanel();
-		electivePanel.setBackground(bgColor);
-		electivePanel.setLayout(null);
-		JTextArea[] electiveTextArea = new JTextArea[(8*(electiveNum+1))];
-		String[] elective = new String[]{"序号","课程","学时","类别","教师","时间","地点"};
-		for(int i = 0;i < (electiveNum+1);i++)
-		{
-			for(int j = 0;j < 8;j++)
-			{	
-				if(i == 0)
-				{	if(j < 7){
-						electiveTextArea[8*i+j] = new JTextArea("\n  "+elective[j]);
-						electiveTextArea[8*i+j].setBounds(20+84*j, 10+80*i, 80, 36);
-						electiveTextArea[8*i+j].setFont(new Font("宋体", Font.BOLD, 16));
-						electiveTextArea[8*i+j].setLineWrap(true);// 激活自动换行功能  
-						electiveTextArea[8*i+j].setWrapStyleWord(true);// 激活断行不断字功能  
-						electiveTextArea[8*i+j].setBackground(new Color(152,203,250));
-						electiveTextArea[8*i+j].setEditable(false);
-						electivePanel.add(electiveTextArea[8*i+j]);
-					}JButton electiveButton = new JButton("提交");
-					electiveButton.setBounds(20+84*j, 10+80*i, 80, 36);
-					electiveButton.setFont(new Font("宋体", Font.BOLD, 16));
-					electivePanel.add(electiveButton);
-				}else if(j < 7)
-				{	switch (j) {
-				case 0:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n     "+i);
-					break;
-				case 1:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"课程");
-					break;
-				case 2:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"学时");
-					break;
-				case 3:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"类别");
-					break;
-				case 4:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"教师");
-					break;
-				case 5:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"时间");
-					break;
-				case 6:
-					electiveTextArea[8*i+j] = new JTextArea("\n\n   "+i+"地点");
-					break;
-				
-				default:
-					break;
-				}
-					electiveTextArea[8*i+j].setBounds(20+84*j, 10+80*i-40, 80, 76);
-					electiveTextArea[8*i+j].setFont(new Font("宋体", Font.BOLD, 12));
-					electiveTextArea[8*i+j].setLineWrap(true);// 激活自动换行功能  
-					electiveTextArea[8*i+j].setWrapStyleWord(true);// 激活断行不断字功能  
-					electiveTextArea[8*i+j].setBackground(new Color(203,227,247));
-					electiveTextArea[8*i+j].setEditable(false);
-					electivePanel.add(electiveTextArea[8*i+j]);
-				} if((i != 0) && (j == 7)){
-					JCheckBox electiveCheckBox = new JCheckBox("",false);
-					electiveCheckBox.setBounds(40+84*j, 30+80*i-40, 20, 20);
-					electivePanel.add(electiveCheckBox);
-				}
-			}
-		}
-		return electivePanel;
 	}
 	public static void main(String[] args) {
 		new StudentView().initUI();
@@ -672,11 +575,6 @@ public class StudentView implements ComponentListener {
 		int weidth = noticeScrollPane.getWidth() - 20;
 		int height = num* (labelHeight+5);
 		panel.setPreferredSize(new Dimension(weidth, height));
-		
-		
-		int weidth2 = electiveScrollPane.getWidth() - 20;
-		int height2 = electiveNum* 80+55;
-		electivePanel.setPreferredSize(new Dimension(weidth2, height2));
 		studentFrame.repaint();
 		
 	}
