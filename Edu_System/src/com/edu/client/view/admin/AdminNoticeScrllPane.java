@@ -7,8 +7,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 public class AdminNoticeScrllPane {
-	//放在tabbedPane的组件
-	private JScrollPane noticeScrllPane;
+	private JScrollPane noticeScrllPane;//放在tabbedPane的公告标签
 	private JList noticeLists;//公告列表
 	private Vector<String> noticeVector;//装公告标题和发布时间
 	
