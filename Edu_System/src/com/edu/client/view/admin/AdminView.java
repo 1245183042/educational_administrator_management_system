@@ -15,7 +15,7 @@ public class AdminView {
 	private JFrame adminFrame;
 	private JPanel upPanel;//装标题、在线人数、日期、学期、导航按钮的面板。
 	private JTabbedPane tabbedPane;
-	private int onlineNum = 1258232;//在线人数
+	private int onlineNum = 125;//在线人数
 	private String term = "2016-2017学年第二学期 第一周";
 	private JButton mainButton;//首页按钮
 	private JButton backButton;//后退按钮
@@ -28,7 +28,7 @@ public class AdminView {
 		Font font = new Font("asd",Font.PLAIN,20);
 		adminFrame = new JFrame("管理员模块");
 		adminFrame.setLayout(null);
-		adminFrame.setSize(1230, 760);
+		adminFrame.setSize(1242, 760);
 //		adminFrame.setPreferredSize(new Dimension(1230,760));
 		adminFrame.setLocationRelativeTo(null);//屏幕居中
 		
@@ -68,13 +68,13 @@ public class AdminView {
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0,120,1230,620);
 		//Vector<String> noticeVector = 此处调用Client端Ctrl层的方法（返回一个Vector<String>）
-		JScrollPane noticeScrllPane = new AdminNoticeScrllPane(noticeVector).init();
+		JPanel noticePanel = new AdminNoticePane().init();
 		JPanel studentPanel = new AdminStudentPane().init();
 		JPanel teacherPanel = new AdminTeacherPane().init();
 		JPanel scorePanel = new AdminScorePane().init();
 		JPanel subjectPanel = new AdminSubjectPane().init();
 		JPanel coursePanel = new AdminCoursePane().init();
-		tabbedPane.addTab("通知公告", noticeScrllPane);
+		tabbedPane.addTab("公告管理", noticePanel);
 		tabbedPane.addTab("学生管理", studentPanel);
 		tabbedPane.addTab("教师管理", teacherPanel);
 		tabbedPane.addTab("课程表管理", coursePanel);
