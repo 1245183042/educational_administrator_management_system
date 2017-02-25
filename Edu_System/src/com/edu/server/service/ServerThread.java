@@ -14,10 +14,12 @@ import org.xml.sax.SAXException;
 
 import com.edu.bean.Identify;
 import com.edu.bean.Message;
+import com.edu.bean.Notice;
 import com.edu.bean.OperationCode;
 import com.edu.bean.User;
 import com.edu.server.connection.ConnManager;
 import com.edu.server.connection.XmlManager;
+import com.edu.server.dao.AdminDao;
 import com.edu.server.dao.UserDao;
 
 /**
@@ -44,8 +46,8 @@ public class ServerThread extends Thread {
 	@Override
 	public void run() {
 		Message message = null;
-		User user = null;
 		UserDao userDao = new UserDao();
+		AdminDao adminDao = new AdminDao();
 		try {
 			List<String> childElementValues = XmlManager
 					.getChildElementValues(XmlManager
@@ -58,7 +60,9 @@ public class ServerThread extends Thread {
 			message = (Message) in.readObject();
 			String identify = message.getIdentify();
 			String operationCode = message.getOperationCode();
+			//System.out.println(operationCode);
 			if (operationCode.equals(OperationCode.LOGIN)) {
+				User user = null;
 				if (identify.equals(Identify.ADMIN)) {
 					user = userDao.queryAdmin(conn, message.getUser());
 				} else if (identify.equals(Identify.STUDENT)) {
@@ -66,9 +70,18 @@ public class ServerThread extends Thread {
 				} else if (identify.equals(Identify.TEACHER)) {
 					user = userDao.queryTeacher(conn, message.getUser());
 				}
+				out.writeObject(user);
+				out.flush();
+			}else if(operationCode.equals(OperationCode.QUERY_NOTICE)){
+			
+				List<Notice> notices = null;
+				if(identify.equals(Identify.ADMIN)){
+					notices = adminDao.queryNotice(conn);
+				}
+				out.writeObject(notices);
+				out.flush();
 			}
-			out.writeObject(user);
-			out.flush();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

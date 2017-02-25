@@ -8,10 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-public class AdminView {
+import com.edu.client.ctrl.AdminCtrl;
+
+public class AdminView{
 	private JFrame adminFrame;
 	private JPanel upPanel;//装标题、在线人数、日期、学期、导航按钮的面板。
 	private JTabbedPane tabbedPane;
@@ -21,6 +22,7 @@ public class AdminView {
 	private JButton backButton;//后退按钮
 	private JButton refreshButton;//刷新按钮
 	private JButton logoutButton;//注销按钮
+	private JPanel noticePanel; 
 
 	Vector<String> noticeVector;//临时测试用
 	
@@ -68,7 +70,7 @@ public class AdminView {
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0,120,1230,620);
 		//Vector<String> noticeVector = 此处调用Client端Ctrl层的方法（返回一个Vector<String>）
-		JPanel noticePanel = new AdminNoticePane().init();
+		noticePanel = new AdminNoticePane().init();
 		JPanel studentPanel = new AdminStudentPane().init();
 		JPanel teacherPanel = new AdminTeacherPane().init();
 		JPanel scorePanel = new AdminScorePane().init();
@@ -83,10 +85,21 @@ public class AdminView {
 		
 		adminFrame.add(upPanel);
 		adminFrame.add(tabbedPane);
+		adminFrame.addWindowListener(new AdminCtrl());
 		adminFrame.setVisible(true);
 	}
 	
 	
+	public JPanel getNoticePanel() {
+		return noticePanel;
+	}
+
+
+	public void setNoticePanel(JPanel noticePanel) {
+		this.noticePanel = noticePanel;
+	}
+
+
 	public static void main(String[] args) {		
 		new AdminView().init();
 	}
