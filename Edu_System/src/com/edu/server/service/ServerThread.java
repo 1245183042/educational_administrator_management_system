@@ -77,6 +77,9 @@ public class ServerThread extends Thread {
 				List<Notice> notices = null;
 				if(identify.equals(Identify.ADMIN)){
 					notices = adminDao.queryNotice(conn);
+//					for(Notice n:notices){
+//						System.out.println(n.getNoticeTarget());
+//					}
 				}
 				out.writeObject(notices);
 				out.flush();

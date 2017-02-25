@@ -70,7 +70,7 @@ public class AdminView{
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0,120,1230,620);
 		//Vector<String> noticeVector = 此处调用Client端Ctrl层的方法（返回一个Vector<String>）
-		noticePanel = new AdminNoticePane().init();
+		noticePanel = AdminNoticePane.getInstance().init();
 		JPanel studentPanel = new AdminStudentPane().init();
 		JPanel teacherPanel = new AdminTeacherPane().init();
 		JPanel scorePanel = new AdminScorePane().init();
