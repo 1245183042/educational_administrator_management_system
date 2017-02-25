@@ -16,6 +16,7 @@ import com.edu.bean.Student;
 import com.edu.bean.Teacher;
 import com.edu.client.model.UserModel;
 import com.edu.client.view.admin.AdminView;
+import com.edu.client.view.student.StudentView;
 
 public class UserCtrl implements ActionListener {
 
@@ -66,6 +67,7 @@ public class UserCtrl implements ActionListener {
 								JOptionPane.ERROR_MESSAGE);
 					} else {
 						new AdminView().init();
+
 						jf.setVisible(false);
 					}
 				} else if (identify.equals(Identify.STUDENT)) {
@@ -97,10 +99,7 @@ public class UserCtrl implements ActionListener {
 						JOptionPane.showMessageDialog(jf, "用户名或密码错误", "错误信息",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-						
-						
-						
-						
+
 					}
 				}
 
