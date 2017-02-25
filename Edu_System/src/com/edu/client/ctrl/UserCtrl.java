@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,7 +13,6 @@ import javax.swing.JTextField;
 
 import com.edu.bean.Administrator;
 import com.edu.bean.Message;
-import com.edu.bean.Notice;
 import com.edu.bean.OperationCode;
 import com.edu.bean.Student;
 import com.edu.bean.Teacher;

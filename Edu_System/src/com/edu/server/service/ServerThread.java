@@ -1,16 +1,10 @@
 package com.edu.server.service;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 import com.edu.bean.Identify;
 import com.edu.bean.Message;
@@ -60,42 +54,39 @@ public class ServerThread extends Thread {
 			message = (Message) in.readObject();
 			String identify = message.getIdentify();
 			String operationCode = message.getOperationCode();
-			//System.out.println(operationCode);
-			if (operationCode.equals(OperationCode.LOGIN)) {
-				User user = null;
-				if (identify.equals(Identify.ADMIN)) {
+			// System.out.println(operationCode);
+			User user = null;
+			List<Notice> notices = null;
+			if (identify.equals(Identify.ADMIN)) {
+				if (operationCode.equals(OperationCode.LOGIN)) {
 					user = userDao.queryAdmin(conn, message.getUser());
-				} else if (identify.equals(Identify.STUDENT)) {
-					user = userDao.queryStudent(conn, message.getUser());
-				} else if (identify.equals(Identify.TEACHER)) {
-					user = userDao.queryTeacher(conn, message.getUser());
-				}
-				out.writeObject(user);
-				out.flush();
-			}else if(operationCode.equals(OperationCode.QUERY_NOTICE)){
-			
-				List<Notice> notices = null;
-				if(identify.equals(Identify.ADMIN)){
+					out.writeObject(user);
+				} else if (operationCode.equals(OperationCode.QUERY_NOTICE)) {
 					notices = adminDao.queryNotice(conn);
-//					for(Notice n:notices){
-//						System.out.println(n.getNoticeTarget());
-//					}
+					out.writeObject(notices);
+				} else if (operationCode.equals(OperationCode.QUERY_STUDENT)) {
+					//System.out.println(message.getUser().getUserId());
+					Message getMes = userDao.queryStudentAll(conn,
+							message.getUser());
+					out.writeObject(getMes);
 				}
-				out.writeObject(notices);
-				out.flush();
+
+			} else if (identify.equals(Identify.STUDENT)) {
+				if (operationCode.equals(OperationCode.LOGIN)) {
+					user = userDao.queryStudent(conn, message.getUser());
+					out.writeObject(user);
+				}
+
+			} else if (identify.equals(Identify.TEACHER)) {
+				if (operationCode.equals(OperationCode.LOGIN)) {
+					user = userDao.queryTeacher(conn, message.getUser());
+					out.writeObject(user);
+				}
 			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
+			out.flush();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
+
 }

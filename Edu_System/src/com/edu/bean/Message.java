@@ -9,6 +9,41 @@ public class Message implements Serializable {
 	private User user;
 	private String identify;
 	private String operationCode;
+	private College college;
+	private Grade grade;
+	private Major major;
+
+	public Message(User user, College college, Grade grade, Major major) {
+		super();
+		this.user = user;
+		this.college = college;
+		this.grade = grade;
+		this.major = major;
+	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public Grade getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Grade grade) {
+		this.grade = grade;
+	}
+
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
 
 	public Message() {
 	}

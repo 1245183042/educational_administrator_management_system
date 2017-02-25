@@ -9,7 +9,6 @@ package com.edu.bean;
 public class Teacher extends User{
 	
 	private static final long serialVersionUID = -8787488217321949003L;
-	
 	private String teacherPhone;// 教师电话
 	private String teacherAddress;// 家庭住址
 	private String teacherTitle;// 教师职称
