@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,11 +14,13 @@ import javax.swing.JTextField;
 
 import com.edu.bean.Administrator;
 import com.edu.bean.Message;
+import com.edu.bean.Notice;
 import com.edu.bean.OperationCode;
 import com.edu.bean.Student;
 import com.edu.bean.Teacher;
 import com.edu.bean.User;
 import com.edu.client.model.UserModel;
+import com.edu.client.view.admin.AdminView;
 
 public class UserCtrl implements ActionListener {
 
@@ -67,14 +70,17 @@ public class UserCtrl implements ActionListener {
 				} else {
 					if (loginUser instanceof Administrator) {
 						Administrator loginAdmin = (Administrator) loginUser;
-						System.out.println(loginAdmin.getUserName());
+						//System.out.println(loginAdmin.getUserName());
+						new AdminView().init();
 					} else if (loginUser instanceof Student) {
 						Student loginStudent = (Student) loginUser;
-						System.out.println(loginStudent.getUserName());
+						//System.out.println(loginStudent.getUserName());
 					} else if (loginUser instanceof Teacher) {
 						Teacher loginTeacher = (Teacher) loginUser;
-						System.out.println(loginTeacher.getUserName());
+						//System.out.println(loginTeacher.getUserName());
 					}
+				
+					jf.setVisible(false);
 				}
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();
