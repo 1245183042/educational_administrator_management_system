@@ -41,6 +41,25 @@ public class UserModel {
 	}
 
 	/**
+	 * 查询
+	 * 
+	 * @param message
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public Message query(Message message) throws IOException,
+			ClassNotFoundException {
+		out = new ObjectOutputStream(socket.getOutputStream());
+		out.writeObject(message);
+		out.flush();
+
+		in = new ObjectInputStream(socket.getInputStream());
+		Message getMes = (Message) in.readObject();
+		return getMes;
+	}
+
+	/**
 	 * 查询公告
 	 * 
 	 * @param message
@@ -50,7 +69,7 @@ public class UserModel {
 	 */
 	public List<Notice> queryNotice(Message message) throws IOException,
 			ClassNotFoundException {
-		//System.out.println(message.getIdentify());
+		// System.out.println(message.getIdentify());
 		out = new ObjectOutputStream(socket.getOutputStream());
 		out.writeObject(message);
 		out.flush();

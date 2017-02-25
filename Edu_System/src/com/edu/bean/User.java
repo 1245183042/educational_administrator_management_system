@@ -2,20 +2,12 @@ package com.edu.bean;
 
 import java.io.Serializable;
 
-/**
- * 用户根类
- * 
- * @author chen7
- * 
- */
-public class User implements Serializable{
-	
-	private static final long serialVersionUID = -6062562346506650477L;
-	
-	protected int userId;
-	protected String userName;
-	protected String userPassword;
-	
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 971346206222851539L;
+	private int userId;
+	private String userName;
+	private String userPassword;
 
 	public User() {
 	}
@@ -50,4 +42,5 @@ public class User implements Serializable{
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
 }

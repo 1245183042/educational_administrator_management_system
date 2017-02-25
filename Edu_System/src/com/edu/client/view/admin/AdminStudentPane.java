@@ -1,5 +1,7 @@
 package com.edu.client.view.admin;
 
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -8,14 +10,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import com.edu.client.ctrl.AdminCtrl;
 
 public class AdminStudentPane {
-	private JPanel studentPanel;//放在tabbedPane的学生管理标签
-	private JPanel upPanel;//条件选择面板
-	private JScrollPane downScrollPane;//用来装学生信息表格的面板
-	private JTable sutudentInfoTable;//学生信息表格
+	private JPanel studentPanel;// 放在tabbedPane的学生管理标签
+	private JPanel upPanel;// 条件选择面板
+	private JScrollPane downScrollPane;// 用来装学生信息表格的面板
+	private JTable sutudentInfoTable;// 学生信息表格
 	private JRadioButton Radio1;
 	private JRadioButton Radio2;
+	private ButtonGroup group;
+	private JTextField idField;
+	private JButton queryButton;
 
 	public JPanel init(){ 
 		//装院系的数组
@@ -43,7 +51,7 @@ public class AdminStudentPane {
 		titleLable.setBounds(540, 20, 60, 20);
 		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
 		lineLabel.setBounds(268,45,650,3);
-		Radio1 = new JRadioButton();
+		Radio1 = new JRadioButton("院系");
 		Radio1.setBounds(268, 55, 16, 16);
 		JLabel collegeLabel = new JLabel("院系");
 		collegeLabel.setBounds(300,55,30,20);
@@ -61,13 +69,18 @@ public class AdminStudentPane {
 		classLabel.setBounds(845, 55, 30, 20);
 		JComboBox<String> classBox = new JComboBox<String>(classs);
 		classBox.setBounds(880, 55, 50, 20);
-		Radio2 = new JRadioButton();
+		Radio2 = new JRadioButton("学号");
 		Radio2.setBounds(268, 80, 16, 16);
 		JLabel idLabel = new JLabel("学号");
 		idLabel.setBounds(300, 80, 30, 20);
-		JTextField idField = new JTextField();
+		idField = new JTextField();
 		idField.setBounds(335,80,170,20);
-		JButton queryButton = new JButton("检索");
+		group = new ButtonGroup();
+		group.add(Radio1);
+		group.add(Radio2);
+		DefaultTableModel model = new DefaultTableModel(new String[]{"院系","专业","年级","班级","学号","姓名","修改信息","删除学生"}, 0);
+		queryButton = new JButton("检索");
+		queryButton.addActionListener(new AdminCtrl(group,idField,model,queryButton));
 		queryButton.setBounds(268, 110, 60, 20);
 		JButton addButton = new JButton("添加学生");
 		addButton.setBounds(845, 110, 87, 20);
@@ -89,8 +102,7 @@ public class AdminStudentPane {
 		upPanel.add(queryButton);
 		upPanel.add(addButton);
 		//用来装学生信息表格的面板
-		sutudentInfoTable = new JTable(new Object[][]{{"信息科学技术学院","网络工程","2013级","1班","1314080903178","林蛋大","JCheckBox","JCheckBox()"}},
-				new Object[]{"院系","专业","年级","班级","学号","姓名","修改信息","删除学生"});
+		sutudentInfoTable = new JTable(model);
 		downScrollPane = new JScrollPane(sutudentInfoTable);
 		downScrollPane.setBounds(50, 150, 1000, 300);
 		
@@ -98,5 +110,5 @@ public class AdminStudentPane {
 		studentPanel.add(downScrollPane);
 		return studentPanel;
 	}
-	
+
 }

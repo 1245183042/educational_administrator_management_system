@@ -1,13 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 年级表
  * 
  * @author Administrator
  * 
  */
-public class Grade {
+public class Grade implements Serializable{
 
+	private static final long serialVersionUID = -2453875679836729397L;
 	private int gradeId;// 主键
 	private String gradeName;// 年级名称
 

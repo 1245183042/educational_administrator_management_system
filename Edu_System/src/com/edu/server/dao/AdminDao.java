@@ -18,6 +18,7 @@ public class AdminDao {
 		while (rs.next()) {
 			Notice notice = new Notice();
 			notice.setNoticeId(rs.getInt("notice_id"));
+			notice.setNoticeTarget(rs.getInt("notice_target"));
 			notice.setNoticeTitle(rs.getString("notice_title"));
 			notice.setNoticeContent(rs.getString("notice_content"));
 			notice.setNoticeAuthor(rs.getString("notice_author"));
