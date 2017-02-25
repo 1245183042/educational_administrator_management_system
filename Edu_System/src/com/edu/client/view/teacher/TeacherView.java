@@ -134,8 +134,8 @@ JFrame teacherFrame;
 	   teacherInformationPanel.add(teacherAddressLabel);
 	   teacherInformationPanel.add(teacherPositionLabel);
 	   teacherInformationPanel.add(teacherCollegeLabel);
-	   teacherInformationPanel.add(teacherReviseButton);
-	   teacherInformationPanel.add(teacherSureButton);
+//	   teacherInformationPanel.add(teacherReviseButton);
+//	   teacherInformationPanel.add(teacherSureButton);
 	   
 	   
 	   /*
