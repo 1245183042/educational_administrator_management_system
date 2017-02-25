@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,13 +13,13 @@ import javax.swing.JTextField;
 
 import com.edu.bean.Administrator;
 import com.edu.bean.Message;
-import com.edu.bean.Notice;
 import com.edu.bean.OperationCode;
 import com.edu.bean.Student;
 import com.edu.bean.Teacher;
 import com.edu.bean.User;
 import com.edu.client.model.UserModel;
 import com.edu.client.view.admin.AdminView;
+import com.edu.client.view.student.StudentView;
 
 public class UserCtrl implements ActionListener {
 
@@ -74,6 +73,8 @@ public class UserCtrl implements ActionListener {
 						new AdminView().init();
 					} else if (loginUser instanceof Student) {
 						Student loginStudent = (Student) loginUser;
+						jf.setVisible(false);
+						new StudentView().initUI(loginStudent);
 						//System.out.println(loginStudent.getUserName());
 					} else if (loginUser instanceof Teacher) {
 						Teacher loginTeacher = (Teacher) loginUser;
