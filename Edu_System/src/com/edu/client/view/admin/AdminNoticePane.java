@@ -13,14 +13,6 @@ public class AdminNoticePane {
 	private JScrollPane downScrollPane;//用来装公告表格的面板
 	private JTable NoticeTable;//学生信息表格
 	
-	public JTable getNoticeTable() {
-		return NoticeTable;
-	}
-
-	public void setNoticeTable(JTable noticeTable) {
-		NoticeTable = noticeTable;
-	}
-
 	public JPanel init(){
 		noticePanel = new JPanel();
 		noticePanel.setLayout(null);
