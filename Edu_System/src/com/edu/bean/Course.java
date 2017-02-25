@@ -10,7 +10,7 @@ package com.edu.bean;
 public class Course {
 
 	private int couId;// 主键
-	private int couClassroom;// 班级号
+	private String couClassroom;// 地点
 	private String couWeek;// 需要上课的周数
 	private int couSubId;// 外键，科目表Id
 	private int couTeaId;// 外键，教师表Id
@@ -21,7 +21,7 @@ public class Course {
 	public Course() {
 	}
 
-	public Course(int couId, int couClassroom, String couWeek, int couSubId,
+	public Course(int couId, String couClassroom, String couWeek, int couSubId,
 			int couTeaId, int couGraId, int couMajId, int couCpId) {
 		this.couId = couId;
 		this.couClassroom = couClassroom;
@@ -41,11 +41,11 @@ public class Course {
 		this.couId = couId;
 	}
 
-	public int getCouClass() {
+	public String getCouClass() {
 		return couClassroom;
 	}
 
-	public void setCouClass(int couClass) {
+	public void setCouClass(String couClass) {
 		this.couClassroom = couClass;
 	}
 
