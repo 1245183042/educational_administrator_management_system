@@ -19,7 +19,6 @@ import com.edu.bean.Teacher;
 import com.edu.bean.User;
 import com.edu.client.model.UserModel;
 
-
 public class UserCtrl implements ActionListener {
 
 	private JFrame jf;
