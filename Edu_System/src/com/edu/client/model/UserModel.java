@@ -5,8 +5,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import com.edu.bean.Message;
+import com.edu.bean.Notice;
 import com.edu.bean.User;
 
 public class UserModel {
@@ -36,5 +38,25 @@ public class UserModel {
 		in = new ObjectInputStream(socket.getInputStream());
 		User user = (User) in.readObject();
 		return user;
+	}
+
+	/**
+	 * 查询公告
+	 * 
+	 * @param message
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public List<Notice> queryNotice(Message message) throws IOException,
+			ClassNotFoundException {
+		//System.out.println(message.getIdentify());
+		out = new ObjectOutputStream(socket.getOutputStream());
+		out.writeObject(message);
+		out.flush();
+
+		in = new ObjectInputStream(socket.getInputStream());
+		List<Notice> notices = (List<Notice>) in.readObject();
+		return notices;
 	}
 }

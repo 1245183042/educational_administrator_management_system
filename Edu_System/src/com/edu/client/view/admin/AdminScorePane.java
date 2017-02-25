@@ -9,15 +9,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class AdminStudentPane {
-	private JPanel studentPanel;//放在tabbedPane的学生管理标签
+public class AdminScorePane {
+	private JPanel scorePanel;//放在tabbedPane的成绩管理标签
 	private JPanel upPanel;//条件选择面板
-	private JScrollPane downScrollPane;//用来装学生信息表格的面板
-	private JTable sutudentInfoTable;//学生信息表格
+	private JScrollPane downScrollPane;//用来装学生成绩表格的面板
+	private JTable scoreTable;//学生成绩表格
 	private JRadioButton Radio1;
 	private JRadioButton Radio2;
-
-	public JPanel init(){ 
+	
+	public JPanel init(){
 		//装院系的数组
 		String[] colleges = new String[]{
 			"电子信息与电气工程学院","旭日广东服装学院","化学与材料工程学院","经济管理学院","信息科学技术学院",
@@ -32,15 +32,15 @@ public class AdminStudentPane {
 		String[] classs = new String[]{
 			"1班","2班"
 		};
-		studentPanel = new JPanel();
-		studentPanel.setLayout(null);
-		studentPanel.setBounds(0, 0, 1136, 620);
+		scorePanel = new JPanel();
+		scorePanel.setLayout(null);
+		scorePanel.setBounds(0, 0, 1136, 620);
 		//条件选择面板
 		upPanel = new JPanel();
 		upPanel.setBounds(0, 0, 1136, 150);
 		upPanel.setLayout(null);
-		JLabel titleLable = new JLabel("学生管理");
-		titleLable.setBounds(540, 20, 60, 20);
+		JLabel titleLable = new JLabel("学生成绩管理");
+		titleLable.setBounds(540, 20, 100, 20);
 		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
 		lineLabel.setBounds(268,45,650,3);
 		Radio1 = new JRadioButton();
@@ -67,10 +67,16 @@ public class AdminStudentPane {
 		idLabel.setBounds(300, 80, 30, 20);
 		JTextField idField = new JTextField();
 		idField.setBounds(335,80,170,20);
+		JLabel schoolYearLabel = new JLabel("学年");
+		schoolYearLabel.setBounds(268, 110, 30, 20);
+		JComboBox<String> schoolYearBox = new JComboBox<String>(classs);
+		schoolYearBox.setBounds(303, 110, 170, 20);
+		JLabel termLabel = new JLabel("学期");
+		termLabel.setBounds(500, 110, 30, 20);
+		JComboBox<String> termBox = new JComboBox<String>(classs);
+		termBox.setBounds(535, 110, 80, 20);
 		JButton queryButton = new JButton("检索");
-		queryButton.setBounds(268, 110, 60, 20);
-		JButton addButton = new JButton("添加学生");
-		addButton.setBounds(845, 110, 87, 20);
+		queryButton.setBounds(835, 110, 60, 20);
 		upPanel.add(titleLable);
 		upPanel.add(lineLabel);
 		upPanel.add(Radio1);
@@ -86,17 +92,21 @@ public class AdminStudentPane {
 		upPanel.add(Radio2);
 		upPanel.add(idLabel);
 		upPanel.add(idField);
+		upPanel.add(schoolYearLabel);
+		upPanel.add(schoolYearBox);
+		upPanel.add(termLabel);
+		upPanel.add(schoolYearBox);
+		upPanel.add(termBox);
 		upPanel.add(queryButton);
-		upPanel.add(addButton);
-		//用来装学生信息表格的面板
-		sutudentInfoTable = new JTable(new Object[][]{{"信息科学技术学院","网络工程","2013级","1班","1314080903178","林蛋大","JCheckBox","JCheckBox()"}},
-				new Object[]{"院系","专业","年级","班级","学号","姓名","修改信息","删除学生"});
-		downScrollPane = new JScrollPane(sutudentInfoTable);
+		
+		//用来装学生成绩表格的面板
+		scoreTable = new JTable(new Object[][]{{"1314080903178","林蛋大","高等数学1","高等数学2","高等数学3","高等数学4","JCheckBox"}},
+				new Object[]{"学号","姓名","科目一","科目二","科目三","科目四","修改成绩"});
+		downScrollPane = new JScrollPane(scoreTable);
 		downScrollPane.setBounds(50, 150, 1000, 300);
 		
-		studentPanel.add(upPanel);
-		studentPanel.add(downScrollPane);
-		return studentPanel;
+		scorePanel.add(upPanel);
+		scorePanel.add(downScrollPane);
+		return scorePanel;
 	}
-	
 }
