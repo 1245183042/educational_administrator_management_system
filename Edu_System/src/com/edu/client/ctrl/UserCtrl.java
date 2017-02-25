@@ -18,6 +18,7 @@ import com.edu.bean.Student;
 import com.edu.bean.Teacher;
 import com.edu.bean.User;
 import com.edu.client.model.UserModel;
+import com.edu.client.view.student.StudentView;
 
 public class UserCtrl implements ActionListener {
 
@@ -70,7 +71,8 @@ public class UserCtrl implements ActionListener {
 						System.out.println(loginAdmin.getUserName());
 					} else if (loginUser instanceof Student) {
 						Student loginStudent = (Student) loginUser;
-						System.out.println(loginStudent.getUserName());
+						jf.setVisible(false);
+						new StudentView().initUI(loginStudent);
 					} else if (loginUser instanceof Teacher) {
 						Teacher loginTeacher = (Teacher) loginUser;
 						System.out.println(loginTeacher.getUserName());
