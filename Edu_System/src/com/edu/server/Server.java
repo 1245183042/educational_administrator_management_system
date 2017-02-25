@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.edu.server.service.ServerThread;
+import com.edu.server.service.ServerService;
 
 /**
  * 教务管理系统服务端
@@ -13,12 +13,12 @@ import com.edu.server.service.ServerThread;
  * 
  */
 public class Server {
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource" })
 	public static void main(String[] args) throws IOException {
 		ServerSocket server = new ServerSocket(11111);
 		while (true) {
 			Socket serverSocket = server.accept();
-			new ServerThread(serverSocket).start();
+			new ServerService(serverSocket).init();
 		}
 	}
 }

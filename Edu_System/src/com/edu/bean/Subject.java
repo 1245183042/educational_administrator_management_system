@@ -1,13 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 科目表
  * 
  * @author Administrator
  * 
  */
-public class Subject {
+public class Subject implements Serializable {
 
+	private static final long serialVersionUID = 180372981813710422L;
 	private int subjectId;// 主键
 	private String subjectName;// 科目名称
 	private int subjectTime;// 科目学时

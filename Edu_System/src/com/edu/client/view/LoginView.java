@@ -81,13 +81,13 @@ public class LoginView {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				if (arg0.getStateChange() == ItemEvent.SELECTED) {
-					if (identifyBox.getSelectedItem().equals("学生")) {
+					if (identifyBox.getSelectedItem().equals(Identify.STUDENT)) {
 						accountLabel.setText("学号");
 					}
-					if (identifyBox.getSelectedItem().equals("教师教辅人员")) {
+					if (identifyBox.getSelectedItem().equals(Identify.TEACHER)) {
 						accountLabel.setText("工号");
 					}
-					if (identifyBox.getSelectedItem().equals("管理员")) {
+					if (identifyBox.getSelectedItem().equals(Identify.ADMIN)) {
 						accountLabel.setText("账号");
 					}
 				}

@@ -6,14 +6,14 @@ import java.io.Serializable;
  */
 import java.util.Date;
 
-public class Notice implements Serializable{
+public class Notice implements Serializable {
 
 	private static final long serialVersionUID = 4523657067310607961L;
 	private int noticeId;// 主键
 	private String noticeTitle;// 标题
 	private String noticeContent;// 内容
 	private Date noticeReleaseTime;// 发布时间
-	private int noticeTarget;// 接收者：0学生，1教师
+	private int noticeTarget;// 接收者：0，全体，1学生，2教师
 	private String noticeAuthor;// 作者
 
 	public Notice() {
