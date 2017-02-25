@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.edu.bean.Message;
 import com.edu.bean.Notice;
-import com.edu.bean.User;
 
 public class UserModel {
 
@@ -19,25 +18,6 @@ public class UserModel {
 
 	public UserModel() throws UnknownHostException, IOException {
 		socket = new Socket("127.0.0.1", 11111);
-	}
-
-	/**
-	 * 登录验证
-	 * 
-	 * @param message
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	public User loginUser(Message message) throws IOException,
-			ClassNotFoundException {
-		out = new ObjectOutputStream(socket.getOutputStream());
-		out.writeObject(message);
-		out.flush();
-
-		in = new ObjectInputStream(socket.getInputStream());
-		User user = (User) in.readObject();
-		return user;
 	}
 
 	/**

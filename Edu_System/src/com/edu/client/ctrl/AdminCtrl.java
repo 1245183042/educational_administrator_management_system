@@ -21,7 +21,6 @@ import com.edu.bean.Message;
 import com.edu.bean.Notice;
 import com.edu.bean.OperationCode;
 import com.edu.bean.Student;
-import com.edu.bean.User;
 import com.edu.client.model.UserModel;
 import com.edu.client.view.admin.AdminNoticePane;
 import com.edu.util.DateUtil;
@@ -46,26 +45,26 @@ public class AdminCtrl extends WindowAdapter implements ActionListener {
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		try {
-			String identify = Identify.ADMIN;
-			Message message = new Message(identify, OperationCode.QUERY_NOTICE);
-			UserModel userModel = new UserModel();
-
-			List<Notice> notices = userModel.queryNotice(message);
-			AdminNoticePane adminNoticePane = AdminNoticePane.getInstance();
-			DefaultTableModel model = adminNoticePane.getModel();
-			for (Notice n : notices) {
-				// System.out.println(n.getNoticeTitle());
-				model.addRow(new String[] { "口", n.getNoticeTitle(),
-						getTarget(n.getNoticeTarget()), n.getNoticeAuthor(),
-						DateUtil.getTime(n.getNoticeReleaseTime()) });
-			}
-
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+//		try {
+//			String identify = Identify.ADMIN;
+//			//Message message = new Message(identify, OperationCode.QUERY_NOTICE);
+//			UserModel userModel = new UserModel();
+//
+//			List<Notice> notices = userModel.queryNotice(message);
+//			AdminNoticePane adminNoticePane = AdminNoticePane.getInstance();
+//			DefaultTableModel model = adminNoticePane.getModel();
+//			for (Notice n : notices) {
+//				// System.out.println(n.getNoticeTitle());
+//				model.addRow(new String[] { "口", n.getNoticeTitle(),
+//						getTarget(n.getNoticeTarget()), n.getNoticeAuthor(),
+//						DateUtil.getTime(n.getNoticeReleaseTime()) });
+//			}
+//
+//		} catch (ClassNotFoundException e1) {
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 	}
 
 	private String getTarget(int n) {
@@ -93,27 +92,7 @@ public class AdminCtrl extends WindowAdapter implements ActionListener {
 						if (value.equals("学号")) {
 							String id = idField.getText();
 							if (!"".equals(id)) {
-								User user = new User();
-								user.setUserId(Integer.parseInt(id));
-								message = new Message(user, Identify.ADMIN,
-										OperationCode.QUERY_STUDENT);
-								Message getMes = userModel.query(message);
-								Student student = (Student) getMes.getUser();
-								if (null == student || "".equals(student)) {
-									JOptionPane.showMessageDialog(idField,
-											"查不到该学生的信息！", "错误信息",
-											JOptionPane.ERROR_MESSAGE);
-								} else {
-									model.addRow(new String[] {
-											getMes.getCollege()
-													.getCollegeName(),
-											getMes.getMajor().getMajorName(),
-											getMes.getGrade().getGradeName(),
-											student.getStuClass() + "",
-											student.getUserId() + "",
-											student.getUserName(), "JCheckBox",
-											"JCheckBox()" });
-								}
+							
 							} else {
 								JOptionPane.showMessageDialog(idField,
 										"学号不能为空！", "错误信息",
@@ -129,9 +108,7 @@ public class AdminCtrl extends WindowAdapter implements ActionListener {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		} 
 	}
 
 }

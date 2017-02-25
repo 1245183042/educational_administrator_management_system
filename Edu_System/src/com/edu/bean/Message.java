@@ -6,27 +6,124 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = -7152824057168642835L;
 
-	private User user;
-	private String identify;
-	private String operationCode;
-	private College college;
+	private String identify;	//用户标志
+	private String operationCode;	//业务代码
+	private Administrator admin;
+	private Student student;
+	private Teacher teacher;
+	private Collage collage;
+	private Comment comment;
+	private Course course;
+	private CoursePosition coursePosition;
+	private Elective elective;
 	private Grade grade;
 	private Major major;
+	private Notice notice;
+	private Score score;
+	private Subject subject;
 
-	public Message(User user, College college, Grade grade, Major major) {
+	public Message() {
+	}
+
+	public Message(String identify, String operationCode, Administrator admin) {
 		super();
-		this.user = user;
-		this.college = college;
-		this.grade = grade;
-		this.major = major;
+		this.identify = identify;
+		this.operationCode = operationCode;
+		this.admin = admin;
 	}
 
-	public College getCollege() {
-		return college;
+	public Message(String identify, String operationCode, Student student) {
+		super();
+		this.identify = identify;
+		this.operationCode = operationCode;
+		this.student = student;
 	}
 
-	public void setCollege(College college) {
-		this.college = college;
+	public Message(String identify, String operationCode, Teacher teacher) {
+		super();
+		this.identify = identify;
+		this.operationCode = operationCode;
+		this.teacher = teacher;
+	}
+
+	public String getIdentify() {
+		return identify;
+	}
+
+	public void setIdentify(String identify) {
+		this.identify = identify;
+	}
+
+	public String getOperationCode() {
+		return operationCode;
+	}
+
+	public void setOperationCode(String operationCode) {
+		this.operationCode = operationCode;
+	}
+
+	public Administrator getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Administrator admin) {
+		this.admin = admin;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Collage getCollage() {
+		return collage;
+	}
+
+	public void setCollage(Collage collage) {
+		this.collage = collage;
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public CoursePosition getCoursePosition() {
+		return coursePosition;
+	}
+
+	public void setCoursePosition(CoursePosition coursePosition) {
+		this.coursePosition = coursePosition;
+	}
+
+	public Elective getElective() {
+		return elective;
+	}
+
+	public void setElective(Elective elective) {
+		this.elective = elective;
 	}
 
 	public Grade getGrade() {
@@ -45,42 +142,28 @@ public class Message implements Serializable {
 		this.major = major;
 	}
 
-	public Message() {
+	public Notice getNotice() {
+		return notice;
 	}
 
-	public Message(String identify, String operationCode) {
-		this.identify = identify;
-		this.operationCode = operationCode;
+	public void setNotice(Notice notice) {
+		this.notice = notice;
 	}
 
-	public Message(User user, String identify, String operationCode) {
-		this.user = user;
-		this.identify = identify;
-		this.operationCode = operationCode;
+	public Score getScore() {
+		return score;
 	}
 
-	public User getUser() {
-		return user;
+	public void setScore(Score score) {
+		this.score = score;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public String getIdentify() {
-		return identify;
-	}
-
-	public void setIdentify(String identify) {
-		this.identify = identify;
-	}
-
-	public String getOperationCode() {
-		return operationCode;
-	}
-
-	public void setOperationCode(String operationCode) {
-		this.operationCode = operationCode;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 }
