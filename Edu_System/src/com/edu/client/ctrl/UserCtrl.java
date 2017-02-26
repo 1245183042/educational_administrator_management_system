@@ -82,8 +82,13 @@ public class UserCtrl implements ActionListener {
 						JOptionPane.showMessageDialog(jf, "用户名或密码错误", "错误信息",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-						
-						System.out.println(getStu.getStudentName());
+//						String operationCode2 = OperationCode.RETRIEVE_NOTICE;
+//						Message message2 = new Message(identify, operationCode2,
+//								student);
+//						Message getMes2 = userModel.query(message2);
+						jf.setVisible(false);
+						new StudentView().initUI(getMes);
+//						System.out.println(getStu.getStudentName());
 						
 					}
 

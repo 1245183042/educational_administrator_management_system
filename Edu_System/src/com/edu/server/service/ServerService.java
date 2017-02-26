@@ -6,12 +6,14 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.util.List;
 
+import com.edu.bean.Notice;
 import com.edu.bean.Identify;
 import com.edu.bean.Message;
 import com.edu.bean.OperationCode;
 import com.edu.server.connection.ConnManager;
 import com.edu.server.connection.XmlManager;
 import com.edu.server.dao.AdminDao;
+import com.edu.server.dao.StudentDao;
 import com.edu.server.dao.UserDao;
 
 /**
@@ -30,8 +32,10 @@ public class ServerService {
 		this.serverSocket = serverSocket;
 	}
 
+	@SuppressWarnings("null")
 	public void init() {
 		UserDao userDao = new UserDao();
+		
 		try {
 			List<String> childElementValues = XmlManager
 					.getChildElementValues(XmlManager
@@ -101,14 +105,19 @@ public class ServerService {
 				}
 
 			} else if (identify.equals(Identify.STUDENT)) {
-
+				StudentDao studentDao = new StudentDao();
 				if (operationCode.equals(OperationCode.LOGIN)) {
 					getMes = userDao.queryStudent(conn, message.getStudent());
-					out.writeObject(getMes);
+					Message message2 = studentDao.queryNotice(conn);
+					message2.setStudent(getMes.getStudent());
+					message2.setMajor(getMes.getMajor());
+					message2.setCollage(getMes.getCollage());
+					message2.setGrade(getMes.getGrade());
+					out.writeObject(message2);
 				} else if (operationCode.equals(OperationCode.CREATE_NOTICE)) {
-
+					
 				} else if (operationCode.equals(OperationCode.RETRIEVE_NOTICE)) {
-
+					
 				} else if (operationCode.equals(OperationCode.UPDATE_NOTICE)) {
 
 				} else if (operationCode.equals(OperationCode.DELETE_NOTICE)) {
