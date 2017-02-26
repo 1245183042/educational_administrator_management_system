@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <db>
 	<driver-class>com.mysql.jdbc.Driver</driver-class>
-	<url>jdbc:mysql://192.168.1.103:3306/edu_admin_manage_system</url>
+	<url>jdbc:mysql://192.168.3.8:3306/edu_admin_manage_system</url>
 	<user-name>sidacaizi</user-name>
 	<user-password></user-password>
 </db>

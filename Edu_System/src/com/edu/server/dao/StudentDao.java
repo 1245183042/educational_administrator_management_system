@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.edu.bean.Message;
 import com.edu.bean.Notice;
+import com.edu.bean.Student;
 
 public class StudentDao {
-	public List<Notice> queryNotice(Connection conn) throws SQLException{
+	public Message queryNotice(Connection conn) throws SQLException{
 		PreparedStatement pstmt = conn.prepareStatement("select * from notice");
 		ResultSet rs = pstmt.executeQuery();
 		List<Notice> notices = new ArrayList<Notice>();
@@ -24,6 +26,8 @@ public class StudentDao {
 			notice.setNoticeTitle(rs.getString("notice_title"));
 			notices.add(notice);
 		}
-		return notices;
+		Message message = new Message();
+		message.setNotices(notices);
+		return message;
 	}
 }
