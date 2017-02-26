@@ -49,13 +49,16 @@ public class DBServer {
 	 * @param condition
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
-	public int delete(String tableName, String condition) throws SQLException {
+	public int delete(String tableName, String condition,
+			HashMap<Integer, Object> params) throws SQLException,
+			ClassNotFoundException {
 		if (null == tableName) {
 			return 0;
 		}
 		String sql = "delete from " + tableName + " " + condition;
-		return dbOperation.executeUpdate(sql);
+		return dbOperation.executeUpdate(sql, params);
 	}
 
 	/**
@@ -104,14 +107,47 @@ public class DBServer {
 	 * @param tableName
 	 * @param columns
 	 * @param condition
+	 * @param params
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
-	public ResultSet select(String tableName, String columns, String condition)
-			throws SQLException {
-		String sql = "select " + columns + " from " + tableName + " "
-				+ condition;
-		return dbOperation.executeQuery(sql);
+	public ResultSet select(String tableName, String columns, String condition,
+			HashMap<Integer, Object> params) throws SQLException,
+			ClassNotFoundException {
+		String sql = selectSql(tableName, columns, condition);
+		return dbOperation.executeQuery(sql, params);
+
+	}
+
+	/**
+	 * 组装select sql
+	 * 
+	 * @param tableName
+	 * @param columns
+	 * @param condition
+	 * @return
+	 */
+	private String selectSql(String tableName, String columns, String condition) {
+		if (null == tableName || null == columns) {
+			return null;
+		}
+		String[] column = columns.split(",");
+		StringBuilder sb = new StringBuilder("");
+		sb.append("select ");
+		for (int i = 0; i < column.length; i++) {
+			if (i == column.length - 1) {
+				sb.append(column[i]);
+			} else {
+				sb.append(column[i]);
+				sb.append(", ");
+			}
+		}
+		sb.append(" from ");
+		sb.append(tableName);
+		sb.append(" ");
+		sb.append(condition);
+		return sb.toString();
 	}
 
 	/**
@@ -166,7 +202,7 @@ public class DBServer {
 			sb.append(",?");
 		}
 		sb.append(")");
+		// System.out.println(sb.toString());
 		return sb.toString();
 	}
-
 }
