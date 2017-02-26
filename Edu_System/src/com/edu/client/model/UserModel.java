@@ -39,23 +39,4 @@ public class UserModel {
 		return getMes;
 	}
 
-	/**
-	 * 查询公告
-	 * 
-	 * @param message
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	public List<Notice> queryNotice(Message message) throws IOException,
-			ClassNotFoundException {
-		// System.out.println(message.getIdentify());
-		out = new ObjectOutputStream(socket.getOutputStream());
-		out.writeObject(message);
-		out.flush();
-
-		in = new ObjectInputStream(socket.getInputStream());
-		List<Notice> notices = (List<Notice>) in.readObject();
-		return notices;
-	}
 }

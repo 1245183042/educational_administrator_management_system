@@ -3,7 +3,6 @@ package com.edu.client.view.student;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.text.SimpleDateFormat;
@@ -22,10 +21,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.edu.bean.Message;
 import com.edu.bean.Notice;
 import com.edu.bean.Student;
 import com.edu.client.ctrl.StudentCtrl;
-import com.edu.client.model.StudentModel;
 
 public class StudentView implements ComponentListener {
 	final JFrame studentFrame = new JFrame("学生教务系统界面");
@@ -37,9 +36,11 @@ public class StudentView implements ComponentListener {
 	private int labelHeight = 60;
 	private int electiveNum = 19;
 	private int num;
+	private Message message;
 	Color bgColor = new Color(245,245,245);
 	Color wordColor = new Color(234,234,234);
-	public void initUI(Student loginStudent){
+	public void initUI(Message getMes2){
+		this.message = getMes2;
 		studentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//窗口用户是否调整
 		studentFrame.setResizable(false);
@@ -80,7 +81,7 @@ public class StudentView implements ComponentListener {
 		topPanel.add(numLabel);
 		
 		//欢迎语
-		JLabel nameLabel = new JLabel("欢迎同学:"+loginStudent.getUserName()+"，使用本系统。");
+		JLabel nameLabel = new JLabel("欢迎同学:"+getMes2.getStudent().getStudentName()+"，使用本系统。");
 		nameLabel.setBounds( 0,60,300, 40);
 		nameLabel.setFont(new Font("宋体",Font.BOLD,20));
 		nameLabel.setForeground(wordColor);
@@ -116,61 +117,61 @@ public class StudentView implements ComponentListener {
 		studentPanel.setBackground(bgColor);
 		
 		//姓名
-		JLabel studentNameLabel = new JLabel("姓名:"+loginStudent.getUserName());
+		JLabel studentNameLabel = new JLabel("姓名:"+getMes2.getStudent().getStudentName());
 		studentNameLabel.setBounds(80, 30, 200, 30);
 		studentNameLabel.setFont(font);
 		studentPanel.add(studentNameLabel);
 		
 		//性别
-		JLabel studentSexLabel = new JLabel("性别:"+loginStudent.getStudentGender());
+		JLabel studentSexLabel = new JLabel("性别:"+getMes2.getStudent().getStudentGender());
 		studentSexLabel.setBounds(300, 30, 100, 30);
 		studentSexLabel.setFont(font);
 		studentPanel.add(studentSexLabel);
 		
 		//民族
-		JLabel studentRaceLabel = new JLabel("民族:"+loginStudent.getStudentRace());
+		JLabel studentRaceLabel = new JLabel("民族:"+getMes2.getStudent().getStudentRace());
 		studentRaceLabel.setBounds(500,30, 150, 30);
 		studentRaceLabel.setFont(font);
 		studentPanel.add(studentRaceLabel);
 		
 		//学号
-		JLabel studentIdLabel = new JLabel("学号:"+loginStudent.getUserId());
+		JLabel studentIdLabel = new JLabel("学号:"+getMes2.getStudent().getStudentId());
 		studentIdLabel.setBounds(80, 100, 200, 30);
 		studentIdLabel.setFont(font);
 		studentPanel.add(studentIdLabel);
 		
 		//手机号
-		JLabel studentPhoneLabel = new JLabel("手机号:"+loginStudent.getStudentPhone());
+		JLabel studentPhoneLabel = new JLabel("手机号:"+getMes2.getStudent().getStudentPhone());
 		studentPhoneLabel.setBounds(380, 100, 220, 30);
 		studentPhoneLabel.setFont(font);
 		studentPanel.add(studentPhoneLabel);
 		
 		//年级
-		JLabel studentGIdLabel = new JLabel("年级:"+loginStudent.getStuGraId());
+		JLabel studentGIdLabel = new JLabel("年级:"+getMes2.getStudent().getStuGraId());
 		studentGIdLabel.setBounds(80, 170, 200, 30);
 		studentGIdLabel.setFont(font);
 		studentPanel.add(studentGIdLabel);
 		
 		//班级
-		JLabel studentClassLabel = new JLabel("班级:"+loginStudent.getStuClass());
+		JLabel studentClassLabel = new JLabel("班级:"+getMes2.getStudent().getStuClass());
 		studentClassLabel.setBounds(380, 170, 220, 30);
 		studentClassLabel.setFont(font);
 		studentPanel.add(studentClassLabel);
 		
 		//宿舍
-		JLabel studentDormitoryLabel = new JLabel("宿舍:"+loginStudent.getStudentDormitory());
+		JLabel studentDormitoryLabel = new JLabel("宿舍:"+getMes2.getStudent().getStudentDormitory());
 		studentDormitoryLabel.setBounds(80, 240, 200, 30);
 		studentDormitoryLabel.setFont(font);
 		studentPanel.add(studentDormitoryLabel);
 		
 		//专业
-		JLabel studentMIdLabel = new JLabel("专业:"+loginStudent.getStuMajId());
+		JLabel studentMIdLabel = new JLabel("专业:"+getMes2.getStudent().getStuMajId());
 		studentMIdLabel.setBounds(380, 240, 220, 30);
 		studentMIdLabel.setFont(font);
 		studentPanel.add(studentMIdLabel);
 		
 		//家庭住址
-		JLabel studentAdressLabel = new JLabel("家庭住址:"+loginStudent.getStudentAddress());
+		JLabel studentAdressLabel = new JLabel("家庭住址:"+getMes2.getStudent().getStudentAddress());
 		studentAdressLabel.setBounds(80, 310, 420, 30);
 		studentAdressLabel.setFont(font);
 		//对齐方式
@@ -211,17 +212,17 @@ public class StudentView implements ComponentListener {
 		searchesButton.setFont(font);
 		coursePanel.add(searchesButton);
 		//专业
-		JLabel studentMIdLabel2 = new JLabel("专业:"+loginStudent.getStuMajId());
+		JLabel studentMIdLabel2 = new JLabel("专业:"+getMes2.getStudent().getStuMajId());
 		studentMIdLabel2.setBounds(500, 60, 220, 30);
 		studentMIdLabel2.setFont(font);
 		coursePanel.add(studentMIdLabel2);
 		//姓名
-		JLabel studentNameLabel2 = new JLabel("姓名:"+loginStudent.getUserName());
+		JLabel studentNameLabel2 = new JLabel("姓名:"+getMes2.getStudent().getStudentName());
 		studentNameLabel2.setBounds(300, 60, 200, 30);
 		studentNameLabel2.setFont(font);
 		coursePanel.add(studentNameLabel2);
 		//学号
-		JLabel studentIdLabel2 = new JLabel("学号:"+loginStudent.getUserId());
+		JLabel studentIdLabel2 = new JLabel("学号:"+getMes2.getStudent().getStudentId());
 		studentIdLabel2.setBounds(50, 60, 200, 30);
 		studentIdLabel2.setFont(font);
 		coursePanel.add(studentIdLabel2);
@@ -339,17 +340,17 @@ public class StudentView implements ComponentListener {
 		searchesButton2.setFont(font);
 		scorePanel.add(searchesButton2);
 		//专业
-		JLabel studentMIdLabel22= new JLabel("专业:"+loginStudent.getStuMajId());
+		JLabel studentMIdLabel22= new JLabel("专业:"+getMes2.getStudent().getStuMajId());
 		studentMIdLabel22.setBounds(500, 60, 220, 30);
 		studentMIdLabel22.setFont(font);
 		scorePanel.add(studentMIdLabel22);
 		//姓名
-		JLabel studentNameLabel22 = new JLabel("姓名:"+loginStudent.getUserName());
+		JLabel studentNameLabel22 = new JLabel("姓名:"+getMes2.getStudent().getStudentName());
 		studentNameLabel22.setBounds(300, 60, 200, 30);
 		studentNameLabel22.setFont(font);
 		scorePanel.add(studentNameLabel22);
 		//学号
-		JLabel studentIdLabel22 = new JLabel("学号:"+loginStudent.getUserId());
+		JLabel studentIdLabel22 = new JLabel("学号:"+getMes2.getStudent().getStudentId());
 		studentIdLabel22.setBounds(50, 60, 200, 30);
 		studentIdLabel22.setFont(font);
 		scorePanel.add(studentIdLabel22);
@@ -546,8 +547,8 @@ public class StudentView implements ComponentListener {
 	//公告里面的消息
 	private JPanel panel() {
 		this.num = 0;
-		//num应该从后台取的数据，20用于测试
-		for (Notice n : new StudentModel().notices()) {
+		//num应该从后台取的数据
+		for (Notice n : message.getNotices()) {
 			if(n.getNoticeTarget() != 2){
 			this.num ++;
 			}
@@ -560,8 +561,9 @@ public class StudentView implements ComponentListener {
 		panel.setBackground(bgColor);
 		JButton[] button = new JButton[num];
 		int i = 0;
-		for(Notice n : new StudentModel().notices())
-		{	if((n.getNoticeTarget() != 2)){
+		for(Notice n : message.getNotices())
+		{	
+			if((n.getNoticeTarget() != 2)){
 			button[i] = new JButton("<"+(i+1)+">"+n.getNoticeReleaseTime()+"●"+n.getNoticeTitle());
 			button[i].setPreferredSize(new Dimension(labelWeight,labelHeight));
 			button[i].setHorizontalAlignment(SwingConstants.LEFT);
@@ -646,7 +648,10 @@ public class StudentView implements ComponentListener {
 		return electivePanel;
 	}
 	public static void main(String[] args) {
-		new StudentView().initUI(null);
+		Student studentTry = new Student();
+		Message messageTry =  new Message();
+		messageTry.setStudent(studentTry);
+		new StudentView().initUI(messageTry);
 	}
 	
 	public static String dateToStrLong(java.util.Date dateDate) {
