@@ -18,6 +18,7 @@ public class DBManager {
 		try {
 			JAXPConfigurator.configure(DBPool.getDBPool().getPoolPath(), false);
 			Class.forName("org.logicalcobwebs.proxool.ProxoolDriver");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

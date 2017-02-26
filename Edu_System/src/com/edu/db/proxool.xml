@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <proxool-config>
 	<proxool>
 		<alias>edu_manage</alias> <!-- 连接池的别名 -->
 		<!-- 连接数据库的驱动URL -->
-		<driver-url><![CDATA[jdbc:mysql://127.0.0.1:3306/edu_admin_manage_system?characterEncoding=utf-8]]></driver-url>
+		<driver-url><![CDATA[jdbc:mysql://192.168.1.103:3306/edu_admin_manage_system?characterEncoding=utf-8]]></driver-url>
 		<!-- 连接数据库的驱动类 -->
 		<driver-class>com.mysql.jdbc.Driver</driver-class>
 		<driver-properties>
