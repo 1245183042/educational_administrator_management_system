@@ -1,6 +1,7 @@
 package com.edu.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Message implements Serializable {
 
@@ -21,6 +22,15 @@ public class Message implements Serializable {
 	private Notice notice;
 	private Score score;
 	private Subject subject;
+	private List<Notice> notices;
+
+	public List<Notice> getNotices() {
+		return notices;
+	}
+
+	public void setNotices(List<Notice> notices) {
+		this.notices = notices;
+	}
 
 	public Message() {
 	}
@@ -38,7 +48,7 @@ public class Message implements Serializable {
 		this.operationCode = operationCode;
 		this.student = student;
 	}
-
+	
 	public Message(String identify, String operationCode, Teacher teacher) {
 		super();
 		this.identify = identify;
