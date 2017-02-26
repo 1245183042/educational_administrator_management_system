@@ -1,14 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 教师评论表
  * 
  * @author Administrator
  * 
  */
+public class Comment implements Serializable {
 
-public class Comment {
-	
+	private static final long serialVersionUID = -7144083882475226545L;
 	private int comId;// 主键
 	private int comStuId;// 外键，学生表Id
 	private int comSubId;// 外键，科目表Id
