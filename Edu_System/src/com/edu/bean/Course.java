@@ -11,8 +11,9 @@ import java.io.Serializable;
 
 public class Course implements Serializable {
 
+
+	private int couId;// 主键
 	private static final long serialVersionUID = 3907684237429177356L;
-	private String couId;// 主键
 	private String couClassroom;// 上课地点
 	private String couWeek;// 需要上课的周数
 	private int couSubId;// 外键，科目表Id
@@ -25,7 +26,8 @@ public class Course implements Serializable {
 	public Course() {
 	}
 
-	public Course(String couId, String couClassroom, String couWeek,
+
+public Course(int couId, String couClassroom, String couWeek,
 			int couSubId, int couTeaId, int couGraId, int couMajId,
 			int couCpId, String couYearTerm) {
 		super();
@@ -40,13 +42,14 @@ public class Course implements Serializable {
 		this.couYearTerm = couYearTerm;
 	}
 
-	public String getCouId() {
+	public int getCouId() {
 		return couId;
 	}
 
-	public void setCouId(String couId) {
+	public void setCouId(int couId) {
 		this.couId = couId;
 	}
+
 
 	public String getCouClassroom() {
 		return couClassroom;
