@@ -4,7 +4,7 @@ import java.io.Serializable;
 /**
  * 公告表
  */
-import java.util.Date;
+import java.sql.Date;
 
 public class Notice implements Serializable {
 
@@ -12,15 +12,15 @@ public class Notice implements Serializable {
 	private int noticeId;// 主键
 	private String noticeTitle;// 标题
 	private String noticeContent;// 内容
-	private Date noticeReleaseTime;// 发布时间
+	private String noticeReleaseTime;// 发布时间
 	private int noticeTarget;// 接收者：0，全体，1学生，2教师
 	private String noticeAuthor;// 作者
 
 	public Notice() {
 	}
 
-	public Notice(int noticeId, String noticeTitle, String noticeContent,
-			Date noticeReleaseTime, int noticeTarget, String noticeAuthor) {
+	public Notice(int noticeId,String noticeTitle, String noticeContent,
+			String noticeReleaseTime, int noticeTarget, String noticeAuthor) {
 		this.noticeId = noticeId;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
@@ -53,11 +53,11 @@ public class Notice implements Serializable {
 		this.noticeContent = noticeContent;
 	}
 
-	public Date getNoticeReleaseTime() {
+	public String getNoticeReleaseTime() {
 		return noticeReleaseTime;
 	}
 
-	public void setNoticeReleaseTime(Date noticeReleaseTime) {
+	public void setNoticeReleaseTime(String noticeReleaseTime) {
 		this.noticeReleaseTime = noticeReleaseTime;
 	}
 

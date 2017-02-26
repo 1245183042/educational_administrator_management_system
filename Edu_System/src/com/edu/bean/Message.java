@@ -1,6 +1,7 @@
 package com.edu.bean;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Message implements Serializable {
