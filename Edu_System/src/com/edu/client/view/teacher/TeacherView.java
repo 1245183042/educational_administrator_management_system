@@ -142,7 +142,7 @@ JFrame teacherFrame;
 	    * 设置教师课程表，其中有添加表格，下拉框等组件。其中有三个Panel（包括teacherCoursePanel），
 	    * 其中两个是添加到teacherCoursePanel中，teacherCoursePanel用的是边界布局。
 	    */
-	   JLabel teacherGradeLabel=new JLabel("年级:");
+	   JLabel teacherGradeLabel=new JLabel("学年学期:");
 	   teacherGradeLabel.setBounds(100, 25,60, 20);
 	   teacherGradeLabel.setFont(font);
 	   
