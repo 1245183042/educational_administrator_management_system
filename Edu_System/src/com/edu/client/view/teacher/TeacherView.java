@@ -41,6 +41,7 @@ JFrame teacherFrame;
     */
    JComboBox teacherCourseGradeJCBox,teacherCourseMajorJCBox;
    JTextArea[][] teacherCourseTabels=new JTextArea[5][9];
+   JButton teacherCourseQueryButton;
    
 //   TextField teacherNumberText,teacherNameText,
 //               teacherPhoneText,teacherAddressText,teacherPositionText,teacherCollegeText;
@@ -66,8 +67,8 @@ JFrame teacherFrame;
    JTextField modifyPasswordUserNameText,modifyPasswordUserIdText,
    modifyPasswordOldPasswordText,modifyPasswordNewPasswordText,modifyPasswordEnsureNewPasswordText;
    JButton modifyPasswordEnsureButton;
-   public void init(Teacher teacher,Vector<String> teacherCourseVeGradeJCBox,
-		   Vector<String> teacherCourseVeMajorJCBox,Vector<String>teacherVeYearJCBox,Vector<String>teacherVeTermJCBox,
+   public void init(Teacher teacher,Vector<String>teacherVeYearJCBox,Vector<String> teacherCourseVeGradeJCBox,
+		   Vector<String> teacherCourseVeMajorJCBox,Vector<String>teacherVeTermJCBox,
 		   Vector<String>teacherVeCourseNameJCBox,Vector<String>teacherTestResultVeCourseCharacterJCBox){
 	   
 	   int xWieht=888,jHight=666,hight=60,hightAdd=20;
@@ -93,12 +94,12 @@ JFrame teacherFrame;
 	   /**
 	    * 设置个人信息的标签,以及修改、确定按钮
 	    */
-	   JLabel teacherNumLabel=new JLabel("编号："+teacher.getUserId());
+	   JLabel teacherNumLabel=new JLabel("编号："+teacher.getTeacherId());
 	   teacherNumLabel.setFont(font);
 	   teacherNumLabel.setBounds(xWieht/2-100, hight+20, 500, 20);
 	   
 	   
-	   JLabel teacherNameLabel=new JLabel("姓名:"+teacher.getUserName());
+	   JLabel teacherNameLabel=new JLabel("姓名:"+teacher.getTeacherName());
 	   teacherNameLabel.setFont(font);
 	   teacherNameLabel.setBounds(xWieht/2-100, hight+60+hightAdd, 500, 20);
 	   
@@ -144,7 +145,7 @@ JFrame teacherFrame;
 	    * 其中两个是添加到teacherCoursePanel中，teacherCoursePanel用的是边界布局。
 	    */
 	   JLabel teacherGradeLabel=new JLabel("学年学期:");
-	   teacherGradeLabel.setBounds(100, 25,60, 20);
+	   teacherGradeLabel.setBounds(70, 25,120, 20);
 	   teacherGradeLabel.setFont(font);
 	   
 	   final JTextArea teacherCourseGradeJCBTextArea=new JTextArea();
@@ -163,12 +164,12 @@ JFrame teacherFrame;
 	   });
 	   
 	   JLabel teacherMajorLabel=new JLabel("专业:");
-	   teacherMajorLabel.setBounds(450, 25,60, 20);
+	   teacherMajorLabel.setBounds(430, 25,60, 20);
 	   teacherMajorLabel.setFont(font);
 	   
 	   final JTextArea teacherCourseMajorJCBTextArea=new JTextArea();
 	   teacherCourseMajorJCBox=new JComboBox(teacherCourseVeMajorJCBox);//教室课程表专业下拉款
-	   teacherCourseMajorJCBox.setBounds(505, 20, 200, 30);
+	   teacherCourseMajorJCBox.setBounds(485, 20, 200, 30);
 	   teacherCourseMajorJCBox.setFont(font);
 	   teacherCourseMajorJCBox.addItemListener(new ItemListener(){
 
@@ -180,7 +181,8 @@ JFrame teacherFrame;
 		}
 		   
 	   });
-	   
+	   teacherCourseQueryButton=new JButton("查询");
+	   teacherCourseQueryButton.setBounds(729, 49, 60, 18);
 	   
 	   JPanel northCoursePanel=new JPanel();//教室课程表北Panel，其中加入了年级、专业下拉框的Panel
 	   northCoursePanel.setBounds(0, 0, 800, 70);
@@ -190,6 +192,7 @@ JFrame teacherFrame;
 	   northCoursePanel.add(teacherGradeLabel);
 	   northCoursePanel.add(teacherMajorLabel);
 	   northCoursePanel.add(teacherCourseMajorJCBox);
+	   northCoursePanel.add(teacherCourseQueryButton);
 	   
 	   
 	   
@@ -260,7 +263,7 @@ JFrame teacherFrame;
 	   teacherTestResultCourseNameLabel.setBounds(20, 40, 90, 20);
 	   teacherTestResultCourseNameLabel.setFont(font);
 	   
-	   JLabel teacherTestResultCourseTermLabel=new JLabel("课程性质:");//教师课程性质Label
+	   JLabel teacherTestResultCourseTermLabel=new JLabel("班级名称:");//教师课程性质Label
 	   teacherTestResultCourseTermLabel.setBounds(450, 40, 90, 20);
 	   teacherTestResultCourseTermLabel.setFont(font);
 	   
@@ -463,6 +466,7 @@ JFrame teacherFrame;
 			Object book=teacherCommentCourseNameJCBox.getItemListeners();
 			teacherCommentCourseNameTextArea.setText(book.toString());
 		}
+		});
 
 		teacherCoursePanel = new JPanel();// 教师课程表Panel
 		teacherCoursePanel.setLayout(null);
@@ -470,237 +474,7 @@ JFrame teacherFrame;
 		teacherCoursePanel.add(northCoursePanel);
 		teacherCoursePanel.add(centreCoursePanel);
 
-		/*
-		 * 建立教师公布考试成绩的Panel，其中该pannel添加有三个pannel，
-		 * 分为北(northTestResultsPanel,其中添加文本
-		 * 、下拉框等)、中(centerTestResultsPanel)、南(southTestResultsPanel)
-		 */
-		// 添加北Panel的各组件
-		Font font2 = new Font("宋体", Font.BOLD, 18);
-		JLabel teacherTestResultTeacherNameLabel = new JLabel("教师名称:");// 教师名称Label
-		teacherTestResultTeacherNameLabel.setBounds(20, 5, 120, 20);
-		teacherTestResultTeacherNameLabel.setFont(font);
-
-		JLabel teacherTestResultTermLabel = new JLabel("学期:");// 教师学期Label
-		teacherTestResultTermLabel.setBounds(530, 5, 90, 20);
-		teacherTestResultTermLabel.setFont(font);
-
-		JLabel teacherTestResultYearLabel = new JLabel("学年:");// 教师学年Label
-		teacherTestResultYearLabel.setBounds(285, 5, 90, 20);
-		teacherTestResultYearLabel.setFont(font);
-
-		JLabel teacherTestResultCourseNameLabel = new JLabel("课程名称:");// 教师课程名称Label
-		teacherTestResultCourseNameLabel.setBounds(20, 40, 90, 20);
-		teacherTestResultCourseNameLabel.setFont(font);
-
-		JLabel teacherTestResultCourseTermLabel = new JLabel("课程性质:");// 教师课程性质Label
-		teacherTestResultCourseTermLabel.setBounds(450, 40, 90, 20);
-		teacherTestResultCourseTermLabel.setFont(font);
-
-		teacherTestResultTeacherName = new JTextField();// 教师名称文本框
-		teacherTestResultTeacherName.setBounds(120, 5, 130, 20);
-		teacherTestResultTeacherName.setFont(font);
-
-		final JTextArea teacherTestResultYearTextArea = new JTextArea();
-		teacherTestResultYearJC = new JComboBox();// 教师成绩学年下拉框
-		teacherTestResultYearJC.setBounds(345, 5, 170, 25);
-		teacherTestResultYearJC.setFont(font);
-		teacherTestResultYearJC.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherTestResultYearJC.getItemListeners();
-				teacherTestResultYearTextArea.setText(book.toString());
-
-			}
-
-		});
-
-		final JTextArea teacherTestResultTermJCBTextArea = new JTextArea();
-		teacherTestResultTermJC = new JComboBox(teacherVeTermJCBox);// 教师成绩学期下拉框
-		teacherTestResultTermJC.setBounds(590, 5, 150, 25);
-		teacherTestResultTermJC.setFont(font);
-		teacherTestResultTermJC.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherTestResultTermJC.getItemListeners();
-				teacherTestResultTermJCBTextArea.setText(book.toString());
-
-			}
-
-		});
-		final JTextArea teacherTestResultCourseNameJCBTextArea = new JTextArea();
-		teacherTestResultCourseNameJC = new JComboBox(teacherVeCourseNameJCBox);// 教师成绩课程名称下拉框
-		teacherTestResultCourseNameJC.setBounds(120, 40, 200, 20);
-		teacherTestResultCourseNameJC.setFont(font);
-		teacherTestResultCourseNameJC.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherTestResultCourseNameJC.getItemListeners();
-				teacherTestResultCourseNameJCBTextArea.setText(book.toString());
-
-			}
-
-		});
-
-		final JTextArea teacherTestResultCourseCharacterJCBTextArea = new JTextArea();
-		teacherTestResultCourseCharacterJC = new JComboBox(
-				teacherVeCourseNameJCBox);// 课程性质JComboBox
-		teacherTestResultCourseCharacterJC.setBounds(540, 40, 200, 20);
-		teacherTestResultCourseCharacterJC.setFont(font);
-		teacherTestResultCourseCharacterJC.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherTestResultCourseCharacterJC
-						.getItemListeners();
-				teacherTestResultCourseCharacterJCBTextArea.setText(book
-						.toString());
-
-			}
-
-		});
-
-		JPanel northTestResultsPanel = new JPanel();// 北(northTestResultsPanel,其中添加文本、下拉框等)
-		northTestResultsPanel.setLayout(null);
-		northTestResultsPanel.setBounds(0, 3, 800, 70);
-		northTestResultsPanel.setBackground(new Color(7, 9, 67));
-		northTestResultsPanel.add(teacherTestResultTeacherNameLabel);
-		northTestResultsPanel.add(teacherTestResultTermLabel);
-		northTestResultsPanel.add(teacherTestResultCourseNameLabel);
-		northTestResultsPanel.add(teacherTestResultCourseTermLabel);
-		northTestResultsPanel.add(teacherTestResultTeacherName);
-		northTestResultsPanel.add(teacherTestResultTermJC);
-		northTestResultsPanel.add(teacherTestResultCourseNameJC);
-		northTestResultsPanel.add(teacherTestResultCourseCharacterJC);
-		northTestResultsPanel.add(teacherTestResultYearLabel);
-		northTestResultsPanel.add(teacherTestResultYearJC);
-
-		// 添加中Panel的各组件
-		JLabel classNameLabel = new JLabel("班级名称");
-		classNameLabel.setFont(font);
-		classNameLabel.setBackground(new Color(242, 242, 245));
-		JLabel studentIdLabel = new JLabel("学号");
-		studentIdLabel.setFont(font);
-		studentIdLabel.setBackground(new Color(242, 242, 245));
-		JLabel studentNameLabel = new JLabel("学生姓名");
-		studentNameLabel.setFont(font);
-		studentNameLabel.setBackground(new Color(242, 242, 245));
-		JLabel peacetimeGradeLabel = new JLabel("平时成绩");
-		peacetimeGradeLabel.setFont(font);
-		peacetimeGradeLabel.setBackground(new Color(242, 242, 245));
-		JLabel endGradeLabel = new JLabel("期末成绩");
-		endGradeLabel.setFont(font);
-		endGradeLabel.setBackground(new Color(242, 242, 245));
-		JLabel allGradeLabel = new JLabel("总成绩");
-		allGradeLabel.setFont(font);
-		allGradeLabel.setBackground(new Color(242, 242, 245));
-
-		JPanel centerTestResultsPanel = new JPanel();// 中(centerTestResultsPanel,其中用网格布局，添加标签)
-		centerTestResultsPanel.setLayout(new GridLayout(1, 6, 5, 4));
-		centerTestResultsPanel.setBackground(new Color(185, 185, 219));
-		centerTestResultsPanel.setBounds(0, 72, 800, 70);
-		centerTestResultsPanel.add(classNameLabel);
-		centerTestResultsPanel.add(studentIdLabel);
-		centerTestResultsPanel.add(studentNameLabel);
-		centerTestResultsPanel.add(peacetimeGradeLabel);
-		centerTestResultsPanel.add(endGradeLabel);
-		centerTestResultsPanel.add(allGradeLabel);
-
-		// 南(southTestResultsPanel)的各个组件
-		teacherTestResultDefaultTable = new DefaultTableModel(100, 6);
-		JTable teacherTestResultTable = new JTable(
-				teacherTestResultDefaultTable);
-		teacherTestResultTable.setRowHeight(20);
-		teacherTestResultTable.setSize(800, 600);
-		// jt.setSize(800, 600);
-		// JPanel jp=new JPanel();
-		// jp.add(jt);
-		JScrollPane jScrollPanel = new JScrollPane();
-		jScrollPanel.setPreferredSize(new Dimension(800, 472));
-		jScrollPanel.setBounds(0, 0, 800, 472);
-
-		jScrollPanel.setViewportView(teacherTestResultTable);
-
-		teacherTestResultSubmitButton = new JButton("发布");
-		teacherTestResultSubmitButton.setBounds(700, 490, 60, 20);
-		JPanel southTestResultsPanel = new JPanel();// 南(southTestResultsPanel)
-		southTestResultsPanel.setBounds(0, 142, 800, 522);
-		southTestResultsPanel.add(jScrollPanel);
-		southTestResultsPanel.setLayout(null);
-		southTestResultsPanel.add(teacherTestResultSubmitButton);
-
-		// 教师考试成绩Panel
-		teacherTestResultsPanel = new JPanel();
-		teacherTestResultsPanel.setLayout(null);
-		teacherTestResultsPanel.setSize(800, 666);
-		teacherTestResultsPanel.add(northTestResultsPanel);
-		teacherTestResultsPanel.add(centerTestResultsPanel);
-		teacherTestResultsPanel.add(southTestResultsPanel);
-
-		/*
-		 * 实现查看评价Panel,其中添加各种的文本框，下拉框，表格
-		 */
-		// 添加各种 标签
-
-		JLabel teacherCommentYearLabel = new JLabel("学年:");
-		teacherCommentYearLabel.setBounds(25, 15, 60, 20);
-		teacherCommentYearLabel.setFont(font);
-
-		final JTextArea teacherCommentYearTextArea = new JTextArea();
-		teacherCommentYearJCBox = new JComboBox(teacherVeYearJCBox);
-		teacherCommentYearJCBox.setBounds(85, 15, 150, 20);
-		teacherCommentYearJCBox.setFont(font);
-		teacherCommentYearJCBox.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherCommentYearJCBox.getItemListeners();
-				teacherCommentYearTextArea.setText(book.toString());
-
-			}
-
-		});
-
-		JLabel teacherCommentTermLabel = new JLabel("学期:");
-		teacherCommentTermLabel.setBounds(255, 15, 60, 20);
-		teacherCommentTermLabel.setFont(font);
-
-		final JTextArea teacherCommentTermTextArea = new JTextArea();
-		teacherCommentTermJCBox = new JComboBox(teacherVeTermJCBox);
-		teacherCommentTermJCBox.setBounds(315, 15, 150, 20);
-		teacherCommentTermJCBox.setFont(font);
-		teacherCommentTermJCBox.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherCommentTermJCBox.getItemListeners();
-				teacherCommentTermTextArea.setText(book.toString());
-
-			}
-
-		});
-
-		JLabel teacherCommentCourseNameLabel = new JLabel("课程名称:");
-		teacherCommentCourseNameLabel.setBounds(505, 15, 100, 20);
-		teacherCommentCourseNameLabel.setFont(font);
-
-		final JTextArea teacherCommentCourseNameTextArea = new JTextArea();
-		teacherCommentCourseNameJCBox = new JComboBox(teacherVeCourseNameJCBox);
-		teacherCommentCourseNameJCBox.setBounds(605, 15, 150, 20);
-		teacherCommentCourseNameJCBox.setFont(font);
-		teacherCommentCourseNameJCBox.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Object book = teacherCommentCourseNameJCBox.getItemListeners();
-				teacherCommentCourseNameTextArea.setText(book.toString());
-
-			}
-
-		});
+		
 
 		JLabel teacherCommentStatisticsLabel = new JLabel("评价总汇统计:");
 		teacherCommentStatisticsLabel.setBounds(25, 60, 130, 20);
@@ -744,13 +518,13 @@ JFrame teacherFrame;
 
 		Vector<String> commentColumnIdentifiers = new Vector<String>();
 		commentColumnIdentifiers.add("评价号");
-		commentColumnIdentifiers.add("评价者");
+		//commentColumnIdentifiers.add("评价者");
 		commentColumnIdentifiers.add("评价内容");
 		commentColumnIdentifiers.add("评分");
 
 		// {"评价号","评价者","评价内容","评分"};
 		teacherCommentItmizeStatisticsDefaultTable = new DefaultTableModel(100,
-				4);
+				3);
 		teacherCommentItmizeStatisticsDefaultTable
 				.setColumnIdentifiers(commentColumnIdentifiers);
 		JTable teacherCommentItmizeStatisticsTable = new JTable(
@@ -878,10 +652,10 @@ JFrame teacherFrame;
 		teacherFrame.add(teacherTabbedPane);
 		teacherFrame.setVisible(true);
 		teacherFrame.setDefaultCloseOperation(teacherFrame.EXIT_ON_CLOSE);
-
-	}
-
-	public static void main(String[] args) {
+	   
+	
+   }
+	public static void main(String[] args){
 		TeacherView te = new TeacherView();
 		int num = 20140020;
 		String name = "彭飞荣";
