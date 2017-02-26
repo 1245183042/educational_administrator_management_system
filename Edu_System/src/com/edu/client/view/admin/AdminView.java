@@ -1,6 +1,8 @@
 package com.edu.client.view.admin;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Vector;
 
@@ -8,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 public class AdminView {
@@ -21,8 +22,6 @@ public class AdminView {
 	private JButton backButton;//后退按钮
 	private JButton refreshButton;//刷新按钮
 	private JButton logoutButton;//注销按钮
-
-	Vector<String> noticeVector;//临时测试用
 	
 	public void init(){
 		Font font = new Font("asd",Font.PLAIN,20);
@@ -67,8 +66,7 @@ public class AdminView {
 		//创建一个Tab页面标签,标题放在左边，采用垂直滚动策略的JTabbedPane
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0,120,1230,620);
-		//Vector<String> noticeVector = 此处调用Client端Ctrl层的方法（返回一个Vector<String>）
-		JPanel noticePanel = new AdminNoticePane().init();
+		JPanel noticePanel = AdminNoticePane.getIstance().init();
 		JPanel studentPanel = new AdminStudentPane().init();
 		JPanel teacherPanel = new AdminTeacherPane().init();
 		JPanel scorePanel = new AdminScorePane().init();
@@ -84,6 +82,14 @@ public class AdminView {
 		adminFrame.add(upPanel);
 		adminFrame.add(tabbedPane);
 		adminFrame.setVisible(true);
+		
+		//添加监听事件
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 	}
 	
 	

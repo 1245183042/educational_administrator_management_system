@@ -1,32 +1,22 @@
 package com.edu.client.view.admin;
 
-import java.awt.Dimension;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AddNoticeView {
+public class AddNoticePane {
 	private JPanel addNoticePanel;
 	
-	public void init(){
-		JFrame addNoticeFrame = new JFrame("测试窗口");
-		
+	public JPanel init(){
 		addNoticePanel = new JPanel();
-		addNoticePanel.setPreferredSize(new Dimension(1136, 620));
+		addNoticePanel.setBounds(0, 50, 1136, 620);
 		addNoticePanel.setLayout(null);
-		
-		JLabel topLabel = new JLabel("公告管理");
-		topLabel.setBounds(540, 20, 60, 20);
-		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
-		lineLabel.setBounds(268,45,650,3);
 		JLabel tipLabel = new JLabel(">>>   发布新公告");
-		tipLabel.setBounds(268,55,100,20);
+		tipLabel.setBounds(268,0,100,20);
 		JLabel titleLabel = new JLabel("标题");
 		titleLabel.setBounds(400, 150, 30, 20);
 		JTextField titleField = new JTextField();
@@ -53,8 +43,6 @@ public class AddNoticeView {
 		authorField.setBounds(440, 480, 200, 20);
 		JButton confirmButton = new JButton("确认发布");
 		confirmButton.setBounds(950, 520, 90, 20);
-		addNoticePanel.add(topLabel);
-		addNoticePanel.add(lineLabel);
 		addNoticePanel.add(tipLabel);
 		addNoticePanel.add(titleLabel);
 		addNoticePanel.add(titleField);
@@ -68,13 +56,7 @@ public class AddNoticeView {
 		addNoticePanel.add(authorLabel);
 		addNoticePanel.add(authorField);
 		addNoticePanel.add(confirmButton);
-		
-		addNoticeFrame.add(addNoticePanel);
-		addNoticeFrame.pack();
-		addNoticeFrame.setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		new AddNoticeView().init();
+		addNoticePanel.setVisible(false);
+		return addNoticePanel;
 	}
 }
