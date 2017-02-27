@@ -18,6 +18,15 @@ import com.edu.bean.CurrentPage;
 import com.edu.util.DateUtil;
 
 public class AdminNoticePane {
+	
+	private AdminNoticePane(){}
+	
+	private static final AdminNoticePane INSTANCE = new AdminNoticePane();
+	
+	public static AdminNoticePane getInstance(){
+		return INSTANCE;
+	}
+	
 	private JPanel noticePanel;//放在tabbedPane的公告标签
 	private JPanel noticeInitPanel;//初始面板
 	private JPanel addNoticePanel;//添加新公告的面板
@@ -90,8 +99,8 @@ public class AdminNoticePane {
 		//用来装公告表格的面板
 		model = new DefaultTableModel(new String[]{"口删除","标题","发布对象","发布者","发布时间"}, 0);
 		NoticeTable = new JTable(model);
-		model.addRow(new String[]{"口","关于配合做好车辆通行年票费补缴工作的通知","学生","admin",DateUtil.getTime()});
-		model.addRow(new String[]{"口","开学温馨提示","学生","admin",DateUtil.getTime()});
+		//model.addRow(new String[]{"口","关于配合做好车辆通行年票费补缴工作的通知","学生","admin",DateUtil.getTime()});
+		//model.addRow(new String[]{"口","开学温馨提示","学生","admin",DateUtil.getTime()});
 		TableColumn column = NoticeTable.getColumnModel().getColumn(0);
 		column.setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		downScrollPane = new JScrollPane(NoticeTable);

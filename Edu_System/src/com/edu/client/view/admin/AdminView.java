@@ -10,12 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+
 import com.edu.bean.CurrentPage;
 import com.edu.util.DateUtil;
 
 public class AdminView {
 	private JFrame adminFrame;
-	private JPanel upPanel;//装标题、在线人数、日期、学期、导航按钮的面板。
+	private JPanel upPanel;// 装标题、在线人数、日期、学期、导航按钮的面板。
 	private JTabbedPane tabbedPane;
 	private int onlineNum = 99;//在线人数
 	private String term = "2016-2017学年第二学期 第一周";
@@ -24,7 +25,7 @@ public class AdminView {
 	private JButton refreshButton;//刷新按钮
 	private JButton logoutButton;//注销按钮
 	public static String currentPage;//判断当前页面是什么
-	
+	private JPanel noticePanel;
 	public void init(){
 		Font font = new Font("宋体",Font.PLAIN,12);//常规Label字体
 		Font font1 = new Font("微软雅黑",Font.BOLD,12);//常规按钮字体
@@ -34,7 +35,7 @@ public class AdminView {
 //		adminFrame.setPreferredSize(new Dimension(1230,760));
 		adminFrame.setLocationRelativeTo(null);//屏幕居中
 		adminFrame.setResizable(false);
-		
+
 		upPanel = new JPanel();
 		upPanel.setLayout(null);
 		upPanel.setBounds(0, 0, 1000, 100);
@@ -74,7 +75,7 @@ public class AdminView {
 		upPanel.add(backButton);
 		upPanel.add(refreshButton);
 		upPanel.add(logoutButton);
-		
+
 		//创建一个Tab页面标签,标题放在左边，采用垂直滚动策略的JTabbedPane
 		tabbedPane = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBounds(0,100,1000,520);
@@ -91,10 +92,13 @@ public class AdminView {
 		tabbedPane.addTab("课程表管理", coursePanel);
 		tabbedPane.addTab("科目信息", subjectPanel);
 		tabbedPane.addTab("学生成绩", scorePanel);
-		
+
 		adminFrame.add(upPanel);
 		adminFrame.add(tabbedPane);
+
 		adminFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		adminFrame.addWindowListener(new AdminCtrl());
+
 		adminFrame.setVisible(true);
 		
 		//添加监听事件
@@ -116,10 +120,16 @@ public class AdminView {
 			}
 		});
 	}
-	
-	
-	public static void main(String[] args) {		
+
+	public JPanel getNoticePanel() {
+		return noticePanel;
+	}
+
+	public void setNoticePanel(JPanel noticePanel) {
+		this.noticePanel = noticePanel;
+	}
+
+	public static void main(String[] args) {
 		new AdminView().init();
 	}
 }
-

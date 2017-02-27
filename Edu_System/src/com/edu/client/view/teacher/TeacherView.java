@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import com.edu.bean.Teacher;
 
 public class TeacherView {
+
 JFrame teacherFrame;
    JTabbedPane teacherTabbedPane;
    
@@ -40,6 +41,7 @@ JFrame teacherFrame;
     */
    JComboBox teacherCourseGradeJCBox,teacherCourseMajorJCBox;
    JTextArea[][] teacherCourseTabels=new JTextArea[5][9];
+   JButton teacherCourseQueryButton;
    
 //   TextField teacherNumberText,teacherNameText,
 //               teacherPhoneText,teacherAddressText,teacherPositionText,teacherCollegeText;
@@ -65,8 +67,8 @@ JFrame teacherFrame;
    JTextField modifyPasswordUserNameText,modifyPasswordUserIdText,
    modifyPasswordOldPasswordText,modifyPasswordNewPasswordText,modifyPasswordEnsureNewPasswordText;
    JButton modifyPasswordEnsureButton;
-   public void init(Teacher teacher,Vector<String> teacherCourseVeGradeJCBox,
-		   Vector<String> teacherCourseVeMajorJCBox,Vector<String>teacherVeYearJCBox,Vector<String>teacherVeTermJCBox,
+   public void init(Teacher teacher,Vector<String>teacherVeYearJCBox,Vector<String> teacherCourseVeGradeJCBox,
+		   Vector<String> teacherCourseVeMajorJCBox,Vector<String>teacherVeTermJCBox,
 		   Vector<String>teacherVeCourseNameJCBox,Vector<String>teacherTestResultVeCourseCharacterJCBox){
 	   
 	   int xWieht=888,jHight=666,hight=60,hightAdd=20;
@@ -92,12 +94,12 @@ JFrame teacherFrame;
 	   /**
 	    * 设置个人信息的标签,以及修改、确定按钮
 	    */
-	   JLabel teacherNumLabel=new JLabel("编号："+teacher.getUserId());
+	   JLabel teacherNumLabel=new JLabel("编号："+teacher.getTeacherId());
 	   teacherNumLabel.setFont(font);
 	   teacherNumLabel.setBounds(xWieht/2-100, hight+20, 500, 20);
 	   
 	   
-	   JLabel teacherNameLabel=new JLabel("姓名:"+teacher.getUserName());
+	   JLabel teacherNameLabel=new JLabel("姓名:"+teacher.getTeacherName());
 	   teacherNameLabel.setFont(font);
 	   teacherNameLabel.setBounds(xWieht/2-100, hight+60+hightAdd, 500, 20);
 	   
@@ -134,16 +136,16 @@ JFrame teacherFrame;
 	   teacherInformationPanel.add(teacherAddressLabel);
 	   teacherInformationPanel.add(teacherPositionLabel);
 	   teacherInformationPanel.add(teacherCollegeLabel);
-	   teacherInformationPanel.add(teacherReviseButton);
-	   teacherInformationPanel.add(teacherSureButton);
+//	   teacherInformationPanel.add(teacherReviseButton);
+//	   teacherInformationPanel.add(teacherSureButton);
 	   
 	   
 	   /*
 	    * 设置教师课程表，其中有添加表格，下拉框等组件。其中有三个Panel（包括teacherCoursePanel），
 	    * 其中两个是添加到teacherCoursePanel中，teacherCoursePanel用的是边界布局。
 	    */
-	   JLabel teacherGradeLabel=new JLabel("年级:");
-	   teacherGradeLabel.setBounds(100, 25,60, 20);
+	   JLabel teacherGradeLabel=new JLabel("学年学期:");
+	   teacherGradeLabel.setBounds(70, 25,120, 20);
 	   teacherGradeLabel.setFont(font);
 	   
 	   final JTextArea teacherCourseGradeJCBTextArea=new JTextArea();
@@ -162,12 +164,12 @@ JFrame teacherFrame;
 	   });
 	   
 	   JLabel teacherMajorLabel=new JLabel("专业:");
-	   teacherMajorLabel.setBounds(450, 25,60, 20);
+	   teacherMajorLabel.setBounds(430, 25,60, 20);
 	   teacherMajorLabel.setFont(font);
 	   
 	   final JTextArea teacherCourseMajorJCBTextArea=new JTextArea();
 	   teacherCourseMajorJCBox=new JComboBox(teacherCourseVeMajorJCBox);//教室课程表专业下拉款
-	   teacherCourseMajorJCBox.setBounds(505, 20, 200, 30);
+	   teacherCourseMajorJCBox.setBounds(485, 20, 200, 30);
 	   teacherCourseMajorJCBox.setFont(font);
 	   teacherCourseMajorJCBox.addItemListener(new ItemListener(){
 
@@ -179,7 +181,8 @@ JFrame teacherFrame;
 		}
 		   
 	   });
-	   
+	   teacherCourseQueryButton=new JButton("查询");
+	   teacherCourseQueryButton.setBounds(729, 49, 60, 18);
 	   
 	   JPanel northCoursePanel=new JPanel();//教室课程表北Panel，其中加入了年级、专业下拉框的Panel
 	   northCoursePanel.setBounds(0, 0, 800, 70);
@@ -189,6 +192,7 @@ JFrame teacherFrame;
 	   northCoursePanel.add(teacherGradeLabel);
 	   northCoursePanel.add(teacherMajorLabel);
 	   northCoursePanel.add(teacherCourseMajorJCBox);
+	   northCoursePanel.add(teacherCourseQueryButton);
 	   
 	   
 	   
@@ -259,7 +263,7 @@ JFrame teacherFrame;
 	   teacherTestResultCourseNameLabel.setBounds(20, 40, 90, 20);
 	   teacherTestResultCourseNameLabel.setFont(font);
 	   
-	   JLabel teacherTestResultCourseTermLabel=new JLabel("课程性质:");//教师课程性质Label
+	   JLabel teacherTestResultCourseTermLabel=new JLabel("班级名称:");//教师课程性质Label
 	   teacherTestResultCourseTermLabel.setBounds(450, 40, 90, 20);
 	   teacherTestResultCourseTermLabel.setFont(font);
 	   
@@ -461,198 +465,217 @@ JFrame teacherFrame;
 		public void itemStateChanged(ItemEvent e) {
 			Object book=teacherCommentCourseNameJCBox.getItemListeners();
 			teacherCommentCourseNameTextArea.setText(book.toString());
-			
 		}
-		   
-	   });
+		});
+
+		teacherCoursePanel = new JPanel();// 教师课程表Panel
+		teacherCoursePanel.setLayout(null);
+		teacherCoursePanel.setSize(800, 666);
+		teacherCoursePanel.add(northCoursePanel);
+		teacherCoursePanel.add(centreCoursePanel);
+
+		
+
+		JLabel teacherCommentStatisticsLabel = new JLabel("评价总汇统计:");
+		teacherCommentStatisticsLabel.setBounds(25, 60, 130, 20);
+		teacherCommentStatisticsLabel.setFont(font);
+
+		teacherCommentStatisticsText = new JTextField();
+		teacherCommentStatisticsText.setBounds(155, 60, 200, 20);
+		teacherCommentStatisticsText.setEditable(false);
+		teacherCommentStatisticsText.setFont(font);
+
+		JLabel teacherCommentLevelLabel = new JLabel("等级:");
+		teacherCommentLevelLabel.setBounds(425, 60, 60, 20);
+		teacherCommentLevelLabel.setFont(font);
+
+		teacherCommentLevelText = new JTextField();
+		teacherCommentLevelText.setEditable(false);
+		teacherCommentLevelText.setBounds(495, 60, 60, 20);
+		teacherCommentLevelText.setFont(font);
+
+		JLabel teacherCommentForTeacherLabel = new JLabel("对教师的评价分:");
+		teacherCommentForTeacherLabel.setBounds(25, 100, 150, 20);
+		teacherCommentForTeacherLabel.setFont(font);
+
+		teacherCommentForTeacherText = new JTextField();
+		teacherCommentForTeacherText.setEditable(false);
+		teacherCommentForTeacherText.setBounds(185, 100, 180, 20);
+		teacherCommentForTeacherText.setFont(font);
+
+		JLabel teacherCommentGradeTermLabel = new JLabel("评价学年学期:");
+		teacherCommentGradeTermLabel.setBounds(425, 100, 150, 20);
+		teacherCommentGradeTermLabel.setFont(font);
+
+		teacherCommentGradeTermText = new JTextField();
+		teacherCommentGradeTermText.setEditable(false);
+		teacherCommentGradeTermText.setBounds(575, 100, 200, 20);
+		teacherCommentGradeTermText.setFont(font);
+
+		JLabel teacherCommentItmizeStatisticsLabel = new JLabel("评价分项统计:");
+		teacherCommentItmizeStatisticsLabel.setBounds(15, 150, 150, 20);
+		teacherCommentItmizeStatisticsLabel.setFont(font);
+
+		Vector<String> commentColumnIdentifiers = new Vector<String>();
+		commentColumnIdentifiers.add("评价号");
+		//commentColumnIdentifiers.add("评价者");
+		commentColumnIdentifiers.add("评价内容");
+		commentColumnIdentifiers.add("评分");
+
+		// {"评价号","评价者","评价内容","评分"};
+		teacherCommentItmizeStatisticsDefaultTable = new DefaultTableModel(100,
+				3);
+		teacherCommentItmizeStatisticsDefaultTable
+				.setColumnIdentifiers(commentColumnIdentifiers);
+		JTable teacherCommentItmizeStatisticsTable = new JTable(
+				teacherCommentItmizeStatisticsDefaultTable);
+		// teacherCommentItmizeStatisticsTable.isCellEditable(100, column)
+		JScrollPane teacherCommentItmizeStatisticsJSP = new JScrollPane();
+		teacherCommentItmizeStatisticsJSP.setBounds(5, 190, 780, 300);
+		teacherCommentItmizeStatisticsJSP
+				.setViewportView(teacherCommentItmizeStatisticsTable);
+
+		// 评价信息
+		// JLabel teacherCommentInformationLabel=new JLabel("评价信息:");
+		// teacherCommentInformationLabel.setBounds(15,500,100, 20);
+		// teacherCommentInformationLabel.setFont(font);
+
+		Vector<String> informationColumnIdentifiers = new Vector<String>();
+		informationColumnIdentifiers.add("评价信息");
+		teacherCommentInformationDefaultTable = new DefaultTableModel(100, 1);
+		teacherCommentInformationDefaultTable
+				.setColumnIdentifiers(informationColumnIdentifiers);
+		JTable teacherCommentInformationTable = new JTable(
+				teacherCommentInformationDefaultTable);
+		teacherCommentInformationTable.setRowHeight(20);
+		JScrollPane teacherCommentInformationJSP = new JScrollPane();
+		teacherCommentInformationJSP.setBounds(5, 505, 780, 150);
+		teacherCommentInformationJSP
+				.setViewportView(teacherCommentInformationTable);
+
+		// 实例化评论的Panel
+		teacherCommentPanel = new JPanel();
+		teacherCommentPanel.setLayout(null);
+		teacherCommentPanel.setSize(800, 666);
+		teacherCommentPanel.add(teacherCommentYearLabel);
+		teacherCommentPanel.add(teacherCommentTermLabel);
+		teacherCommentPanel.add(teacherCommentCourseNameLabel);
+		teacherCommentPanel.add(teacherCommentStatisticsLabel);
+		teacherCommentPanel.add(teacherCommentLevelLabel);
+		teacherCommentPanel.add(teacherCommentForTeacherLabel);
+		teacherCommentPanel.add(teacherCommentGradeTermLabel);
+		teacherCommentPanel.add(teacherCommentYearJCBox);
+		teacherCommentPanel.add(teacherCommentTermJCBox);
+		teacherCommentPanel.add(teacherCommentCourseNameJCBox);
+		teacherCommentPanel.add(teacherCommentStatisticsText);
+		teacherCommentPanel.add(teacherCommentLevelText);
+		teacherCommentPanel.add(teacherCommentForTeacherText);
+		teacherCommentPanel.add(teacherCommentGradeTermText);
+		teacherCommentPanel.add(teacherCommentItmizeStatisticsLabel);
+		teacherCommentPanel.add(teacherCommentItmizeStatisticsJSP);
+		// teacherCommentPanel.add(teacherCommentInformationLabel);
+		teacherCommentPanel.add(teacherCommentInformationJSP);
+
+		/*
+		 * 添加修改密码Panel 的各个组件
+		 */
+		JLabel modifyPasswordUserNameLabel = new JLabel("用户名:");
+		modifyPasswordUserNameLabel.setBounds(xWieht / 2 - 250, hight + 20 + 2
+				* hightAdd, 100, 20);
+		modifyPasswordUserNameLabel.setFont(font);
+		modifyPasswordUserNameText = new JTextField();
+		modifyPasswordUserNameText.setBounds(xWieht / 2 - 140, hight + 20 + 2
+				* hightAdd, 200, 20);
+		modifyPasswordUserNameText.setFont(font);
+		JLabel modifyPasswordUserIdLabel = new JLabel("账户:");
+		modifyPasswordUserIdLabel.setBounds(xWieht / 2 - 250, hight + 60 + 3
+				* hightAdd, 100, 20);
+		modifyPasswordUserIdLabel.setFont(font);
+		modifyPasswordUserIdText = new JTextField();
+		modifyPasswordUserIdText.setBounds(xWieht / 2 - 140, hight + 60 + 3
+				* hightAdd, 200, 20);
+		modifyPasswordUserIdText.setFont(font);
+		JLabel modifyPasswordOldPasswordLabel = new JLabel("旧密码:");
+		modifyPasswordOldPasswordLabel.setBounds(xWieht / 2 - 250, hight + 100
+				+ 4 * hightAdd, 100, 20);
+		modifyPasswordOldPasswordLabel.setFont(font);
+		modifyPasswordOldPasswordText = new JTextField();
+		modifyPasswordOldPasswordText.setBounds(xWieht / 2 - 140, hight + 100
+				+ 4 * hightAdd, 200, 20);
+		modifyPasswordOldPasswordText.setFont(font);
+		JLabel modifyPasswordNewPasswordLabel = new JLabel("新密码:");
+		modifyPasswordNewPasswordLabel.setBounds(xWieht / 2 - 250, hight + 140
+				+ 5 * hightAdd, 100, 20);
+		modifyPasswordNewPasswordLabel.setFont(font);
+		modifyPasswordNewPasswordText = new JTextField();
+		modifyPasswordNewPasswordText.setBounds(xWieht / 2 - 140, hight + 140
+				+ 5 * hightAdd, 200, 20);
+		modifyPasswordNewPasswordText.setFont(font);
+		JLabel modifyPasswordEnsureNewPasswordLabel = new JLabel("确认新密码:");
+		modifyPasswordEnsureNewPasswordLabel.setBounds(xWieht / 2 - 250, hight
+				+ 180 + 6 * hightAdd, 130, 20);
+		modifyPasswordEnsureNewPasswordLabel.setFont(font);
+		modifyPasswordEnsureNewPasswordText = new JTextField();
+		modifyPasswordEnsureNewPasswordText.setBounds(xWieht / 2 - 140, hight
+				+ 180 + 6 * hightAdd, 200, 20);
+		modifyPasswordEnsureNewPasswordText.setFont(font);
+
+		modifyPasswordEnsureButton = new JButton("确认");
+		modifyPasswordEnsureButton.setBounds(xWieht / 2 + 100, hight + 180 + 13
+				* hightAdd, 60, 20);
+		// 实例化modifyPasswordPanel
+		modifyPasswordPanel = new JPanel();
+		modifyPasswordPanel.setLayout(null);
+		modifyPasswordPanel.setSize(800, 666);
+		modifyPasswordPanel.add(modifyPasswordUserNameLabel);
+		modifyPasswordPanel.add(modifyPasswordUserIdLabel);
+		modifyPasswordPanel.add(modifyPasswordOldPasswordLabel);
+		modifyPasswordPanel.add(modifyPasswordNewPasswordLabel);
+		modifyPasswordPanel.add(modifyPasswordEnsureNewPasswordLabel);
+		modifyPasswordPanel.add(modifyPasswordUserNameText);
+		modifyPasswordPanel.add(modifyPasswordUserIdText);
+		modifyPasswordPanel.add(modifyPasswordOldPasswordText);
+		modifyPasswordPanel.add(modifyPasswordNewPasswordText);
+		modifyPasswordPanel.add(modifyPasswordEnsureNewPasswordText);
+		modifyPasswordPanel.add(modifyPasswordEnsureButton);
+		/*
+		 * 将Panel添加到TabbedPane中
+		 */
+		teacherTabbedPane.add("个人信息", teacherInformationPanel);
+		teacherTabbedPane.add("教师课程表", teacherCoursePanel);
+		teacherTabbedPane.add("考试成绩", teacherTestResultsPanel);
+		teacherTabbedPane.add("查看评价", teacherCommentPanel);
+		teacherTabbedPane.add("修改密码", modifyPasswordPanel);
+		/**
+		 * 将TabbedPane添加到Frame中
+		 */
+		teacherFrame.add(teacherTabbedPane);
+		teacherFrame.setVisible(true);
+		teacherFrame.setDefaultCloseOperation(teacherFrame.EXIT_ON_CLOSE);
 	   
-	   JLabel teacherCommentStatisticsLabel=new JLabel("评价总汇统计:");
-	   teacherCommentStatisticsLabel.setBounds(25, 60, 130, 20);
-	   teacherCommentStatisticsLabel.setFont(font);
-	   
-	   teacherCommentStatisticsText=new JTextField();
-	   teacherCommentStatisticsText.setBounds(155,60,200,20);
-	   teacherCommentStatisticsText.setEditable(false);
-	   teacherCommentStatisticsText.setFont(font);
-	   
-	   JLabel teacherCommentLevelLabel=new JLabel("等级:");
-	   teacherCommentLevelLabel.setBounds(425, 60, 60, 20);
-	   teacherCommentLevelLabel.setFont(font);
-	   
-	   teacherCommentLevelText=new JTextField();
-	   teacherCommentLevelText.setEditable(false);
-	   teacherCommentLevelText.setBounds(495, 60, 60, 20);
-	   teacherCommentLevelText.setFont(font);
-	   
-	   JLabel teacherCommentForTeacherLabel=new JLabel("对教师的评价分:");
-	   teacherCommentForTeacherLabel.setBounds(25, 100, 150, 20);
-	   teacherCommentForTeacherLabel.setFont(font);
-	   
-	   teacherCommentForTeacherText=new JTextField();
-	   teacherCommentForTeacherText.setEditable(false);
-	   teacherCommentForTeacherText.setBounds(185, 100, 180, 20);
-	   teacherCommentForTeacherText.setFont(font);
-	   
-	   JLabel teacherCommentGradeTermLabel=new JLabel("评价学年学期:");
-	   teacherCommentGradeTermLabel.setBounds(425, 100, 150, 20);
-	   teacherCommentGradeTermLabel.setFont(font);
-	   
-	   teacherCommentGradeTermText=new JTextField();
-	   teacherCommentGradeTermText.setEditable(false);
-	   teacherCommentGradeTermText.setBounds(575, 100, 200, 20);
-	   teacherCommentGradeTermText.setFont(font);
-	   
-	   JLabel teacherCommentItmizeStatisticsLabel=new JLabel("评价分项统计:");
-	   teacherCommentItmizeStatisticsLabel.setBounds(15, 150, 150, 20);
-	   teacherCommentItmizeStatisticsLabel.setFont(font);
-	   
-	   Vector<String> commentColumnIdentifiers=new Vector<String>();
-	   commentColumnIdentifiers.add("评价号");
-	   commentColumnIdentifiers.add("评价者");
-	   commentColumnIdentifiers.add("评价内容");
-	   commentColumnIdentifiers.add("评分");
-	   
-	   //{"评价号","评价者","评价内容","评分"};
-	   teacherCommentItmizeStatisticsDefaultTable=new DefaultTableModel(100,4);
-	   teacherCommentItmizeStatisticsDefaultTable.setColumnIdentifiers(commentColumnIdentifiers);
-	   JTable teacherCommentItmizeStatisticsTable=new JTable(teacherCommentItmizeStatisticsDefaultTable);
-	   //teacherCommentItmizeStatisticsTable.isCellEditable(100, column)
-	   JScrollPane teacherCommentItmizeStatisticsJSP=new JScrollPane();
-	   teacherCommentItmizeStatisticsJSP.setBounds(5, 190, 780, 300);
-	   teacherCommentItmizeStatisticsJSP.setViewportView(teacherCommentItmizeStatisticsTable);
-	   
-	   //评价信息
-//	   JLabel teacherCommentInformationLabel=new JLabel("评价信息:");
-//	   teacherCommentInformationLabel.setBounds(15,500,100, 20);
-//	   teacherCommentInformationLabel.setFont(font);
-	   
-	   Vector<String> informationColumnIdentifiers=new Vector<String>();
-	   informationColumnIdentifiers.add("评价信息");
-	   teacherCommentInformationDefaultTable=new DefaultTableModel(100,1);
-	   teacherCommentInformationDefaultTable.setColumnIdentifiers(informationColumnIdentifiers);
-	   JTable teacherCommentInformationTable=new JTable(teacherCommentInformationDefaultTable);
-	   teacherCommentInformationTable.setRowHeight(20);
-	   JScrollPane teacherCommentInformationJSP=new JScrollPane();
-	   teacherCommentInformationJSP.setBounds(5, 505, 780, 150);
-	   teacherCommentInformationJSP.setViewportView(teacherCommentInformationTable);
-	   
-	   
-	   
-	   //实例化评论的Panel
-	   teacherCommentPanel=new JPanel();
-	   teacherCommentPanel.setLayout(null);
-	   teacherCommentPanel.setSize(800, 666);
-	   teacherCommentPanel.add(teacherCommentYearLabel);
-	   teacherCommentPanel.add(teacherCommentTermLabel);
-	   teacherCommentPanel.add(teacherCommentCourseNameLabel);
-	   teacherCommentPanel.add(teacherCommentStatisticsLabel);
-	   teacherCommentPanel.add(teacherCommentLevelLabel);
-	   teacherCommentPanel.add(teacherCommentForTeacherLabel);
-	   teacherCommentPanel.add(teacherCommentGradeTermLabel);
-	   teacherCommentPanel.add(teacherCommentYearJCBox);
-	   teacherCommentPanel.add(teacherCommentTermJCBox);
-	   teacherCommentPanel.add(teacherCommentCourseNameJCBox);
-	   teacherCommentPanel.add(teacherCommentStatisticsText);
-	   teacherCommentPanel.add(teacherCommentLevelText);
-	   teacherCommentPanel.add(teacherCommentForTeacherText);
-	   teacherCommentPanel.add(teacherCommentGradeTermText);
-	   teacherCommentPanel.add(teacherCommentItmizeStatisticsLabel);
-	   teacherCommentPanel.add(teacherCommentItmizeStatisticsJSP);
-	  // teacherCommentPanel.add(teacherCommentInformationLabel);
-	   teacherCommentPanel.add(teacherCommentInformationJSP);
-	   
-	   /*
-	    * 添加修改密码Panel 的各个组件
-	    */
-	   JLabel modifyPasswordUserNameLabel=new JLabel("用户名:");
-	   modifyPasswordUserNameLabel.setBounds(xWieht/2-250, hight+20+2*hightAdd, 100, 20);
-	   modifyPasswordUserNameLabel.setFont(font);
-	   modifyPasswordUserNameText=new JTextField(); 
-	   modifyPasswordUserNameText.setBounds(xWieht/2-140, hight+20+2*hightAdd, 200, 20);
-	   modifyPasswordUserNameText.setFont(font);
-	   JLabel modifyPasswordUserIdLabel=new JLabel("账户:");
-	   modifyPasswordUserIdLabel.setBounds(xWieht/2-250, hight+60+3*hightAdd, 100, 20);
-	   modifyPasswordUserIdLabel.setFont(font);
-	   modifyPasswordUserIdText=new JTextField();
-	   modifyPasswordUserIdText.setBounds(xWieht/2-140, hight+60+3*hightAdd, 200, 20);
-	   modifyPasswordUserIdText.setFont(font);
-	   JLabel modifyPasswordOldPasswordLabel=new JLabel("旧密码:");
-	   modifyPasswordOldPasswordLabel.setBounds(xWieht/2-250, hight+100+4*hightAdd, 100, 20);
-	   modifyPasswordOldPasswordLabel.setFont(font);
-	   modifyPasswordOldPasswordText=new JTextField();
-	   modifyPasswordOldPasswordText.setBounds(xWieht/2-140, hight+100+4*hightAdd, 200, 20);
-	   modifyPasswordOldPasswordText.setFont(font);
-	   JLabel modifyPasswordNewPasswordLabel=new JLabel("新密码:");
-	   modifyPasswordNewPasswordLabel.setBounds(xWieht/2-250, hight+140+5*hightAdd, 100, 20);
-	   modifyPasswordNewPasswordLabel.setFont(font);
-	   modifyPasswordNewPasswordText=new JTextField();
-	   modifyPasswordNewPasswordText.setBounds(xWieht/2-140, hight+140+5*hightAdd, 200, 20);
-	   modifyPasswordNewPasswordText.setFont(font);
-	   JLabel modifyPasswordEnsureNewPasswordLabel=new JLabel("确认新密码:");
-	   modifyPasswordEnsureNewPasswordLabel.setBounds(xWieht/2-250, hight+180+6*hightAdd, 130, 20);
-	   modifyPasswordEnsureNewPasswordLabel.setFont(font);
-	   modifyPasswordEnsureNewPasswordText=new JTextField();
-	   modifyPasswordEnsureNewPasswordText.setBounds(xWieht/2-140, hight+180+6*hightAdd, 200, 20);
-	   modifyPasswordEnsureNewPasswordText.setFont(font);
-	   
-	   modifyPasswordEnsureButton=new JButton("确认");
-	   modifyPasswordEnsureButton.setBounds(xWieht/2+100, hight+180+13*hightAdd, 60, 20);
-	   //实例化modifyPasswordPanel
-	   modifyPasswordPanel=new JPanel();
-	   modifyPasswordPanel.setLayout(null);
-	   modifyPasswordPanel.setSize(800, 666);
-	   modifyPasswordPanel.add(modifyPasswordUserNameLabel);
-	   modifyPasswordPanel.add(modifyPasswordUserIdLabel);
-	   modifyPasswordPanel.add(modifyPasswordOldPasswordLabel);
-	   modifyPasswordPanel.add(modifyPasswordNewPasswordLabel);
-	   modifyPasswordPanel.add(modifyPasswordEnsureNewPasswordLabel);
-	   modifyPasswordPanel.add(modifyPasswordUserNameText);
-	   modifyPasswordPanel.add(modifyPasswordUserIdText);
-	   modifyPasswordPanel.add(modifyPasswordOldPasswordText);
-	   modifyPasswordPanel.add(modifyPasswordNewPasswordText);
-	   modifyPasswordPanel.add(modifyPasswordEnsureNewPasswordText);
-	   modifyPasswordPanel.add(modifyPasswordEnsureButton);
-	   /*
-	    * 将Panel添加到TabbedPane中
-	    */
-	   teacherTabbedPane.add("个人信息",teacherInformationPanel);
-	   teacherTabbedPane.add("教师课程表",teacherCoursePanel);
-	   teacherTabbedPane.add("考试成绩",teacherTestResultsPanel);
-	   teacherTabbedPane.add("查看评价",teacherCommentPanel);
-	   teacherTabbedPane.add("修改密码",modifyPasswordPanel);
-	   /**
-	    * 将TabbedPane添加到Frame中
-	    */
-	   teacherFrame.add(teacherTabbedPane);
-	   teacherFrame.setVisible(true);
-	   teacherFrame.setDefaultCloseOperation(teacherFrame.EXIT_ON_CLOSE);
-	   
-	   
-	  
-	   
+	
    }
-   
-   public static void main(String[] args){
-	   TeacherView te=new TeacherView();
-	   int num=20140020;
-	   String name="彭飞荣";
-	   String phone="13512345678";
-	   String address="异界大陆";
-	   String position="马云的老板";
-	   int college=12345;
-	   Teacher teacher =new Teacher();
-	   teacher.setUserId(num);
-	   teacher.setTeacherAddress(address);
-	   teacher.setTeacherPhone(phone);
-	   teacher.setTeaColId(college);
-	   teacher.setTeacherTitle(position);
-	   teacher.setUserName(name);
-	   Vector<String> vector=new Vector<String>();
-	   vector.add("feifei");
-	   vector.add("feifei");
-	   vector.add("feifei");
-	   vector.add("feifei");
-	   Vector<String> vector2=new Vector<String>();
-	   te.init(teacher,vector,vector,vector,vector,vector,vector);
-   }
+	public static void main(String[] args){
+		TeacherView te = new TeacherView();
+		int num = 20140020;
+		String name = "彭飞荣";
+		String phone = "13512345678";
+		String address = "异界大陆";
+		String position = "马云的老板";
+		int college = 12345;
+		Teacher teacher = new Teacher();
+		teacher.setTeacherId(num);
+		teacher.setTeacherAddress(address);
+		teacher.setTeacherPhone(phone);
+		teacher.setTeaColId(college);
+		teacher.setTeacherTitle(position);
+		teacher.setTeacherName(name);
+		Vector<String> vector = new Vector<String>();
+		vector.add("feifei");
+		vector.add("feifei");
+		vector.add("feifei");
+		vector.add("feifei");
+		Vector<String> vector2 = new Vector<String>();
+		te.init(teacher, vector, vector, vector, vector, vector, vector);
+	}
 }

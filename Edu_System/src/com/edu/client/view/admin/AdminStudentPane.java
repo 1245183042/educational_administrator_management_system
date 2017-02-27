@@ -1,9 +1,9 @@
 package com.edu.client.view.admin;
 
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -12,10 +12,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import com.edu.client.ctrl.AdminCtrl;
 
 import com.edu.bean.CurrentPage;
 
 public class AdminStudentPane {
+
 	private JPanel studentPanel;//放在tabbedPane的学生管理标签
 	private JPanel studentInitPanel;//初始面板
 	private JPanel addStudentPanel;//添加学生的面板
@@ -55,6 +59,7 @@ public class AdminStudentPane {
 		return adminStudentInstance;
 	}
 	
+
 	public JPanel init(){ 
 		//装院系的数组
 		String[] colleges = new String[]{
@@ -85,7 +90,7 @@ public class AdminStudentPane {
 		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
 //		lineLabel.setFont(font1);
 		lineLabel.setBounds(152,45,605,3);
-		Radio1 = new JRadioButton();
+		Radio1 = new JRadioButton("院系");
 		Radio1.setBounds(152, 55, 16, 16);
 		JLabel collegeLabel = new JLabel("院系");
 		collegeLabel.setBounds(178,55,30,20);
@@ -124,6 +129,11 @@ public class AdminStudentPane {
 		addStudentButton = new JButton("添加学生");
 		addStudentButton.setBounds(756, 110, 87, 20);
 		addStudentButton.setFont(font1);
+		group = new ButtonGroup();
+		group.add(Radio1);
+		group.add(Radio2);
+		DefaultTableModel model = new DefaultTableModel(new String[]{"院系","专业","年级","班级","学号","姓名","修改信息","删除学生"}, 0);
+		queryButton.addActionListener(new AdminCtrl(group,idField,model,queryButton));
 		upPanel.add(titleLable);
 		upPanel.add(lineLabel);
 		upPanel.add(Radio1);
@@ -143,8 +153,7 @@ public class AdminStudentPane {
 		upPanel.add(addStudentButton);
 		
 		//用来装学生信息表格的面板
-		sutudentInfoTable = new JTable(new Object[][]{{"信息科学技术学院","网络工程","2013级","1班","1314080903178","林蛋大","JCheckBox","JCheckBox()"}},
-				new Object[]{"院系","专业","年级","班级","学号","姓名","修改信息","删除学生"});
+		sutudentInfoTable = new JTable(model);
 		downScrollPane = new JScrollPane(sutudentInfoTable);
 		downScrollPane.setBounds(50, 150, 810, 300);
 		
@@ -170,5 +179,5 @@ public class AdminStudentPane {
 		
 		return studentPanel;
 	}
-	
+
 }

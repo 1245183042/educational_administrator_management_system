@@ -1,13 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 选修课表
  * 
  * @author Administrator
  * 
  */
-public class Elective {
-	
+public class Elective implements Serializable {
+
+	private static final long serialVersionUID = 6064946296409469983L;
 	private int eleId;// 主键
 	private int eleStatus;// 课程状态：0可选，1不可选
 	private int eleSubId;// 外键，科目表Id

@@ -1,13 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 课程位置表
  * 
  * @author Administrator
  * 
  */
-public class CoursePosition {
+public class CoursePosition implements Serializable {
 
+	private static final long serialVersionUID = 8663826251035722000L;
 	private int cpId;// 主键
 	private String cpPosition;// 课表位置名称
 

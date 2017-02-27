@@ -1,13 +1,16 @@
 package com.edu.bean;
 
+import java.io.Serializable;
+
 /**
  * 成绩表
  * 
  * @author Administrator
  * 
  */
-public class Score {
+public class Score implements Serializable {
 
+	private static final long serialVersionUID = 4164410766655194995L;
 	private int scoId;// 主键
 	private double scoScore;// 分数
 	private int scoStuId;// 外键，学生表Id
