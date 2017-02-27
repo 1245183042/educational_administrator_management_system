@@ -4,11 +4,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.edu.bean.Course;
 import com.edu.bean.Identify;
 import com.edu.bean.Message;
 import com.edu.bean.OperationCode;
+import com.edu.bean.Student;
 import com.edu.server.connection.ConnManager;
 import com.edu.server.connection.XmlManager;
 import com.edu.server.dao.AdminDao;
@@ -32,16 +35,16 @@ public class ServerService {
 		this.serverSocket = serverSocket;
 	}
 
+	@SuppressWarnings("null")
 	public void init() {
 		EduDao dao = new EduDao();
 		try {
 			List<String> childElementValues = XmlManager
 					.getChildElementValues(XmlManager
 							.getDoc("src/com/edu/server/connection/db.xml"));
-			Connection conn = null;
-			// ConnManager.getConn(childElementValues.get(0),
-			// childElementValues.get(1), childElementValues.get(2),
-			// childElementValues.get(3));
+			Connection conn = ConnManager.getConn(childElementValues.get(0),
+			 childElementValues.get(1), childElementValues.get(2),
+			 childElementValues.get(3));
 			in = new ObjectInputStream(serverSocket.getInputStream());
 			out = new ObjectOutputStream(serverSocket.getOutputStream());
 			Message message = (Message) in.readObject();
@@ -129,11 +132,12 @@ public class ServerService {
 			} else if (identify.equals(Identify.STUDENT)) {
 				StudentDao studentDao = new StudentDao();
 				if (operationCode.equals(OperationCode.LOGIN)) {
-					getMes = dao.getStudent(
-							message.getStudent().getStudentId(), message
-									.getStudent().getStudentPassword());
-					// Message message2 = studentDao.queryNotice(conn);
-					Message message2 = dao.getNotice(1);
+					getMes = new UserDao().queryStudent(conn,message.getStudent());
+//					getMes = dao.getStudent(
+//							message.getStudent().getStudentId(), message
+//									.getStudent().getStudentPassword());
+					Message message2 = studentDao.queryNotice(conn);
+//					Message message2 = dao.getNotice(1);
 					message2.setStudent(getMes.getStudent());
 					message2.setMajor(getMes.getMajor());
 					message2.setCollage(getMes.getCollage());
@@ -142,13 +146,19 @@ public class ServerService {
 				} else if (operationCode.equals(OperationCode.RETRIEVE_NOTICE)) {
 
 				} else if (operationCode.equals(OperationCode.RETRIEVE_STUDENT)) {
-					getMes = dao
-							.getStudent(message.getStudent().getStudentId());
-					out.writeObject(getMes);
+//					getMes = dao.getStudent(message.getStudent().getStudentId());
+//					out.writeObject(getMes);
 				} else if (operationCode.equals(OperationCode.UPDATE_STUDENT)) {
-					dao.alterStudent(message.getStudent());
+					int record = studentDao.udStudentDate(conn, message);
+					if(record == 1){
+						Student student = new Student();
+						student.setStudentAddress("xiugaichenggong");
+						message.setStudent(student);
+						out.writeObject(message);
+					}
 				} else if (operationCode.equals(OperationCode.RETRIEVE_COURSE)) {
-
+					getMes = studentDao.courses(conn, message);
+					out.writeObject(getMes);
 				} else if (operationCode.equals(OperationCode.RETRIEVE_SCORE)) {
 
 				}

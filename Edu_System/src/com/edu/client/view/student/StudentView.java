@@ -20,6 +20,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.edu.bean.Message;
 import com.edu.bean.Notice;
@@ -39,19 +41,22 @@ public class StudentView implements ComponentListener {
 	private Message message;
 	Color bgColor = new Color(245,245,245);
 	Color wordColor = new Color(234,234,234);
+	public StudentView(){
+		studentFrame.setSize( 800, 600);
+		//设置窗口相对于指定组件的位置。 如果组件当前未显示，或者 c 为 null，则此窗口将置于屏幕的中央。
+		studentFrame.setLocationRelativeTo(null);
+	}
 	public void initUI(Message getMes2){
 		this.message = getMes2;
 		studentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//窗口用户是否调整
 		studentFrame.setResizable(false);
-		studentFrame.setSize( 800, 600);
+		
 		//对控件施行绝对定位，必须让它不要使用任何布局方式（关键步骤）
 		studentFrame.setLayout(null);
-		//设置窗口相对于指定组件的位置。 如果组件当前未显示，或者 c 为 null，则此窗口将置于屏幕的中央。
-		studentFrame.setLocationRelativeTo(null);
+		
 		
 		Font font = new Font("宋体", Font.BOLD, 18);
-		Font font2 = new Font("宋体",Font.BOLD,11);
 		
 		
 		JPanel topPanel = new JPanel();
@@ -146,13 +151,13 @@ public class StudentView implements ComponentListener {
 		studentPhoneLabel.setFont(font);
 		studentPanel.add(studentPhoneLabel);
 		
-		//年级
-		JLabel studentGIdLabel = new JLabel("年级:"+getMes2.getStudent().getStuGraId());
+		//年年
+		JLabel studentGIdLabel = new JLabel("年级:"+getMes2.getGrade().getGradeYear());
 		studentGIdLabel.setBounds(80, 170, 200, 30);
 		studentGIdLabel.setFont(font);
 		studentPanel.add(studentGIdLabel);
 		
-		//班级
+		//班年
 		JLabel studentClassLabel = new JLabel("班级:"+getMes2.getStudent().getStuClass());
 		studentClassLabel.setBounds(380, 170, 220, 30);
 		studentClassLabel.setFont(font);
@@ -165,7 +170,7 @@ public class StudentView implements ComponentListener {
 		studentPanel.add(studentDormitoryLabel);
 		
 		//专业
-		JLabel studentMIdLabel = new JLabel("专业:"+getMes2.getStudent().getStuMajId());
+		JLabel studentMIdLabel = new JLabel("专业:"+getMes2.getCollage().getCollageName());
 		studentMIdLabel.setBounds(380, 240, 220, 30);
 		studentMIdLabel.setFont(font);
 		studentPanel.add(studentMIdLabel);
@@ -188,9 +193,9 @@ public class StudentView implements ComponentListener {
 		gradeLabel.setFont(font);
 		coursePanel.add(gradeLabel);
 		//学年下拉菜单
-		String[] grade = new String[]{"2014级","2015级","2016级","2017级"};
+		String[] grade = new String[]{"2014年","2015年","2016年","2017年"};
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JComboBox gradeBox = new JComboBox(grade);
+		JComboBox<String> gradeBox = new JComboBox(grade);
 		gradeBox.setBounds(100, 20, 110, 30);
 		gradeBox.setFont(font);
 		coursePanel.add(gradeBox);
@@ -202,7 +207,7 @@ public class StudentView implements ComponentListener {
 		//学期下拉菜单
 		String[] term = new String[]{"第一学期","第二学期"};
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JComboBox termBox = new JComboBox(term);
+		JComboBox<String> termBox = new JComboBox(term);
 		termBox.setBounds(350, 20, 110, 30);
 		termBox.setFont(font);
 		coursePanel.add(termBox);
@@ -212,7 +217,7 @@ public class StudentView implements ComponentListener {
 		searchesButton.setFont(font);
 		coursePanel.add(searchesButton);
 		//专业
-		JLabel studentMIdLabel2 = new JLabel("专业:"+getMes2.getStudent().getStuMajId());
+		JLabel studentMIdLabel2 = new JLabel("专业:"+getMes2.getCollage().getCollageName());
 		studentMIdLabel2.setBounds(500, 60, 220, 30);
 		studentMIdLabel2.setFont(font);
 		coursePanel.add(studentMIdLabel2);
@@ -227,85 +232,7 @@ public class StudentView implements ComponentListener {
 		studentIdLabel2.setFont(font);
 		coursePanel.add(studentIdLabel2);
 		
-		JLabel morning = new JLabel("上午");
-		morning.setBounds(10, 150, 50, 30);
-		morning.setFont(font);
-		coursePanel.add(morning);
-		JLabel afternone = new JLabel("下午");
-		afternone.setBounds(10, 250, 50, 30);
-		afternone.setFont(font);
-		coursePanel.add(afternone);
-		JLabel late = new JLabel("晚上");
-		late.setBounds(10, 350, 50, 30);
-		late.setFont(font);
-		coursePanel.add(late);
-		JLabel morning1 = new JLabel("1、2节");
-		morning1.setBounds(50, 125, 60, 30);
-		morning1.setFont(font);
-		coursePanel.add(morning1);
-		JLabel afternone1 = new JLabel("5、6节");
-		afternone1.setBounds(50, 225, 60, 30);
-		afternone1.setFont(font);
-		coursePanel.add(afternone1);
-		JLabel late1 = new JLabel("9、10节");
-		late1.setBounds(40, 325, 70, 30);
-		late1.setFont(font);
-		coursePanel.add(late1);
-		JLabel morning2 = new JLabel("3、4节");
-		morning2.setBounds(50, 175, 60, 30);
-		morning2.setFont(font);
-		coursePanel.add(morning2);
-		JLabel afternone2 = new JLabel("7、8节");
-		afternone2.setBounds(50, 275, 60, 30);
-		afternone2.setFont(font);
-		coursePanel.add(afternone2);
-		JLabel late2 = new JLabel("11、12节");
-		late2.setBounds(30, 375, 80, 30);
-		late2.setFont(font);
-		coursePanel.add(late2);
-		JLabel day1 = new JLabel("星期一");
-		day1.setBounds(150, 80, 80, 30);
-		day1.setFont(font);
-		coursePanel.add(day1);
-		JLabel day2 = new JLabel("星期二");
-		day2.setBounds(230, 80, 80, 30);
-		day2.setFont(font);
-		coursePanel.add(day2);
-		JLabel day3 = new JLabel("星期三");
-		day3.setBounds(310, 80, 80, 30);
-		day3.setFont(font);
-		coursePanel.add(day3);
-		JLabel day4 = new JLabel("星期四");
-		day4.setBounds(390, 80, 80, 30);
-		day4.setFont(font);
-		coursePanel.add(day4);
-		JLabel day5 = new JLabel("星期五");
-		day5.setBounds(480, 80, 80, 30);
-		day5.setFont(font);
-		coursePanel.add(day5);
-		JLabel day6 = new JLabel("星期六");
-		day6.setBounds(560, 80, 80, 30);
-		day6.setFont(font);
-		coursePanel.add(day6);
-		JLabel day7 = new JLabel("星期日");
-		day7.setBounds(640, 80, 80, 30);
-		day7.setFont(font);
-		coursePanel.add(day7);
-		JTextArea[] courseTextArea = new JTextArea[42];
-		for(int i = 0;i < 7;i++)
-		{
-			for(int j = 0;j < 6;j++)
-			{
-				//课程文本
-				courseTextArea[6*i+j] = new JTextArea("课程"+(6*i+j+1)+"\n老师"
-				+(6*i+j+1)+"\n教室"+(6*i+j+1));
-				courseTextArea[6*i+j].setBounds(150+82*i, 115+52*j, 70, 40);
-				courseTextArea[6*i+j].setFont(font2);
-				courseTextArea[6*i+j].setBackground(new Color(203,227,247));
-				courseTextArea[6*i+j].setEditable(false);
-				coursePanel.add(courseTextArea[6*i+j]);
-			}
-		}
+		
 		//考试成绩
 		JPanel scorePanel = new JPanel();
 		scorePanel.setLayout(null);
@@ -316,7 +243,7 @@ public class StudentView implements ComponentListener {
 		gradeLabel2.setFont(font);
 		scorePanel.add(gradeLabel2);
 		//学年下拉菜单
-		String[] grade2 = new String[]{"2014级","2015级","2016级","2017级"};
+		String[] grade2 = new String[]{"2014年","2015年","2016年","2017年"};
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox gradeBox2 = new JComboBox(grade2);
 		gradeBox2.setBounds(100, 20, 110, 30);
@@ -340,7 +267,7 @@ public class StudentView implements ComponentListener {
 		searchesButton2.setFont(font);
 		scorePanel.add(searchesButton2);
 		//专业
-		JLabel studentMIdLabel22= new JLabel("专业:"+getMes2.getStudent().getStuMajId());
+		JLabel studentMIdLabel22= new JLabel("专业:"+getMes2.getCollage().getCollageName());
 		studentMIdLabel22.setBounds(500, 60, 220, 30);
 		studentMIdLabel22.setFont(font);
 		scorePanel.add(studentMIdLabel22);
@@ -374,75 +301,50 @@ public class StudentView implements ComponentListener {
 		JPanel commentPanel = new JPanel();
 		commentPanel.setLayout(null);
 		commentPanel.setBackground(bgColor);
-		//教师姓名
-		JLabel teacherName = new JLabel("教师姓名:");
-		teacherName.setBounds(100, 10, 100, 30);
-		teacherName.setFont(font);
-		commentPanel.add(teacherName);
-		//教师姓名下拉菜单
-		String[] teacherNameString = new String[]{"嘉鹏-学士","凯豪-学士","硕硕-中科院","飞荣-学士"};
+		//学年
+		JLabel gradeLabel3 = new JLabel("学年:");
+		gradeLabel3.setBounds(50, 20, 50, 30);
+		gradeLabel3.setFont(font);
+		commentPanel.add(gradeLabel3);
+		//学年下拉菜单
+		String[] grade3 = new String[]{"2014年","2015年","2016年","2017年"};
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JComboBox teacherNameBox = new JComboBox(teacherNameString);
-		teacherNameBox.setBounds(200, 10, 200, 30);
-		teacherNameBox.setFont(font);
-		commentPanel.add(teacherNameBox);
-		
-		//课程名
-		JLabel courseName = new JLabel("  课程名:");
-		courseName.setBounds(400, 10, 100, 30);
-		courseName.setFont(font);
-		commentPanel.add(courseName);
-		//课程名下拉菜单
-		String[] courseNameString = new String[]{"论早恋的危害","男人怎么脱单","中国未来单身问题","电影鉴赏","java深入浅出"};
+		JComboBox<String> gradeBox3 = new JComboBox(grade3);
+		gradeBox3.setBounds(100, 20, 110, 30);
+		gradeBox3.setFont(font);
+		commentPanel.add(gradeBox3);
+		//学期
+		JLabel termLabel3 = new JLabel("学期:");
+		termLabel3.setBounds(300, 20, 50, 30);
+		termLabel3.setFont(font);
+		commentPanel.add(termLabel3);
+		//学期下拉菜单
+		String[] term3 = new String[]{"第一学期","第二学期"};
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JComboBox courseNameBox = new JComboBox(courseNameString);
-		courseNameBox.setBounds(500, 10, 200, 30);
-		courseNameBox.setFont(font);
-		commentPanel.add(courseNameBox);
-		
-		//评价号
-		JLabel commentNum = new JLabel("评价号");
-		commentNum.setBounds(75, 50, 100, 30);
-		commentNum.setFont(font);
-		commentPanel.add(commentNum);
-		//评价内容
-		JLabel commentReason = new JLabel("评价内容");
-		commentReason.setBounds(325, 50, 100, 30);
-		commentReason.setFont(font);
-		commentPanel.add(commentReason);
-		//评价等级
-		JLabel commentLevel = new JLabel("评价等级");
-		commentLevel.setBounds(575, 50, 100, 30);
-		commentLevel.setFont(font);
-		commentPanel.add(commentLevel);
-		
-		JLabel[] commentNums = new JLabel[8];
-		JTextField[] commentReasons = new JTextField[8];
-		//课程名下拉菜单
-		String[] commentLevelString = new String[]{"优秀","良好","及格","不及格","很差"};
-		for(int i = 0;i<8;i++)
-		{	
-			commentNums[i] = new JLabel(String.valueOf(i+1));
-			commentNums[i].setBounds(100, 100+40*i, 20, 30);
-			commentNums[i].setFont(font);
-			commentPanel.add(commentNums[i]);
-			
-			commentReasons[i] = new JTextField();
-			commentReasons[i].setBounds(140, 100+40*i, 350, 30);
-			commentReasons[i].setFont(font);
-			commentPanel.add(commentReasons[i]);
-			
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			JComboBox commentLevelBox = new JComboBox(commentLevelString);
-			commentLevelBox.setBounds(500, 100+40*i, 200, 30);
-			commentLevelBox.setFont(font);
-			commentPanel.add(commentLevelBox);
-		}
-		JButton commentButton = new JButton("提交");
-		commentButton.setBounds(500, 380, 200, 30);
-		commentButton.setBackground(bgColor);
-		commentPanel.add(commentButton);
-		
+		JComboBox<String> termBox3 = new JComboBox(term3);
+		termBox3.setBounds(350, 20, 110, 30);
+		termBox3.setFont(font);
+		commentPanel.add(termBox3);
+		//检索信息
+		JButton searchesButton3 = new JButton("检索");
+		searchesButton3.setBounds(600, 20, 80, 30);
+		searchesButton3.setFont(font);
+		commentPanel.add(searchesButton3);
+		//专业
+		JLabel studentMIdLabel222= new JLabel("专业:"+getMes2.getCollage().getCollageName());
+		studentMIdLabel222.setBounds(500, 60, 220, 30);
+		studentMIdLabel222.setFont(font);
+		commentPanel.add(studentMIdLabel222);
+		//姓名
+		JLabel studentNameLabel222 = new JLabel("姓名:"+getMes2.getStudent().getStudentName());
+		studentNameLabel222.setBounds(300, 60, 200, 30);
+		studentNameLabel222.setFont(font);
+		commentPanel.add(studentNameLabel222);
+		//学号
+		JLabel studentIdLabel222 = new JLabel("学号:"+getMes2.getStudent().getStudentId());
+		studentIdLabel222.setBounds(50, 60, 200, 30);
+		studentIdLabel222.setFont(font);
+		commentPanel.add(studentIdLabel222);
 		
 		//修改密码
 		JPanel updatePasswordPanel = new JPanel();
@@ -518,31 +420,40 @@ public class StudentView implements ComponentListener {
 		
 		
 		//为JTbbedPane添加事件监听器(可以在按事件的时候触发)
-//		tabbedPane.addChangeListener(new ChangeListener()
-//		{
-//			public void stateChanged(ChangeEvent event)
-//			{
-//				if   (((JTabbedPane)event.getSource()).getSelectedIndex() == 0)   
-//				{   
-//		          }   
-//		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 1)   
-//		          {   
-//		          }   
-//		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 2)   
-//		          {   
-//		          }   
-//		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 3)   
-//		          {   
-//		          }   
-//		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 4)   
-//		          {   
-//		          }  
-//			}
-//		});
+		tabbedPane.addChangeListener(new ChangeListener()
+		{
+			public void stateChanged(ChangeEvent event)
+			{
+				if   (((JTabbedPane)event.getSource()).getSelectedIndex() == 0)   
+				{   
+		          }   
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 1)   
+		          {   
+		          }   
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 2)   
+		          {   
+		          }   
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 3)   
+		          {   
+		          }   
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 4)   
+		          {   
+		          }  
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 5)   
+		          {   
+		          }   
+		          else   if(((JTabbedPane)event.getSource()).getSelectedIndex() == 6)   
+		          {   
+		          } 
+			}
+		});
 		
 		
 		studentFrame.setVisible(true);
 		logoutButton.addActionListener(new StudentCtrl(logoutButton,studentFrame));
+		searchesButton.addActionListener(new StudentCtrl(getMes2,searchesButton,gradeBox,termBox,StudentView.this));
+		presentPasswordButton.addActionListener(new StudentCtrl(studentIdUPField,studentPasswordField,studentNewPasswordField,studentSurePasswordField,presentPasswordButton,studentFrame));
+		searchesButton3.addActionListener(new StudentCtrl(searchesButton3,getMes2,gradeBox3,termBox3));
 	}
 	//公告里面的消息
 	private JPanel panel() {

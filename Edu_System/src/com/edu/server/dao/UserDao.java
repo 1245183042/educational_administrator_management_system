@@ -152,7 +152,7 @@ public class UserDao {
 			notice.setNoticeTitle(rs.getString("notice_title"));
 			notice.setNoticeContent(rs.getString("notice_content"));
 			notice.setNoticeAuthor(rs.getString("notice_author"));
-			notice.setNoticeReleaseTime(rs.getDate("notice_release_time"));
+			notice.setNoticeReleaseTime(rs.getString("notice_release_time"));
 			notices.add(notice);
 		}
 		return notices;
