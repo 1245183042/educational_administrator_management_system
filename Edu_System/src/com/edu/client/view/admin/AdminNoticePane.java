@@ -1,5 +1,6 @@
 package com.edu.client.view.admin;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,15 +14,18 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.edu.bean.CurrentPage;
 import com.edu.util.DateUtil;
 
 public class AdminNoticePane {
 	private JPanel noticePanel;//放在tabbedPane的公告标签
+	private JPanel noticeInitPanel;//初始面板
+	private JPanel addNoticePanel;//添加新公告的面板
 	private JScrollPane downScrollPane;//用来装公告表格的面板
 	private JTable NoticeTable;//学生信息表格
 	private DefaultTableModel model;
 	private JButton addNoticeButton;
-	private JPanel addNoticePanel;//添加新公告的面板
+
 
 	/*
 	 * 单例模式
@@ -45,6 +49,14 @@ public class AdminNoticePane {
 		return adminNoticeInstance;
 	}
 	
+	public JPanel getAddNoticePanel(){
+		return addNoticePanel;
+	}
+
+	public JPanel getNoticeInitPanel(){
+		return noticeInitPanel;
+	}
+	
 	public JButton getAddButton() {
 		return addNoticeButton;
 	}
@@ -59,16 +71,21 @@ public class AdminNoticePane {
 	}
 
 	public JPanel init(){
+		Font font = new Font("宋体",Font.PLAIN,12);//常规Label字体
+		Font font1 = new Font("微软雅黑",Font.BOLD,12);//常规按钮字体
 		noticePanel = new JPanel();
 		noticePanel.setLayout(null);
+		noticePanel.setBounds(0, 0, 910, 520);
 		
-		noticePanel.setBounds(0, 0, 1136, 620);
 		JLabel titleLable = new JLabel("公告管理");
-		titleLable.setBounds(540, 20, 60, 20);
+		titleLable.setBounds(422, 10, 66, 20);
+		titleLable.setFont(new Font("微软雅黑",Font.BOLD,16));
 		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
-		lineLabel.setBounds(268,45,650,3);
+//		lineLabel.setFont(font1);
+		lineLabel.setBounds(152,45,605,3);
 		addNoticeButton = new JButton("发布新公告");
-		addNoticeButton.setBounds(268,55,100,20);
+		addNoticeButton.setFont(font1);
+		addNoticeButton.setBounds(152,55,100,20);
 		
 		//用来装公告表格的面板
 		model = new DefaultTableModel(new String[]{"口删除","标题","发布对象","发布者","发布时间"}, 0);
@@ -78,22 +95,26 @@ public class AdminNoticePane {
 		TableColumn column = NoticeTable.getColumnModel().getColumn(0);
 		column.setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		downScrollPane = new JScrollPane(NoticeTable);
-		downScrollPane.setBounds(50, 150, 1000, 300);
+		downScrollPane.setBounds(50, 100, 810, 300);
 		
-		addNoticePanel = new AddNoticePane().init();
+		noticeInitPanel = new JPanel();
+		noticeInitPanel.setLayout(null);
+		noticeInitPanel.setBounds(0, 0, 910, 520);
+		noticeInitPanel.add(titleLable);
+		noticeInitPanel.add(lineLabel);
+		noticeInitPanel.add(addNoticeButton);
+		noticeInitPanel.add(downScrollPane);
 		
-		noticePanel.add(titleLable);
-		noticePanel.add(lineLabel);
-		noticePanel.add(addNoticeButton);
-		noticePanel.add(downScrollPane);
-		noticePanel.add(addNoticePanel);
+		noticePanel.add(noticeInitPanel);
 		
 		addNoticeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				addNoticeButton.setVisible(false);
-				downScrollPane.setVisible(false);
+				noticeInitPanel.setVisible(false);
+				addNoticePanel = new AddNoticePane().init();
+				noticePanel.add(addNoticePanel);
 				addNoticePanel.setVisible(true);
+				AdminView.currentPage = CurrentPage.newNotice;
 			}
 		});
 

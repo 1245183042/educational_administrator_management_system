@@ -1,5 +1,7 @@
 package com.edu.client.view.admin;
 
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -8,6 +10,7 @@ import javax.swing.JTextField;
 
 public class AdminSubjectPane {
 	private JPanel subjectPanel;//放在tabbedPane的科目管理标签
+	private JPanel subjectInitPanel;//初始面板
 	
 	public JPanel init(){
 		String[] colleges = new String[]{
@@ -16,55 +19,77 @@ public class AdminSubjectPane {
 				"体育学院","外国语学院 ","音乐学院","文学与传媒学院","政法学院","马克思主义学院","继续教育学院 "
 			};
 		
+		Font font = new Font("宋体",Font.PLAIN,14);//常规Label字体
+		Font font1 = new Font("微软雅黑",Font.BOLD,12);//常规按钮字体
+		
 		subjectPanel = new JPanel();
 		subjectPanel.setLayout(null);
-		subjectPanel.setBounds(0, 0, 1136, 620);
-		JLabel titleLable = new JLabel("科目管理");
-		titleLable.setBounds(540, 20, 60, 20);
+		subjectPanel.setBounds(0, 0, 910, 520);
+		JLabel titleLable = new JLabel("课程管理");
+		titleLable.setBounds(422, 10, 66, 20);
+		titleLable.setFont(new Font("微软雅黑",Font.BOLD,16));
 		JLabel lineLabel = new JLabel("——————————————————————————————————————————————————");
-		lineLabel.setBounds(268,45,650,3);
+//		lineLabel.setFont(font1);
+		lineLabel.setBounds(152,45,605,3);
 		JLabel subjectLabel = new JLabel("科目");
-		subjectLabel.setBounds(300,55,30,20);
+		subjectLabel.setBounds(152,55,30,20);
+		subjectLabel.setFont(font);
 		JTextField queryField = new JTextField();
-		queryField.setBounds(335,55,100,20);
+		queryField.setBounds(187,55,100,20);
+		queryField.setFont(font);
 		JComboBox<String> subjectBox = new JComboBox<String>(colleges);
-		subjectBox.setBounds(440,55,170,20);
+		subjectBox.setBounds(292,55,170,20);
+		subjectBox.setFont(font);
 		JButton addButton = new JButton("添加科目");
-		addButton.setBounds(845,55,87,20);
+		addButton.setBounds(650,55,87,20);
+		addButton.setFont(font1);
 		JLabel subjectIdLabel = new JLabel("科目ID:");
-		subjectIdLabel.setBounds(440,110,60,20);
+		subjectIdLabel.setBounds(370,110,60,20);
+		subjectIdLabel.setFont(font);
 		JLabel IdLabel = new JLabel("100011");
-		IdLabel.setBounds(510,110,200,20);
+		IdLabel.setBounds(450,110,200,20);
+		subjectIdLabel.setFont(font);
 		JLabel subjectNameLabel = new JLabel("科目名称:");
-		subjectNameLabel.setBounds(440,140,60,20);
+		subjectNameLabel.setBounds(360,140,70,20);
+		subjectNameLabel.setFont(font);
 		JTextField subjectNameField = new JTextField("高等数学1");
-		subjectNameField.setBounds(510,140,100,20);
+		subjectNameField.setBounds(450,140,100,20);
+		subjectNameField.setFont(font);
 		subjectNameField.setEditable(false);
 		JLabel learnTimeLabel = new JLabel("学时:");
-		learnTimeLabel.setBounds(440, 170, 60, 20);
+		learnTimeLabel.setBounds(390, 170, 60, 20);
+		learnTimeLabel.setFont(font);
 		JTextField learnTimeField = new JTextField("48学时");
-		learnTimeField.setBounds(510,170,100,20);
+		learnTimeField.setBounds(450,170,100,20);
+		learnTimeField.setFont(font);
 		learnTimeField.setEditable(false);
 		JButton modifyButton = new JButton("修改");
-		modifyButton.setBounds(440, 220, 60, 20);
+		modifyButton.setBounds(370, 220, 60, 20);
+		modifyButton.setFont(font1);
 		JButton deleteButton = new JButton("删除该科目");
-		deleteButton.setBounds(510, 220, 100, 20);
-		subjectPanel.add(titleLable);
-		subjectPanel.add(lineLabel);
-		subjectPanel.add(subjectLabel);
-		subjectPanel.add(queryField);
-		subjectPanel.add(subjectBox);
-		subjectPanel.add(addButton);
-		subjectPanel.add(subjectIdLabel);
-		subjectPanel.add(IdLabel);
-		subjectPanel.add(subjectNameLabel);
-		subjectPanel.add(subjectNameField);
-		subjectPanel.add(learnTimeLabel);
-		subjectPanel.add(learnTimeField);
-		subjectPanel.add(modifyButton);
-		subjectPanel.add(deleteButton);
+		deleteButton.setBounds(450, 220, 100, 20);
+		deleteButton.setFont(font1);
 		
+		subjectInitPanel = new JPanel();
+		subjectInitPanel.setLayout(null);
+		subjectInitPanel.setBounds(0, 0, 910, 520);
+		subjectInitPanel.add(titleLable);
+		subjectInitPanel.add(lineLabel);
+		subjectInitPanel.add(subjectLabel);
+		subjectInitPanel.add(queryField);
+		subjectInitPanel.add(subjectBox);
+		subjectInitPanel.add(addButton);
+		subjectInitPanel.add(subjectIdLabel);
+		subjectInitPanel.add(IdLabel);
+		subjectInitPanel.add(subjectNameLabel);
+		subjectInitPanel.add(subjectNameField);
+		subjectInitPanel.add(learnTimeLabel);
+		subjectInitPanel.add(learnTimeField);
+		subjectInitPanel.add(modifyButton);
+		subjectInitPanel.add(deleteButton);
+
 		
+		subjectPanel.add(subjectInitPanel);
 		return subjectPanel;
 	}
 }
