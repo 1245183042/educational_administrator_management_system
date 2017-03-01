@@ -25,6 +25,24 @@ public class Message implements Serializable {
 	private Subject subject;
 	private List<Notice> notices;
 	private List<Course> courses;
+	private List<Score> scores;
+	private List<Elective> electives;
+
+	public List<Elective> getElectives() {
+		return electives;
+	}
+
+	public void setElectives(List<Elective> electives) {
+		this.electives = electives;
+	}
+
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
 
 	public List<Course> getCourses() {
 		return courses;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxool-config>
+	<proxool>
+		<alias>edu_manage</alias> <!-- 连接池的别名 -->
+		<!-- 连接数据库的驱动URL -->
+		<driver-url><![CDATA[jdbc:mysql://192.168.1.103:3306/edu_admin_manage_system?characterEncoding=utf-8]]></driver-url>
+		<!-- 连接数据库的驱动类 -->
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-properties>
+			<property name="user" value="sidacaizi" /> <!-- 登录数据库的用户名 -->
+			<property name="password" value="" /> <!-- 登录数据库的密码 -->
+		</driver-properties>
+		<house-keeping-sleep-time>900000</house-keeping-sleep-time><!-- 处于睡眠的最长时间 -->
+		<maximum-active-time>500000</maximum-active-time><!-- 连接最大活动时间 -->
+		<maximum-connection-count>50</maximum-connection-count><!-- 最大的连接数 -->
+		<minimum-connection-count>4</minimum-connection-count> <!-- 最小的连接数 -->
+		<simultaneous-build-throttle>20</simultaneous-build-throttle>
+		<!-- 如果检测连接处于空闲状态，就用执行这条语句来测试 -->
+		<house-keeping-test-sql>select 1</house-keeping-test-sql>
+		<prop key="hibernate.connection.release_mode">after_transaction</prop>
+	</proxool>
+</proxool-config>

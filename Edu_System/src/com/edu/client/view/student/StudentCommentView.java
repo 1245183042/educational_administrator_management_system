@@ -16,17 +16,20 @@ import javax.swing.JTextField;
 
 import com.edu.bean.Course;
 import com.edu.bean.Message;
+import com.edu.client.ctrl.StudentCtrl;
 
 public class StudentCommentView {
 	private JFrame frame;
 	private int num;
-	String[] courseNameString;
-	JComboBox<String> courseNameBox;
-	JTextField teacherNameField;
-	String[] teacherNameString;
+	private String[] courseNameString;
+	private JComboBox<String> courseNameBox;
+	private JTextField teacherNameField;
+	private String[] teacherNameString;
+	private Message message;
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void InitUI(Message message){
 		// TODO Auto-generated method stub
+	this.message = message;
 	frame = new JFrame("课表详细内容");
 	frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE );
 	//窗口用户是否调整
@@ -53,8 +56,8 @@ public class StudentCommentView {
 	//课程名下拉菜单
 	List<String> teacherSubject = new ArrayList<String>();
 	for(Course c : message.getCourses()){
-		String[] course = c.getCouClassroom().split("teacher:");
-		teacherSubject.add(course[1]+"/"+c.getCouYearTerm());
+		String[] course = c.getCouClassroom().split(":");
+		teacherSubject.add(course[1]+"/"+c.getCouYearTerm().split(":")[0]);
 	}
 	courseNameString = new String[teacherSubject.size()];
 	teacherNameString = new String[teacherSubject.size()];
@@ -64,7 +67,6 @@ public class StudentCommentView {
 		String[] ctName = teacherSubject.get(i).split("/");
 		courseNameString[i] = ctName[1];
 		teacherNameString[i] = ctName[0];
-		System.out.println(courseNameString[i]+"   "+teacherNameString[i]);
 	}
 	courseNameBox = new JComboBox(courseNameString);
 	courseNameBox.setBounds(500, 10, 200, 30);
@@ -77,7 +79,7 @@ public class StudentCommentView {
 	teacherName.setFont(font);
 	commentPanel.add(teacherName);
 	
-	teacherNameField = new JTextField(teacherNameString[0]);
+	teacherNameField = new JTextField();
 	teacherNameField.setBounds(150, 10, 200, 30);
 	teacherNameField.setFont(font);
 	teacherNameField.setEditable(false);
@@ -99,10 +101,13 @@ public class StudentCommentView {
 	commentLevel.setFont(font);
 	commentPanel.add(commentLevel);
 	
+	String commentTeacher = "课程知识结构重点突出，层次分明:授课有条理，有重点:治学严谨，要求严格:教学认真负责，语言生动，条理清晰:教学认真，课堂效率高:课堂气氛活跃，师生互动良好:态度和蔼，十分有耐心:富有经验，工作认真负责";
+	String[] commentTeachers = commentTeacher.split(":");
 	JLabel[] commentNums = new JLabel[8];
 	JTextField[] commentReasons = new JTextField[8];
 	//课程名下拉菜单
-	String[] commentLevelString = new String[]{"优秀","良好","及格","不及格","很差"};
+	String[] commentLevelString = new String[]{"5-优秀","4-良好","3-及格","2-不及格","1-很差"};
+	JComboBox<String> commentLevelBox[] = new JComboBox[8];
 	for(int i = 0;i<8;i++)
 	{	
 		commentNums[i] = new JLabel(String.valueOf(i+1));
@@ -110,17 +115,27 @@ public class StudentCommentView {
 		commentNums[i].setFont(font);
 		commentPanel.add(commentNums[i]);
 		
-		commentReasons[i] = new JTextField();
+		commentReasons[i] = new JTextField(commentTeachers[i]);
 		commentReasons[i].setBounds(140, 100+40*i, 350, 30);
 		commentReasons[i].setFont(font);
+		commentReasons[i].setEditable(false);
 		commentPanel.add(commentReasons[i]);
 		
-		@SuppressWarnings({ })
-		JComboBox commentLevelBox = new JComboBox(commentLevelString);
-		commentLevelBox.setBounds(500, 100+40*i, 200, 30);
-		commentLevelBox.setFont(font);
-		commentPanel.add(commentLevelBox);
+		commentLevelBox[i] = new JComboBox(commentLevelString);
+		commentLevelBox[i].setBounds(500, 100+40*i, 200, 30);
+		commentLevelBox[i].setFont(font);
+		commentPanel.add(commentLevelBox[i]);
 	}
+	JLabel otherLabel = new JLabel("other:");
+	otherLabel.setBounds(80, 450, 60, 30);
+	otherLabel.setFont(font);
+	commentPanel.add(otherLabel);
+	
+	JTextField other = new JTextField();
+	other.setBounds(140, 450, 350, 30);
+	other.setFont(font);
+	commentPanel.add(other);
+	
 	JButton commentButton = new JButton("提交");
 	commentButton.setBounds(500, 450, 200, 30);
 	commentButton.setBackground(bgColor);
@@ -140,14 +155,25 @@ public class StudentCommentView {
 					if (courseNameBox.getSelectedItem().equals(courseNameString[i])) 
 					{
 						teacherNameField.setText(teacherNameString[i]);
+						upCourse(teacherNameString[i],courseNameString[i]);
 					}
 				}
 			}
 		}
 		
 	});
+	
+	commentButton.addActionListener(new StudentCtrl(commentButton,commentLevelBox[0],commentLevelBox[1],commentLevelBox[2],commentLevelBox[3],commentLevelBox[4],commentLevelBox[5],commentLevelBox[6],commentLevelBox[7],other,message,frame));
 	}
 	public static void main(String[] args) {
 		new StudentCommentView().InitUI(null);
+	}
+	public void upCourse(String teacherName,String courseName){
+		for(Course c : message.getCourses()){
+			if(c.getCouClassroom().split(":")[1].equals(teacherName) && c.getCouYearTerm().split(":")[0].equals(courseName))
+			{
+				this.message.setCourse(c);
+			}
+		}
 	}
 }

@@ -16,13 +16,13 @@ public class Comment implements Serializable {
 	private int comSubId;// 外键，科目表Id
 	private int comTeaId;// 外键，教师表Id
 	private String comContent;// 评论内容
-	private int comLevel;// 满意度星级(1-4)
-
+	private String comLevel;// 满意度星级(1-4)
+	private String comYearTerm;
 	public Comment() {
 	}
 
 	public Comment(int comId, int comStuId, int comSubId, int comTeaId,
-			String comContent, int comLevel) {
+			String comContent, String comLevel) {
 		this.comId = comId;
 		this.comStuId = comStuId;
 		this.comSubId = comSubId;
@@ -71,12 +71,20 @@ public class Comment implements Serializable {
 		this.comContent = comContent;
 	}
 
-	public int getComLevel() {
+	public String getComLevel() {
 		return comLevel;
 	}
 
-	public void setComLevel(int comLevel) {
+	public void setComLevel(String comLevel) {
 		this.comLevel = comLevel;
+	}
+
+	public String getComYearTerm() {
+		return comYearTerm;
+	}
+
+	public void setComYearTerm(String comYearTerm) {
+		this.comYearTerm = comYearTerm;
 	}
 
 }

@@ -35,7 +35,6 @@ public class StudentNoticeView implements ActionListener{
 		frame.setLayout(null);
 		//设置窗口相对于指定组件的位置。 如果组件当前未显示，或者 c 为 null，则此窗口将置于屏幕的中央。
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
 		textArea = new JTextArea("发布时间:"+notice.getNoticeReleaseTime()+"\n\t\t"
 		+notice.getNoticeTitle()+"\n\t"+notice.getNoticeContent()+"\n"+"作者:"+notice.getNoticeAuthor()
 		+"\n公告编号:<"+noticeNum+">");
@@ -44,6 +43,8 @@ public class StudentNoticeView implements ActionListener{
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("宋体", Font.BOLD, 26));
 		frame.add(textArea);
+		
+		frame.setVisible(true);
 		
 	}
 	

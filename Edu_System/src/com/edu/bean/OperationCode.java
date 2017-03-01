@@ -27,5 +27,6 @@ public interface OperationCode {
 	String DELETE_SCORE = "删除成绩";
 	String UPDATE_SCORE = "修改成绩";
 	String CREATE_SCORE = "增加成绩";
-
+	String CREATE_COMMENT = "修改评价";
+	String CREATE_ELECTIVE = "增加选修";
 }

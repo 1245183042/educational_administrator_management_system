@@ -142,7 +142,8 @@ public class ServerService {
 					message2.setMajor(getMes.getMajor());
 					message2.setCollage(getMes.getCollage());
 					message2.setGrade(getMes.getGrade());
-					out.writeObject(message2);
+					Message message22 = studentDao.elective(conn,message2);
+					out.writeObject(message22);
 				} else if (operationCode.equals(OperationCode.RETRIEVE_NOTICE)) {
 
 				} else if (operationCode.equals(OperationCode.RETRIEVE_STUDENT)) {
@@ -157,12 +158,39 @@ public class ServerService {
 						out.writeObject(message);
 					}
 				} else if (operationCode.equals(OperationCode.RETRIEVE_COURSE)) {
-					getMes = studentDao.courses(conn, message);
-					out.writeObject(getMes);
+					Message messageCourse = studentDao.courses(conn, message);
+					out.writeObject(messageCourse);
 				} else if (operationCode.equals(OperationCode.RETRIEVE_SCORE)) {
-
+					Message scoreMessage = studentDao.score(conn,message);
+					out.writeObject(scoreMessage);
+				}else if (operationCode.equals(OperationCode.CREATE_COMMENT)) {
+					int record = studentDao.addCommentDate(conn, message);
+					if(record == 1){
+						Student student = new Student();
+						student.setStudentAddress("pingjiachenggong");
+						message.setStudent(student);
+						out.writeObject(message);
+					}else{
+						Student student = new Student();
+						student.setStudentAddress("pingjiashibai");
+						message.setStudent(student);
+						out.writeObject(message);
+					}
+				}else if(operationCode.equals(OperationCode.CREATE_ELECTIVE))
+				{	
+					int record = studentDao.addElectiveDate(conn, message);
+					if(record == 1){
+						Student student = new Student();
+						student.setStudentAddress("xuanxiuchenggong");
+						message.setStudent(student);
+						out.writeObject(message);
+					}else{
+						Student student = new Student();
+						student.setStudentAddress("xuanxiushibai");
+						message.setStudent(student);
+						out.writeObject(message);
+					}
 				}
-
 			} else if (identify.equals(Identify.TEACHER)) {
 
 				if (operationCode.equals(OperationCode.LOGIN)) {

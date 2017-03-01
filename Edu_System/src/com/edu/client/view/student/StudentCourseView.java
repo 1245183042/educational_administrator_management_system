@@ -112,8 +112,8 @@ public class StudentCourseView{
 				{	
 					if(c.getCouCpId() == (6*i+j+1))
 					{
-					String[] course = c.getCouClassroom().split("teacher:");
-					courseTextArea[6*i+j] = new JTextArea(course[0]+" "+course[1]+" "+c.getCouWeek()+" "+c.getCouYearTerm());
+					String[] course = c.getCouClassroom().split(":");
+					courseTextArea[6*i+j] = new JTextArea(course[0]+" "+course[1]+" "+c.getCouWeek()+" "+c.getCouYearTerm().split(":")[0]);
 					courseTextArea[6*i+j].setBounds(150+82*i, 115+52*j, 70, 40);
 					courseTextArea[6*i+j].setFont(font2);
 					courseTextArea[6*i+j].setBackground(new Color(238,238,238));
